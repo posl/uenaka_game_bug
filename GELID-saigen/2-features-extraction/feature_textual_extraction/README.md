@@ -1,0 +1,1 @@
+You need to download GoogleNews-vectors-negative300.bin and put it in this folder to run the scripts. The dataset is available here: https://www.kaggle.com/datasets/leadbest/googlenewsvectorsnegative300/download?datasetVersionNumber=2 
