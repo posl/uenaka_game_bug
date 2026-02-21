@@ -1,0 +1,13 @@
+from https://youtu.be/g9ctQTzu4Vk?t=3635 to https://youtu.be/g9ctQTzu4Vk?t=7587,,
+start_time,end_time,reason
+https://youtu.be/g9ctQTzu4Vk?t=3781,https://youtu.be/g9ctQTzu4Vk?t=3782,上昇する物体から離れているはずだがくっついているときと同じ挙動をしているため
+https://youtu.be/g9ctQTzu4Vk?t=3930,https://youtu.be/g9ctQTzu4Vk?t=3938,当たり判定があるべきものをアイテムスロットを開くことですり抜けているため
+https://youtu.be/g9ctQTzu4Vk?t=4396,https://youtu.be/g9ctQTzu4Vk?t=4398,アイテム使用によって壁をすり抜けているため
+https://youtu.be/g9ctQTzu4Vk?t=5373,https://youtu.be/g9ctQTzu4Vk?t=5375,柵をすり抜けているため
+https://youtu.be/g9ctQTzu4Vk?t=5513,https://youtu.be/g9ctQTzu4Vk?t=5540,裏世界を移動しているため
+https://youtu.be/g9ctQTzu4Vk?t=5873,https://youtu.be/g9ctQTzu4Vk?t=5874,吹き出しが出ているがコメントがないため
+https://youtu.be/g9ctQTzu4Vk?t=6192,https://youtu.be/g9ctQTzu4Vk?t=6207,裏世界を移動しているため
+https://youtu.be/g9ctQTzu4Vk?t=6215,https://youtu.be/g9ctQTzu4Vk?t=6232,裏世界を移動しているため
+https://youtu.be/g9ctQTzu4Vk?t=6237,https://youtu.be/g9ctQTzu4Vk?t=6258,裏世界を移動した後そのままストーリーが進行しているため
+https://youtu.be/g9ctQTzu4Vk?t=6712,https://youtu.be/g9ctQTzu4Vk?t=6744,裏世界を移動しているため
+https://youtu.be/g9ctQTzu4Vk?t=7070,https://youtu.be/g9ctQTzu4Vk?t=7118,柵や壁のすり抜けをしているため

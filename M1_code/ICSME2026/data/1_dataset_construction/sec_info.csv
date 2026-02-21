@@ -1,0 +1,70 @@
+Data_name,Path,Start_second,End_second,First_frame_number,Offset
+Data01,SM64/120Star/video1.mp4,3,3603,0,3
+Data02,BotW/AllDungeons/video1.mp4,2972,6572,0,2972
+Data03,BotW/AllMainQuests/video1.mp4,9614,13214,0,9614
+Data04,BotW/AllMainQuests/video1.mp4,13214,17274,108000,9614
+Data05,BotW/AllShrines/video1.mp4,81,3681,0,81
+Data06,BotW/AllShrines/video1.mp4,3681,7281,108000,81
+Data07,BotW/AllShrines/video1.mp4,7281,10881,216000,81
+Data08,BotW/AllShrines/video1.mp4,10881,15000,324000,81
+Data09,BotW/100%/video1.mp4,113,3713,0,113
+Data10,BotW/100%/video1.mp4,3713,7313,108000,113
+Data11,BotW/100%/video1.mp4,7313,10913,216000,113
+Data12,BotW/100%/video1.mp4,10913,14513,324000,113
+Data13,BotW/100%/video1.mp4,14513,18113,432000,113
+Data14,BotW/100%/video1.mp4,18113,21713,540000,113
+Data15,BotW/100%/video1.mp4,21713,24475,648000,113
+Data16,BotW/100%/video2.mp4,13,3613,0,13
+Data17,BotW/100%/video2.mp4,3613,7213,108000,13
+Data18,BotW/100%/video2.mp4,7213,10813,216000,13
+Data19,BotW/100%/video2.mp4,10813,14413,324000,13
+Data20,BotW/100%/video2.mp4,14413,18013,432000,13
+Data21,BotW/100%/video2.mp4,18013,21613,540000,13
+Data22,BotW/100%/video2.mp4,21613,25213,648000,13
+Data23,BotW/100%/video2.mp4,25213,29101,756000,13
+Data24,TotK/Any%/video1.mp4,19,2411,0,19
+Data25,TotK/AllDungeons/video1.mp4,33,3633,0,33
+Data26,TotK/AllDungeons/video1.mp4,3633,7233,108000,33
+Data27,TotK/AllMainQuests/video1.mp4,43,3643,0,43
+Data28,TotK/AllMainQuests/video1.mp4,3643,7243,108000,43
+Data29,TotK/AllMainQuests/video1.mp4,7243,10843,216000,43
+Data30,TotK/AllShrines/video1.mp4,32,3632,0,32
+Data31,TotK/AllShrines/video1.mp4,3632,7232,108000,32
+Data32,TotK/AllShrines/video1.mp4,7232,10832,216000,32
+Data33,TotK/AllShrines/video1.mp4,10832,14432,324000,32
+Data34,TotK/AllShrines/video1.mp4,14432,18032,432000,32
+Data35,TotK/AllShrines/video1.mp4,18032,22385,540000,32
+Data36,TotK/100%/video1.mp4,26,3626,0,26
+Data37,TotK/100%/video1.mp4,3626,7226,108000,26
+Data38,TotK/100%/video1.mp4,7226,10826,216000,26
+Data39,TotK/100%/video1.mp4,10826,13847,324000,26
+Data40,TotK/100%/video2.mp4,35,3635,0,35
+Data41,TotK/100%/video2.mp4,3635,7587,108000,35
+Data42,TotK/100%/video2.mp4,9366,12966,226560,35
+Data43,TotK/100%/video3.mp4,53,3653,0,53
+Data44,TotK/100%/video4.mp4,84,3684,0,84
+Data45,TotK/100%/video4.mp4,3684,7418,108000,84
+Data46,TotK/100%/video4.mp4,9249,12849,220020,84
+Data47,TotK/100%/video4.mp4,12849,16449,328020,84
+Data48,TotK/100%/video4.mp4,16449,18960,436020,84
+Data49,TotK/100%/video5.mp4,19,3619,0,19
+Data50,TotK/100%/video5.mp4,8788,12388,152520,19
+Data51,TotK/100%/video5.mp4,12388,15343,260520,19
+Data52,TotK/100%/video5.mp4,17308,20908,368520,19
+Data53,TotK/100%/video5.mp4,20908,24508,476520,19
+Data54,"TotK/100%/video5.mp4, TotK/100%/video5.mp4","3619, 24508","5103, 26021","108000, 584520","19, 19"
+Data55,TotK/100%/video6.mp4,94,3694,0,94
+Data56,TotK/100%/video6.mp4,3694,7294,108000,94
+Data57,TotK/100%/video6.mp4,7294,10894,216000,94
+Data58,TotK/100%/video6.mp4,13403,17003,373020,94
+Data59,TotK/100%/video6.mp4,17003,20603,481020,94
+Data60,"TotK/100%/video6.mp4, TotK/100%/video6.mp4","10894, 20603","12528, 22136","324000, 589020","94, 94"
+Data61,TotK/100%/video7.mp4,101,3701,0,101
+Data62,TotK/100%/video7.mp4,3701,7301,108000,101
+Data63,TotK/100%/video7.mp4,7301,10901,216000,101
+Data64,TotK/100%/video7.mp4,10901,13930,324000,101
+Data65,"SM64/0Star/video1.mp4, SM64/1Star/video1.mp4, SM64/70Star/video1.mp4","3, 2, 3","377, 418, 2789","0, 0, 0","3, 2, 3"
+Data66,"SM64/16Star/video1.mp4, SM64/120Star/video1.mp4","3, 3603","878, 5731","0, 108000","3, 3"
+Data67,"BotW/AllDungeons/video1.mp4, BotW/Any%/video1.mp4","6572, 84","8088, 1462","108000, 0","2972, 84"
+Data68,"TotK/AllDungeons/video1.mp4, TotK/AllMainQuests/video1.mp4","7233, 10843","9466, 12395","216000, 324000","33, 43"
+Data69,"TotK/100%/video2.mp4, TotK/100%/video3.mp4","12966, 3653","14753, 5506","334560, 108000","35, 53"
