@@ -5,7 +5,7 @@ import torch.optim as optim
 from torch.utils.data import DataLoader
 from torchvision.models.video import r3d_18
 from tqdm import tqdm
-from module.dataset import BalancedGameVideoDataset, make_data_list
+from module.dataset import TrainDataset, make_data_list
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 DATA_DIR = PROJECT_ROOT / "data"
@@ -24,8 +24,8 @@ def train_model(game, bug_type, batch_size=32, num_epochs=3, num_frame_skip=4, l
     train_list = make_data_list(situation_type=f"within-title_{game}", purpose="train", dataset_dir=DATASET_DIR, data_split_csv=DATA_SPLIT_CSV)
     val_list   = make_data_list(situation_type=f"within-title_{game}", purpose="validation", dataset_dir=DATASET_DIR, data_split_csv=DATA_SPLIT_CSV)
 
-    train_dataset = BalancedGameVideoDataset(data_list=train_list, dataset_dir=DATASET_DIR, bug_type=bug_type, frame_skip=0, balance=True)
-    val_dataset   = BalancedGameVideoDataset(data_list=val_list, dataset_dir=DATASET_DIR, bug_type=bug_type, frame_skip=num_frame_skip, balance=False)
+    train_dataset = TrainDataset(data_list=train_list, dataset_dir=DATASET_DIR, bug_type=bug_type, frame_skip=0)
+    val_dataset   = TrainDataset(data_list=val_list, dataset_dir=DATASET_DIR, bug_type=bug_type, frame_skip=num_frame_skip)
 
     train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
     val_loader   = DataLoader(val_dataset, batch_size=batch_size, shuffle=False)

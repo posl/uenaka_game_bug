@@ -6,7 +6,7 @@ import numpy as np
 from tqdm import tqdm
 from torchvision.models.video import r3d_18
 from torch.utils.data import DataLoader
-from module.dataset import GameVideoDataset, make_data_list
+from module.dataset import TestDataset, make_data_list
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 DATA_DIR = PROJECT_ROOT / "data"
@@ -27,7 +27,7 @@ def evaluate_model(situation_type, model_game, test_game, bug_type):
         data_split_csv=DATA_SPLIT_CSV
     )
     
-    test_dataset = GameVideoDataset(data_list=test_list, dataset_dir=DATASET_DIR, bug_type=bug_type)
+    test_dataset = TestDataset(data_list=test_list, dataset_dir=DATASET_DIR, bug_type=bug_type)
     test_loader = DataLoader(test_dataset, batch_size=1, shuffle=False)
 
     model_path = MODEL_SAVE_DIR / f"{bug_type}_{model_game}_model.pth"
