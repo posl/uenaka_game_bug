@@ -22,13 +22,13 @@ PR_LIST_DIR = PROJECT_ROOT / "src" / "2_model_training_and_evaluation" / "PR_lis
 OUTPUT_DIR = PROJECT_ROOT / "src" / "2_model_training_and_evaluation" / "grad_cam_result"
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
-def run_gradcam(situation_type, game, bug_type, num_samples=5, min_frame_dist=1800):
-    print(f"=== Starting Grad-CAM for {situation_type} | {game} | {bug_type} ===")
+def run_gradcam(situation_type, test_game, bug_type, num_samples=5, min_frame_dist=1800):
+    print(f"=== Starting Grad-CAM for {situation_type} | {test_game} | {bug_type} ===")
 
     def select_sample_with_threshold():
-        print(f"--- Sampling for {situation_type} {game} ({bug_type}) ---")
+        print(f"--- Sampling for {situation_type} {test_game} ({bug_type}) ---")
         
-        pr_csv_path = PR_LIST_DIR / situation_type / game / f"{bug_type}.csv"
+        pr_csv_path = PR_LIST_DIR / situation_type / test_game / f"{bug_type}.csv"
         if not pr_csv_path.exists():
             raise FileNotFoundError(f"PR curve data not found: {pr_csv_path}")
         
@@ -52,7 +52,7 @@ def run_gradcam(situation_type, game, bug_type, num_samples=5, min_frame_dist=18
 
         df_purpose = pd.read_csv(DATA_SPLIT_CSV)
         test_names = df_purpose.loc[
-            df_purpose[f"{situation_type}_{game}"] == "test", "Data_name"
+            df_purpose[f"{situation_type}_{test_game}"] == "test", "Data_name"
         ].tolist()
 
         candidates_tp = []
@@ -160,7 +160,7 @@ def run_gradcam(situation_type, game, bug_type, num_samples=5, min_frame_dist=18
     model = r3d_18(weights='DEFAULT')
     model.fc = nn.Linear(model.fc.in_features, 2)
 
-    model_path = MODEL_SAVE_DIR / f"{bug_type}_{game}_model.pth"
+    model_path = MODEL_SAVE_DIR / f"{bug_type}_{test_game}_model.pth"
     if model_path.exists():
         model.load_state_dict(torch.load(model_path, map_location=device))
         print(f"Loaded model from {model_path}")
@@ -219,7 +219,7 @@ def run_gradcam(situation_type, game, bug_type, num_samples=5, min_frame_dist=18
             center_num_int = int(center_num.item()) if torch.is_tensor(center_num) else int(center_num)
 
             sample_dir_name = f"{data_name[0]}_{frame_dir[0]}_{center_num_int}"
-            save_base_dir = OUTPUT_DIR / situation_type / game / bug_type / result_type / sample_dir_name
+            save_base_dir = OUTPUT_DIR / situation_type / test_game / bug_type / result_type / sample_dir_name
             save_base_dir.mkdir(parents=True, exist_ok=True)
 
             gif_save_path = save_base_dir / "result.gif"
@@ -243,6 +243,6 @@ def run_gradcam(situation_type, game, bug_type, num_samples=5, min_frame_dist=18
 if __name__ == "__main__":
     run_gradcam(
         situation_type="cross-title", 
-        game="TotK", 
+        test_game="TotK", 
         bug_type="All_label",
     )
