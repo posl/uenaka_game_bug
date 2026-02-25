@@ -1,11 +1,6 @@
 # Large data (frames must be placed locally)
 frames/
 
-# API-specific generated files
-frame_file_ids.csv
-prompts/*.jsonl
-results/
-
 # Secrets & environment
 .env
 

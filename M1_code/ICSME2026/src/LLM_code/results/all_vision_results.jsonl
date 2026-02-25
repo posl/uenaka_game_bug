@@ -1,0 +1,1 @@
+{"frame": "280854.jpg", "label": 1, "scenario": "all", "prediction": "1", "response_id": "resp_036463dc6d48c72700699e75cdd5bc819f86ffebf5f45ac1d0", "model": "gpt-4.1-mini-2025-04-14", "usage": {"input_tokens": 8442, "output_tokens": 2, "total_tokens": 8444}}
