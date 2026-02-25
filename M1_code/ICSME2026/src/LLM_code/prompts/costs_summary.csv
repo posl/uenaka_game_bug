@@ -1,0 +1,4 @@
+scenario,records,total_images,image_tokens_per_image,image_tokens_total,image_tokens_price_per_1m,image_tokens_cost_usd
+all,21420,449736,389,174947304,0.4,69.9789216
+oob,4920,103304,389,40185256,0.4,16.0741024
+fg,21420,449736,389,174947304,0.4,69.9789216
