@@ -19,18 +19,35 @@ def load_file_id_mapping(mapping_path: Path) -> dict[str, str]:
     return mapping
 
 
+BUG_CATEGORY_DESCRIPTIONS = (
+    "Bug categories:\n"
+    "- Out of Bounds (OoB): Objects pass through walls or terrain by bypassing collision detection.\n"
+    "- Speed Glitch (SG): Objects move at abnormally high speeds.\n"
+    "- Floating Glitch (FG): Objects levitate or remain suspended in mid-air.\n"
+    "- Item Glitch (IG): Item-related inconsistencies such as duplication or incorrect equipment states.\n"
+    "- Dash Backwards (DB): Character dashes in the backward direction.\n"
+    "- Teleportation Glitch (TG): Objects instantly relocate to different positions.\n"
+    "- Whistling Dash (WD): Sprinting without stamina consumption by whistling."
+)
+
+
 def build_system_prompt(scenario: str) -> str:
     scenario_text = {
         "all": "any bug (regardless of category)",
-        "oob": "OoB bug",
-        "fg": "FG bug",
+        "oob": "an Out of Bounds (OoB) bug",
+        "fg": "a Floating Glitch (FG) bug",
     }[scenario]
     return (
         "You are a helpful assistant analyzing video game images and screenshots for glitches.\n"
-        "You are given a target frame and its surrounding context frames \n"
+        "You are given a target frame and its surrounding context frames "
         "(from -10 to +10 relative to the target).\n"
+        "\n"
+        f"{BUG_CATEGORY_DESCRIPTIONS}\n"
+        "\n"
         f"Decide whether the target frame contains {scenario_text}.\n"
-        "Answer with 1 for bug, 0 for non-bug."
+        "Respond in the following JSON format only:\n"
+        '{"prediction": 0 or 1, "reason": "brief explanation of your judgment"}\n'
+        "Use 1 for bug, 0 for non-bug."
     )
 
 
@@ -111,6 +128,10 @@ def main() -> None:
     input_path = Path("balanced_datasets") / f"{args.scenario}_balanced.csv.gz"
     df = pd.read_csv(input_path)
     frames_dir = Path(args.frames_dir)
+    # dfのサイズを表示
+    print(f"df size: {df.shape}")
+    # ラベルの内訳を表示
+    print(f"label distribution: {df['label'].value_counts().to_dict()}")
 
     if "frame" not in df.columns or "label" not in df.columns:
         raise ValueError("Input dataset must contain 'frame' and 'label' columns.")
@@ -133,7 +154,6 @@ def main() -> None:
             content = build_content(
                 frame_name, context_frames, frames_dir, args.window, file_id_map
             )
-            print(f"content: {content}")
 
             record = {
                 "frame": frame_name,

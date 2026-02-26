@@ -62,6 +62,37 @@ TEXT_INPUT_TOKEN_PRICES_PER_1M = {
     },
 }
 
+TEXT_OUTPUT_TOKEN_PRICES_PER_1M = {
+    "batch": {
+        "gpt-5-mini": 0.50,
+        "gpt-5-nano": 0.10,
+        "gpt-4.1": 4.00,
+        "gpt-4.1-mini": 0.80,
+        "gpt-4.1-nano": 0.20,
+        "gpt-4o": 5.00,
+        "gpt-4o-mini": 0.30,
+        "o1": 30.00,
+        "o1-pro": 300.00,
+        "o3": 4.00,
+        "o4-mini": 2.20,
+        "computer-use-preview": 6.00,
+    },
+    "standard": {
+        "gpt-5-mini": 1.00,
+        "gpt-5-nano": 0.20,
+        "gpt-4.1": 8.00,
+        "gpt-4.1-mini": 1.60,
+        "gpt-4.1-nano": 0.40,
+        "gpt-4o": 10.00,
+        "gpt-4o-mini": 0.60,
+        "o1": 60.00,
+        "o1-pro": 600.00,
+        "o3": 8.00,
+        "o4-mini": 4.40,
+        "computer-use-preview": 12.00,
+    },
+}
+
 IMAGE_INPUT_TOKEN_PRICES_PER_1M = {
     "batch": {
         "gpt-image-1": 5.00,
@@ -70,6 +101,32 @@ IMAGE_INPUT_TOKEN_PRICES_PER_1M = {
         "gpt-image-1": 10.00,
     },
 }
+
+
+def calculate_cost_usd(
+    model: str,
+    input_tokens: int,
+    output_tokens: int,
+    tier: str = "standard",
+) -> dict[str, float]:
+    model_key = model.lower()
+    for suffix in ("", "-2025-04-14", "-2025-06-01"):
+        candidate = model_key.removesuffix(suffix)
+        if candidate in TEXT_INPUT_TOKEN_PRICES_PER_1M.get(tier, {}):
+            model_key = candidate
+            break
+
+    input_price = TEXT_INPUT_TOKEN_PRICES_PER_1M.get(tier, {}).get(model_key)
+    output_price = TEXT_OUTPUT_TOKEN_PRICES_PER_1M.get(tier, {}).get(model_key)
+
+    input_cost = input_tokens / 1_000_000 * input_price if input_price else 0.0
+    output_cost = output_tokens / 1_000_000 * output_price if output_price else 0.0
+
+    return {
+        "input_cost_usd": round(input_cost, 8),
+        "output_cost_usd": round(output_cost, 8),
+        "total_cost_usd": round(input_cost + output_cost, 8),
+    }
 
 
 def _patch_token_count(width: int, height: int, max_patches: int = 1536) -> int:

@@ -97,14 +97,14 @@ Reads prompt JSONL from `prompts/` and sends each to the Responses API.
 Resumable: already-processed frames are skipped on re-run.
 
 ```
-uv run python 6_run_vision_prompts.py --input prompts/all_vision.jsonl
+uv run python 6_run_vision_prompts.py --scenario all
 ```
 
 Output:
-- `results/all_vision_results.jsonl`
+- `results/<scenario>_vision_results.jsonl`
 
 Options:
-- `--input prompts/<scenario>_vision.jsonl`
+- `--scenario all|oob|fg`
 - `--output results/custom_output.jsonl`
 - `--sleep 0.1` (delay between requests)
 - `--max-tokens 16`

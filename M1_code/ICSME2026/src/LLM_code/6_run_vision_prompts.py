@@ -11,6 +11,8 @@ from dotenv import load_dotenv
 from openai import OpenAI
 from tqdm import tqdm
 
+from estimate_image_costs import calculate_cost_usd
+
 load_dotenv()
 
 
@@ -43,14 +45,15 @@ def main() -> None:
         description="Send pre-built vision prompts to OpenAI Responses API."
     )
     parser.add_argument(
-        "--input",
-        default="prompts/all_vision.jsonl",
-        help="Input JSONL prompt file (default: prompts/all_vision.jsonl)",
+        "--scenario",
+        choices=["all", "oob", "fg"],
+        default="all",
+        help="Label scenario (default: all)",
     )
     parser.add_argument(
         "--output",
         default=None,
-        help="Output JSONL path (default: results/<input_stem>_results.jsonl)",
+        help="Output JSONL path (default: results/<scenario>_vision_results.jsonl)",
     )
     parser.add_argument(
         "--sleep",
@@ -61,8 +64,8 @@ def main() -> None:
     parser.add_argument(
         "--max-tokens",
         type=int,
-        default=16,
-        help="Max output tokens per request (default: 16)",
+        default=256,
+        help="Max output tokens per request (default: 256)",
     )
     parser.add_argument(
         "--temperature",
@@ -76,16 +79,22 @@ def main() -> None:
         default=3,
         help="Max retries on API error (default: 3)",
     )
+    parser.add_argument(
+        "--pricing-tier",
+        choices=["standard", "batch"],
+        default="standard",
+        help="Pricing tier for cost calculation (default: standard)",
+    )
     args = parser.parse_args()
 
-    input_path = Path(args.input)
+    input_path = Path("prompts") / f"{args.scenario}_vision.jsonl"
     if not input_path.exists():
         raise FileNotFoundError(f"Input file not found: {input_path}")
 
     output_path = (
         Path(args.output)
         if args.output
-        else Path("results") / f"{input_path.stem}_results.jsonl"
+        else Path("results") / f"{args.scenario}_vision_results.jsonl"
     )
     output_path.parent.mkdir(parents=True, exist_ok=True)
 
@@ -124,18 +133,40 @@ def main() -> None:
                           f"(waiting {wait}s): {e}")
                     time.sleep(wait)
 
+            usage = None
+            cost = None
+            if response.usage:
+                usage = {
+                    "input_tokens": response.usage.input_tokens,
+                    "output_tokens": response.usage.output_tokens,
+                    "total_tokens": response.usage.total_tokens,
+                }
+                cost = calculate_cost_usd(
+                    model=response.model,
+                    input_tokens=response.usage.input_tokens,
+                    output_tokens=response.usage.output_tokens,
+                    tier=args.pricing_tier,
+                )["total_cost_usd"]
+
+            raw_text = response.output_text.strip()
+            try:
+                parsed = json.loads(raw_text)
+                prediction = parsed.get("prediction")
+                reason = parsed.get("reason", "")
+            except json.JSONDecodeError:
+                prediction = raw_text
+                reason = ""
+
             result = {
                 "frame": rec["frame"],
                 "label": rec["label"],
                 "scenario": rec["scenario"],
-                "prediction": response.output_text.strip(),
+                "prediction": prediction,
+                "reason": reason,
                 "response_id": response.id,
                 "model": response.model,
-                "usage": {
-                    "input_tokens": response.usage.input_tokens,
-                    "output_tokens": response.usage.output_tokens,
-                    "total_tokens": response.usage.total_tokens,
-                } if response.usage else None,
+                "usage": usage,
+                "cost": cost,
             }
             out_f.write(json.dumps(result, ensure_ascii=False) + "\n")
             out_f.flush()
