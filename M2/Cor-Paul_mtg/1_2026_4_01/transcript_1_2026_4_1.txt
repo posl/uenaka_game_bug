@@ -1,0 +1,299 @@
+Cor-Paul and POSL video game MTG - April 01
+VIEW RECORDING - 43 mins (No highlights): https://fathom.video/share/2Jzcr6ToXjtX7nrKse5xQGf5JPVytcVb
+
+---
+
+0:01 - Cor-Paul Bezemer (he/him)
+  This meeting is being recorded. Hi, everybody.
+
+0:37 - Masanari Kondo
+  Can you hear me?
+
+0:41 - Cor-Paul Bezemer (he/him)
+  Yeah.
+
+0:42 - Masanari Kondo
+  Okay, perfect. Thank you.
+
+0:44 - Cor-Paul Bezemer (he/him)
+  How's it going?
+
+0:47 - Masanari Kondo
+  That's good to you too.
+
+0:48 - Cor-Paul Bezemer (he/him)
+  How are you? I'm good, thank you.
+
+0:50 - Masanari Kondo
+  Oh, nice to see you.
+
+0:52 - Cor-Paul Bezemer (he/him)
+  Good luck. Sorry, my washer is very loud.
+
+1:02 - Masanari Kondo
+  Oh, no, no. We cannot hear the washer's noise.
+
+1:06 - Cor-Paul Bezemer (he/him)
+  Okay, I can. No, I cannot. It's good.
+
+1:08 - Masanari Kondo
+  No, you can. Okay, sure. Nice show.
+
+1:13 - Cor-Paul Bezemer (he/him)
+  Thanks.
+
+1:13 - Masanari Kondo
+  That was my basement office. Oh, nice. There are some board games and some books. Yeah, mostly books, yeah. Okay, that's cool.  Really cool. Okay. Thank you very much for the meeting. And actually today, from today, we would like to have like a bi-weekly meeting to discuss the, you know, research project.  Because actually, we are not so familiar with the games, game-related software engineering research project. So, we would like to get some feedback from you to, you know, revise and proceed the project, you know, to the correct.  Yuta, can you share your screen, and could you start explaining the current ideas? So today we would like to share two research directions that were constructed from your feedbacks and Yuta's feedback, because Yuta also has an idea, and you also give us like a game museum idea.  So based on this idea, we constructed two research directions and some research questions. We would like to share some ideas and we'd like to have a discussion.
+
+3:00 - Cor-Paul Bezemer (he/him)
+  Yeah.
+
+3:01 - Masanari Kondo
+  Okay. So, Yuta, can you share the screen?
+
+3:06 - 雄斗 植中 (uenaka.yuto224@gmail.com)
+  Okay.
+  SCREEN SHARING: 植中雄斗 started screen sharing - WATCH: https://fathom.video/share/2Jzcr6ToXjtX7nrKse5xQGf5JPVytcVb?timestamp=193.427743
+
+3:16 - Masanari Kondo
+  We can see your screen.
+
+3:18 - 雄斗 植中 (uenaka.yuto224@gmail.com)
+  Okay. Okay. Let's begin the presentation. Hello, KOPO. Thank you for your time today. I am Yuta Uenaka, a graduate student at九州 University.  Today, I would like to propose two research ideas for our project title, Proposing Two Research Ideas toReperage Speed Video.  and Video Repositories for diverse stakeholders. This is a joint effort with Yuta Ishimoto, Masanari Kondo, and Yasutaka Kaimei from Kyushu University.  The main purpose of today's meeting is to define our research direction and set specific experiments for the near future.  We would value your insights to help us narrow down which Fathom is most promising. Here is the flow of the meeting.  First, we will present our two research ideas. Then, we would like to ask for your feedback. Based on your comments, we hope to finalize our research direction and experimental plan.  Before diving into the ideas, let me quickly explain why we are focusing on speedruns. The primary reason is that bugs used in speedruns are highly reproducible.  This provides us with a reliable and rich source of real-world bug instances for our analysis. We believe these reproducible bugs benefit several stakeholders.  For the general public, they provide entertainment. For active players, they serve as a reference for intentionally triggering specific bugs.  And for game developers, our analysis can help them prioritize bug fixes based on how frequently a bug is exploited.  Now, let me introduce our first idea, automated organization of optimal speedrun chart evolution. While speedrunning is popular, beginners often struggle to understand the complex bugs and techniques used in a run.  Our aim is to enable beginners to enjoy speedruns more deeply through automated explanations. Ideally, we want to analyze various speedrun charts, which represents methods.  Let's strategies and presents them in a museum-style format. The workflow for this idea involves five steps. First, we select a game category such as Super Mario 64, 120 star.  Next, we automatically gather historical world record from speedrun.com. The core of our research is the third step, using an LLM to identify exploit bugs, their specific locations within the game, and their timestamps.  We then organize these requirements. goes into charts based on the spatial temporal data we detected. Finally, we present them in a museum study exhibition to show how the roots has evolved over time.  For our first idea, we have set three research questions to evaluate both the technical feasibility and the user impact.  RQ1 asks, can an LLM accurately detect buggy intervals in speedrun videos? Since speedrun bugs are reproducible and follow specific patterns, we believe LLMs can identify them effectively.  We will evaluate this by comparing the LLM's output with ground truth data labeled by human experts using metrics such as range-based precision, range-based recall, PRAUC, and the F1 scores to ensure the intervals are captured correctly.  RQ2 focuses on the automatic organization and structural verification of speedrun charts by linking the bug segments based on their spatial temporal data, including types, locations, and timestamps.  We aim to reconstruct the strategy. The core of this RQ is to evaluate the correctness of the organized sequence.  To do this simply and effectively, we will measure the sequence similarity between our generated charts and the community's route guide using edit distance.  This will quantify how accurately the The system captures the logical progression and flow of a run. Finally, RQ3 addresses the user experience.  Our goal is to make speedruns accessible to beginners. We will conduct a user study to measure if our museum-style presentation which visualize the history and spatial context of these bugs significantly improves their understanding and enjoyment compared to just watching raw videos.  Our second idea is the automated generation of bug highlight clips. Mastering speedruns requires studying bugs from existing videos, but the sheer volume and length of these videos can be overwhelming for players.  We aim to support speedrunners in their practice. practice. Our goal is to automatically generate short clips that contain only specific types of bugs extracted from a longer segment.  The workflow is similar but more focused on specific bug types. For example, we might select Backward Strong Jump in Super Mario 64.  After collecting World Records data, we use an LLM to identify the exact timestamps of those specific bugs. Then, we generate highlight clips based on those intervals.  This would benefit players in their practice. This and help developers see which bugs are most common. For our second idea, the RQs focus on the practical utility of the generated content.  RQ1 is the baseline. How accurately can an LLM identify bugging intervals? As reproducibility is the core of speedrun bugs, it is crucial to pinpoint the exact timing.  We will evaluate this use range-based precision recall, real AUC and F1 scores against manually verified data. RQ2 address addresses the RQs-refer.  RQs touch. The you. the quality of the clip boundaries, how effectively Canberg highlight clips be generated. To evaluate this simply and objectively, we will use a temporal intersection over union.  This metric measures the overlap between our generated clips and the expert-rabelled ground truth. By calculating the average DIOU, we can quantify how tightly and accurately work clips capture the essential bug segments without unnecessary frames.  RQ3 then tests the practical benefit to the creeps support learning and practice for speedrunners. We plan to get feedback from active runners to see if our tool helps them master techniques faster than traditional methods.  That concludes our presentation of the two ideas. We would love to hear your thoughts on which direction you think is more feasible or valuable for our research.  Okay, that's all.
+
+15:55 - Cor-Paul Bezemer (he/him)
+  Okay. Thank you very much for the presentation. was very clear. It's a good good job. Okay, let me think.  So maybe my first question is, are you confident that an LLM can do this? Because both your directions, they're very heavily, they basically have the same first research question, right?  And the project really stands or falls with the success of that first research question. So what do you think?  So are you confident that an LLM can do this?
+
+16:40 - Masanari Kondo
+  That's a really good question.
+
+16:44 - Cor-Paul Bezemer (he/him)
+  Because I have some experience with doing this with LLMs, right? And so what type of information do you want to give to the LLM?  Like, are you just going to give it the video or...? sequences of frames, or will you give it any additional information, or will you just give it a video and say, give me the bugging intervals?  What is your idea there?
+
+17:11 - Masanari Kondo
+  I think we can give the videos and their frames and some labels, but not the natural languages. And I'm not so familiar with elements that can handle such kind of frames or videos, but is it possible to handle such data with LMM?
+
+17:34 - Cor-Paul Bezemer (he/him)
+  So you can give it, you can give it images, videos directly. There are some models that start to do it, but it doesn't work that well.  So we have several papers where we chop up a video into frames or keyframes. And then we give that as input.  Okay. Now the problem is that if you have a video, they have, let's say 60 frames per second.
+
+17:59 - Masanari Kondo
+  Right. Right. Right?
+
+18:00 - Cor-Paul Bezemer (he/him)
+  So if you want to give all the frames as images, and you have a minute video, that's already a lot of frames.  And when we did this, GPT-4.0 had a limit of 50 images per prompt. Okay, so you need a way to down sample the frames.  So what we did was we select keyframes. And keyframes are basically when there's like a big change in the scene or when there's, you can do it at a every time interval.  So I think we selected like one every one or two seconds, right? Now, the problem is for your thing that you want to do, is you want to accurately identify an interval.  Okay, so but you lose a lot of accuracy when you have to do that down sampling already. So it's not going to be super accurate.  Okay, so that's the first problem. Now, the second problem is that the way that BLMs process these frames, is that basically...
+  ACTION ITEM: Email Masanari/Yuta Ishimoto/Yuta Uenaka: Apex Legends VLM paper + ICSI Wentao paper - WATCH: https://fathom.video/share/2Jzcr6ToXjtX7nrKse5xQGf5JPVytcVb?timestamp=1135.9999  If you give... have 50 frames, you can ask him a question like, which frame is the most likely to showcase this bug, right?  So I'll share a paper with you. I don't know if you already saw it. It's going to be presented at ICSI in two weeks.  It's Wentao's paper, where he basically has a text description of a bug, and then he knows that it occurs in a video, and then he tries to identify the frame that is the most likely to showcase that bug, okay?  So for a question like that, it works relatively well. Now, the problem is that if you want to identify where a bug ends and where a bug starts, then you basically have to ask for every frame in places where the bug starts or ends, right?  Because the VLM cannot really tell us this is where it starts or ends.
+
+19:47 - Masanari Kondo
+  We have to go through it sequentially.
+
+19:50 - Cor-Paul Bezemer (he/him)
+  And then the problem is that for many bugs, the real start of the bug is not obvious enough for the LLM.  thing ULM have It's It's the So let's say you have the backwards long jump one, then it can see the middle of the jump where it's very obvious, right?  It could detect that, but probably not the start and the end of the jump. So for detecting intervals, it's not going to be very accurate.  That may be a problem or not, depending on how accurate you want to have this. I don't think it's necessarily a problem, right?  Because you can just say, okay, so we know that you can, for example, look at how long this bug normally lasts, and it's going to be the same more or less in all the speedrun videos, right?  So one approach that you could take is get a frame where the bug is happening, and then based on your historical data where you know how long a bug like that is normally occurring, it's always like one or two seconds for most of the bugs, right?  So you could just select the time around that frame, for example, okay? But the LLM itself is not going to give you a very accurate interval.  Okay. Now for detecting the bugs there, and that's why I asked like, which information do you want to give to the LLM?  Giving a, like a set of frames to an LLM and then asking, does a bug occur? That's a very difficult question for an LLM, okay?  If you know which bug you're looking for, if you ask, does this type of bug, and then you give a very specific description, and does it occur in these frames, then it's much better at doing the job, because it's much less open-ended, right?  It only has to detect that something is happening in those keyframes so that it matches the description, and that's much easier to do.  So, if you know which bugs you're looking for, then, which many times you know for a speedrun, right? look.  You know that there's a certain subset of bugs, and you know that for, let's say, for Super Mario World Record, you know which bugs are being exploited, so you know, in all the videos, and then I think you can make an identifier that identifies which bugs of a long list of bugs that you know occur in a certain video.  So I think you can get it to do that, but you need to know then which bugs occur, and it won't really help you to detect, if somebody decides to exploit a new bug or a different bug, then your identifier will probably not be able to recognize that.
+
+22:41 - Masanari Kondo
+  And like MPCR study.
+
+22:44 - Cor-Paul Bezemer (he/him)
+  Yes, exactly, yeah. Because I think right now your RQ1s that you propose, they're very similar to the work that we did on glitch bench or video game QA bench, where you basically, there's nothing specific to the speedrun.  right. thank Two. It's just a video of gameplay, and you know that bugs occur at some point, and you want to identify the bugs.  So that's not specific to speedrun data. But I think if you adapt the problem a little bit where you know which bugs can be exploited, and then you try to create a detector for only those bugs for only that specific game.  And if you can think of a smart way to do that, and that's also, I thought initially with the paper draft that you shared, it was a 3D ResNet, which would actually maybe be quite suitable for doing that, right?  I don't know, right? LLM is probably, so the benefit of LLM is that you don't have to train it, and you don't have to label data, which is great.
+
+23:50 - Masanari Kondo
+  Right?
+
+23:51 - Cor-Paul Bezemer (he/him)
+  But I'm not sure if you know which bug you need to detect, then you might be able to train some.  I think that's actually much cheaper and much more accurate than an LLM, right?
+
+24:07 - Masanari Kondo
+  Mm-hmm.
+
+24:08 - Cor-Paul Bezemer (he/him)
+  But I think the real question is, what problem is, what is really the problem that you're trying to solve?  Are you, do you want to do bug detection with an LLM, or are you trying to solve the problem of, for example, doing these speedrun charts?
+
+24:27 - Masanari Kondo
+  Mm-hmm.
+
+24:29 - Cor-Paul Bezemer (he/him)
+  Right? And then the question is, what is the purpose of the speedrun chart? Is it because you want to look at historical videos to analyze how this changed over time, how these charts change over time?  Or do you want to do something that is about detecting new bugs? But that is very difficult to offset what you're doing from the work that's already there on just game bugs in general, right?
+
+24:55 - Masanari Kondo
+  So, to be honest, we don't have the... I mean that, let's say that, to be honest, we don't have the, you know, strong, you know, confidence to select the research directions, like say, so that's why we list it up to research ideas, first research museum, the second one is a chart analysis, because we thought that we focus on the speedrun videos, and speedrun video is quite a, for us, interesting data, so that's why we would like to use this data, but you told us that, what is a, you know, interesting point of this dataset, right?  And that's why we think about two research ideas, these, these ideas based on the speedrun communities, because the chart, that is a very specific stuff in the speedrun community.  Again, museum, based on the speedrun, that is also very, you know, speedrun community-style things, and if you feel like a post-direction is really interesting, that's really good, so yeah, we can go, which, either way, it's okay, either way is okay, and think about, okay, empirical study, or use LMS to improve the performance, but our real question is that, do you feel like these two research dialects are interesting, or do you feel like we just...
+
+26:35 - Cor-Paul Bezemer (he/him)
+  I think the first one is definitely interesting.
+
+26:38 - Masanari Kondo
+  Okay.
+
+26:38 - Cor-Paul Bezemer (he/him)
+  So, for the second one, I'll tell you my concern about the second one.
+
+26:42 - Masanari Kondo
+  So, I think once you have the buggy interval, then generating the bug highlight clip is trivial, right?
+
+26:49 - Cor-Paul Bezemer (he/him)
+  If you know when the, it's just chopping up the video into those buggy intervals. So, I think RQ2 and RQ1 are the same for the second one.
+
+26:58 - Masanari Kondo
+  Okay.
+
+26:59 - Cor-Paul Bezemer (he/him)
+  Okay. And then the third one, I think that's really difficult to evaluate because it's more or less like, how do you say?  Yeah, it's more or less like an engineering effort. So I think the first one, I would work on the first one, but I think to make your life easier, I would focus on doing an empirical analysis by doing like a historical view of how this video changed.  Because for the third research question, so understanding and enjoyment is really difficult to evaluate because you need to, you need to find people who do speedruns.  And the problem is that if they already know how to speedrun a game, then they probably don't learn that much from, from, so you need to find new people who are interested in speedrunning.  watercoding. ... ... ... And then you need to figure out, does it help them or not? And then the problem is that, how do you really know it helps them?  Okay, they just say, oh yeah, it looks useful, but it's really difficult to evaluate a user study like that.  But if you do like a historical view of how these charts change, you can evaluate that because you can, you know, you know, the video and you can, you probably have some ground truth somewhere of which bugs are being exploited in there, right?  So then you can, you basically control the whole analysis without having to rely on users or things like that, right?  And then you set it as more like a game, video game history project or like a video game archival project, right?  So then it can still be very useful for people to learn from, but then the angle is a little bit different, which makes your life easier, okay?  So I think identifying speedrun charts, is it called a speedrun? And I don't know the term, is that like the, the strategy that they use?
+
+29:04 - Masanari Kondo
+  Yes, that's right.
+
+29:05 - Cor-Paul Bezemer (he/him)
+  Okay. So I think automatically identifying those from videos is a very interesting problem. And if you can do that, then you can do many things with it.  Right? So first of all, you can do the historical analysis and the second of all, if you can identify, then the second direction that you talked about is, is very straightforward to implement, right?  I don't think it's a research paper once you can do that, but it can definitely be interesting. Another thing that you can do is not extract the, the, the, the buggy intervals, but just highlight them in the video.  For example, like annotate a video where you show that this is, this bug is being exploited right now or something like that.
+
+29:49 - Masanari Kondo
+  Right? Yes, yes, yes.
+
+29:50 - Cor-Paul Bezemer (he/him)
+  So that's one thing. Another thing you can do is you can group bugs. So if somebody wants to see different ways or.  Over, Doing like a, like a backwards long jump, then you can group that very easily because you already, you have all that data.  So I think automatically identifying which bugs are being exploited in speedrun videos is very interesting problem.
+
+30:13 - Masanari Kondo
+  That's really cool.
+
+30:14 - Cor-Paul Bezemer (he/him)
+  Okay. Yeah. So, but yeah, you have to target the speed runners, right? So it's fine if you know which bugs can be exploited and then identifying which of those bugs are being exploited in a video and when in a video.  I think that's a very interesting direction, you just have to think about what's the best way to, to approach them, right?  So question to you for, um, is on that speedrun website, is there, let's say for a Super Mario 64, is there a list somewhere of that explains the bugs that are being exploited?
+
+30:52 - Masanari Kondo
+  Hmm. I don't think so.
+
+30:56 - Cor-Paul Bezemer (he/him)
+  Or is there, is there like a, a repository? Is that you can use to tell the LLM, these are the types of bugs that we're looking for, or these are the exact bugs that we're looking for, like do you have, or can you find like an instruction guide somewhere for how to speedrun?
+
+31:19 - Masanari Kondo
+  If I remember correctly, there is like a wiki page or something that explains like every single bug that were used in speedrun SM64, Super Mario 64.
+
+31:32 - Cor-Paul Bezemer (he/him)
+  Yeah, let me see if I can find it.
+
+31:34 - Masanari Kondo
+  I forgot the URL.
+
+31:38 - Cor-Paul Bezemer (he/him)
+  Oh, that probably says something. Yeah, okay. Because if you basically can take such a guide or such like a list of bugs, you can convert that somehow automatically into an automated speedrun.  Or an automated bug detector. Oh, that's a different one, but yeah, let me see. Yeah. Oh, that's quite many.
+
+32:13 - Masanari Kondo
+  Okay. Yeah.
+
+32:14 - Cor-Paul Bezemer (he/him)
+  So many. Oh, okay. But there's also audio glitches. Okay. So I think technically, if you, if you take this, this list and if you can figure out some way of automatically using that information and be able to detect it in a video.  Then I think you have a very strong, very strong project. That's really cool. Did you read my house paper on, uh, that I did, we did with EA where we do like, uh, we get the bug report and then we try to find the frame that best matches the bug report.  Did I see that? Hold on. Let me look it up. So, Wen Tao has a paper with Electronic Arts, and what he did was, they got a lot of bug reports for Apex Legends, and they get a lot of bug reports that contain short video snippets, but videos are annoying on bug reports, because somebody has to watch them.  So what we wanted to do is, we wanted to get one frame for the video that's representative of the bug that's being described.  So what Wen Tao did, was he took the text description, and he took the video, and he gave those to a VLM, to let it identify the frame of the video that's the most representative of the bug description.  So, in a way, what you're trying to do is similar, right? Because you have a list of bug descriptions, and you want to find the part of the video that most closely matches.
+
+34:03 - Masanari Kondo
+  I think Yuta, you shared the paper with us, right?
+
+34:07 - Cor-Paul Bezemer (he/him)
+  Yeah, I'll share it. I'm just looking it up.
+
+34:13 - Masanari Kondo
+  think Yuta shared a similar paper, if I remember correctly.
+
+34:19 - Yuta Ishimoto
+  There are two data sources, one is YouTube.
+
+34:23 - Masanari Kondo
+  I forgot share this paper, but I have read this paper, yeah. Yeah, right. Yeah, I have some memory.
+
+34:33 - Yuta Ishimoto
+  I have seen a screenshot of Apex Surgeon in the paper, so.
+
+34:36 - Masanari Kondo
+  Right, yeah.
+
+34:38 - Cor-Paul Bezemer (he/him)
+  But this doesn't work hard. So I think if you can do something like that, like I think it would be a very interesting project.  Because if you show that it works for one game, then you can make it work for other games too, right?  So you don't have to do multiple games, I think. I think if you can. Just see how well a VLM can take such a description of a bug and then try to identify if it happens in the video, that's an interesting problem.  And it's easiest to sell it to the speedrun community, but that would actually be a useful thing for a game developer as well, because it could help them group bugs or find instances of bugs in a video archive, for example, right?
+
+35:40 - Masanari Kondo
+  Yuta, Yuta, what do you think about the current discussion? So how about focusing on the first research project, like chat evolution, and we more focus on empirical study, like based on the wiki page, some data repositories, like the bugly repositories, and etc.  the list of the bugs and investigate, you know, the bugs that were used in the speedrun communities, and maybe we applied LMS to improve the, you know, performance accuracies.  What do you think?
+
+36:19 - Yuta Ishimoto
+  I think it's good. So we have the, we have the list of bugs, right? As shown in this link of the Super Mario, and then we use this bug list as query to the LMS.  LLM to retrieve the list of the, list of the frames exploiting these bugs, right?
+
+36:43 - Masanari Kondo
+  Yes.
+
+36:44 - Yuta Ishimoto
+  Okay, okay. I think Cor-Paul's paper, previous paper, doing similar things in MSR22, title is, uh, using creep model, right?
+
+36:58 - Cor-Paul Bezemer (he/him)
+  Mm-hmm.
+
+36:59 - Yuta Ishimoto
+  Grip model 2.
+
+37:03 - Cor-Paul Bezemer (he/him)
+  Yeah, a little bit. Yeah, a little bit similar, right? But that one could only, so the problems with clip, it can only detect like things on the screen.  can say like a man on a horse, but it couldn't actually detect bugs. So it worked for identifying if you know that there's a certain problem with the way that something looks, for example, but you cannot say Mario jumps or takes a long, long jump or something like that.  That's that's actually very difficult. Yeah.
+
+37:38 - Yuta Ishimoto
+  Okay. So we can handle more highly semantic information of the game.
+  ACTION ITEM: Find SM64 speedrun bug list; select 1 WR; run VLM/LLM; share results w/ Cor-Paul - WATCH: https://fathom.video/share/2Jzcr6ToXjtX7nrKse5xQGf5JPVytcVb?timestamp=2259.9999
+
+37:43 - Cor-Paul Bezemer (he/him)
+  Okay. That's that, that, that you should find out.
+
+37:46 - Yuta Ishimoto
+  I don't know.
+
+37:50 - Cor-Paul Bezemer (he/him)
+  So it would be like, what I would do is I would try to find a list of the, the, the bugs that speed runners actually exploit.  I don't But I think the list that you shared, Masanari, I think is just glitches in general, right? Is this all for speedruns that are being used by speedruns or just glitches in general?
+
+38:12 - Masanari Kondo
+  I think it's glitches in general, but the speedrun community also use this type of list.
+
+38:19 - Cor-Paul Bezemer (he/him)
+  Okay, because if you can't find it, I would try to find one of glitches which you know that are being exploited by speedruns.  Like even the latest ones, like if you get the latest world record, and if you have a list of the glitches that it can detect or that it uses, and then start with that, because then you narrow down a little bit the list of glitches that you have to identify.  And the problem is that it's actually quite difficult to identify that something is not being covered in the video.  So it's actually very difficult for an LLM to say. It will always give you, give you an idea. We're always trying to bluff and say, oh, this is where it is, right?  It would just hallucinate. So you can, make your own life easier by focusing on a list of bugs that you know occur in a video, and then see if you can think of a, of an approach that allows you to actually find the right spot in the video.  Okay. So that, that is the first step that you can do. And then after that, you can maybe do like a list where, you know, that are glitches that also don't occur or go to the historical view.  But for now I would just pick one video where, you know, which glitches occur and then see which ones you can actually spot.  Right. And then you can think about, okay, so how do we do this in historical, empirical analysis, but I would just start with one video.
+
+39:50 - Masanari Kondo
+  Nice. Yes. Yeah. Okay. Yeah. Thank you. That is really clear. Yuta, do you have any questions or comments? Everything is good?  Okay, perfect. Yeah, thank you very much. Okay, so today is a little bit earlier, but Kopo, you are quite late time, right?  It's almost 6pm or something. Yeah, today I think we have completed a discussion. So by the next meeting or next to do, I'd like to decide the next to do.  So I think by the next meeting, how about investigating one video based on today's discussion? What do you think?  Is it okay? And showing the results to you?
+
+40:58 - Cor-Paul Bezemer (he/him)
+  Sounds good for me, yeah.
+
+40:59 - Masanari Kondo
+  Bye. Okay, perfect. Okay, that should be.
+
+41:03 - Cor-Paul Bezemer (he/him)
+  In two weeks is ICSI.
+
+41:04 - Masanari Kondo
+  Are you going to be at ICSI? Yes, I'm going to the ICSI.
+
+41:08 - Cor-Paul Bezemer (he/him)
+  Then I'll see you at ICSI. I don't think we have an online meeting because then I think the schedule will be too difficult.
+
+41:15 - Masanari Kondo
+  Yeah, it's quite difficult. Okay, let's skip the next meeting.
+
+41:20 - Cor-Paul Bezemer (he/him)
+  Maybe you can move it to the week after or the week before. Both are okay for me. Or you can skip, but then it's four weeks away.
+
+41:30 - Masanari Kondo
+  Four weeks away is a bit too long.
+
+41:35 - Cor-Paul Bezemer (he/him)
+  officially we had a meeting scheduled next week, right? thought we would just move last week's one to this week, and then next week we have another meeting.  So how about we do that?
+
+41:47 - Masanari Kondo
+  Okay, that's really cool. Is everything good, Yuta?
+  ACTION ITEM: Update Google Calendar: move next week's meeting to week after ICSI - WATCH: https://fathom.video/share/2Jzcr6ToXjtX7nrKse5xQGf5JPVytcVb?timestamp=2516.9999
+
+41:58 - Yuta Ishimoto
+  Yeah, it's good. Good for me.
+
+42:01 - Cor-Paul Bezemer (he/him)
+  Yeah, so next week, and then Masa, can meet in person in ICSI.
+
+42:05 - Masanari Kondo
+  Yeah, sure, that's really cool. Okay, let me change Google's calendars schedule. Yes, and in person in ICSI. And yeah, if we have a great progress, let's have a meeting on April 22 as well.  If we don't have progress on that in-person meeting, let's do the bi-weekly meeting on 29.
+
+42:45 - Cor-Paul Bezemer (he/him)
+  Sounds good.
+
+42:47 - Masanari Kondo
+  Sounds good? Okay. Perfect.
+
+42:49 - Cor-Paul Bezemer (he/him)
+  Yeah.
+
+42:51 - Masanari Kondo
+  Okay, thank you very much. Yeah. All right, Thanks. Thank you. Bye-bye. Thank you.

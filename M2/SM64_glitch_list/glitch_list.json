@@ -1,0 +1,97 @@
+[
+  {
+    "name": "Backwards Long Jump (BLJ)",
+    "label": "BLJ_label",
+    "description": "Abuses the lack of a speed cap by repeatedly performing backwards long jumps to gain unlimited negative hyperspeed, allowing Mario to pass through normally impassable collision hitboxes[cite: 202, 223, 224]. Any BLJ-type glitch that does not belong to other specific BLJ categories is classified here."
+  },
+  {
+    "name": "LBLJ",
+    "label": "LBLJ_label",
+    "description": "A BLJ performed using the pillars in the first-floor lobby of Peach's Castle. It is primarily used to clip through the 8-star door."
+  },
+  {
+    "name": "SBLJ (Side BLJ)",
+    "label": "SBLJ_label",
+    "description": "A BLJ performed sideways or at an angle against stairs or steps. It utilizes the mechanic where Mario's vertical position snaps to the next step, accumulating negative speed. It is mainly used to bypass the 30-star door."
+  },
+  {
+    "name": "DDD Skip",
+    "label": "DDD_skip_label",
+    "description": "Utilizes the hyperspeed from an SBLJ in the castle lobby to simultaneously bypass both the 30-star door and the water wall (hitbox) leading to \"Dire, Dire Docks\", skipping into the room behind them."
+  },
+  {
+    "name": "Bob-omb Clip",
+    "label": "Bob-omb_clip_label",
+    "description": "Gaining negative acceleration by grabbing a Bob-omb right before it explodes or using its blast knockback, forcing Mario to clip through specific walls or the cage in Bob-omb Battlefield[cite: 202, 240]."
+  },
+  {
+    "name": "Cannonless",
+    "label": "Cannonless_label",
+    "description": "Skipping the intended method of using a cannon to break a wall by utilizing ledge grabs and precise camera/positioning setups to clip into the invisible hitbox gaps in the wall and grab the star directly."
+  },
+  {
+    "name": "Ship Clip",
+    "label": "Ship_clip_label",
+    "description": "Swimming at a specific angle towards a certain wall of the sunken ship to pass straight through its collision and enter the ship directly, ignoring the intended trigger to lure the eel out."
+  },
+  {
+    "name": "Door Clip",
+    "label": "Door_clip_label",
+    "description": "Exploiting Mario's animation lock when a text message appears to bypass a door's opening animation and collision, clipping right through to the other side."
+  },
+  {
+    "name": "Box TJ",
+    "label": "Box_TJ_label",
+    "description": "Performing a Triple Jump on top of a green \"!\" block to pass straight through an area of the ceiling lacking a collision hitbox, instantly clipping to the floor above."
+  },
+  {
+    "name": "BLJ Strat (Musharna)",
+    "label": "BLJ_strat_label",
+    "description": "Performing a BLJ on an elevator moving vertically to gain hyperspeed, then using that momentum to clip through the wire fence and entirely skip the toxic maze."
+  },
+  {
+    "name": "Pillarless",
+    "label": "Pillarless_label",
+    "description": "Using a bloated Bob-omb glitch to gain massive negative speed, bypassing the intended sequence of stepping on four pillars to forcefully clip through the wall near the top of the pyramid and enter it[cite: 202, 203]."
+  },
+  {
+    "name": "Insta Clip",
+    "label": "Insta_clip_label",
+    "description": "Exploiting a physics abnormality when landing in a lower body of water to instantly warp (teleport) to a higher body of water."
+  },
+  {
+    "name": "Pole Glitch",
+    "label": "Pole_glitch_label",
+    "description": "Instantly warping from the bottom of a pole to the wire mesh above it. If done continuously without walking frames while maintaining speed, it is called a \"Non-Stop Pole Glitch\"."
+  },
+  {
+    "name": "Ground Pound Clipping",
+    "label": "Ground_pound_clipping_label",
+    "description": "Exploiting the brief moment Mario stalls in the air before descending for a ground pound to pass through the collision of moving platforms like elevators or a falling Whomp King."
+  },
+  {
+    "name": "Ledge Clipping",
+    "label": "Ledge_clipping_label",
+    "description": "Exploiting collision gaps when Mario grabs a specific ledge and pulls himself up to clip into walls or into areas behind doors known as a \"Black room of death (BRoD)\"[cite: 149, 202]."
+  },
+  {
+    "name": "Miscellaneous Wall Clipping",
+    "label": "Miscellaneous_wall_clipping_label",
+    "description": "Forcing Mario through gaps in collision hitboxes by long jumping or kicking into seams in the geometry or specific fences at precise angles, without needing hyperspeed."
+  },
+  {
+    "name": "Chuckya Clip",
+    "label": "Chuckya_clip_label",
+    "description": "Abusing the mechanic where Mario ignores wall collision while held by a Chuckya to be thrown through walls, or alternatively pushing Mario through a wall via the recoil of throwing the Chuckya against it."
+  },
+  {
+    "name": "MIPS Clip",
+    "label": "MIPS_clip_label",
+    "description": "Grabbing MIPS the rabbit and dropping him in the corner of a door to exploit the pushing collision, forcing Mario into the wall to clip through star doors[cite: 180, 181, 182, 202]."
+  },
+  {
+    "name": "Monkey Bug",
+    "label": "Monkey_bug_label",
+    "description": "Grabbing the monkey Ukkiki and carrying him, then jumping and ground pounding near the star cage to drop him, massively skipping the time it takes for his walking animation."
+  }
+]
