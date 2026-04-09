@@ -1,0 +1,277 @@
+Cor-Paul and POSL video game MTG - April 08
+VIEW RECORDING - 43 mins (No highlights): https://fathom.video/share/68m8V4Ubtxv-mnSFDnrEVNyTbYb2s6yc
+
+---
+
+0:00 - Masanari Kondo
+  This meeting is being recorded. And yeah, these are the photos, airplanes, so I think it's almost ready.
+
+0:08 - Cor-Paul Bezemer (he/him)
+  Yeah, nice. When are you flying?
+
+0:13 - Masanari Kondo
+  I'm alive at Brazil on April 12th.
+
+0:20 - Cor-Paul Bezemer (he/him)
+  Okay. How far is it from Japan? Like, how long is the flight?
+
+0:25 - Masanari Kondo
+  30 hours in total.
+
+0:27 - Cor-Paul Bezemer (he/him)
+  30 hours?
+
+0:29 - Masanari Kondo
+  30 hours.
+
+0:31 - Cor-Paul Bezemer (he/him)
+  For me, it's 24 hours, too. It's very long.
+
+0:35 - Masanari Kondo
+  Oh, really?
+
+0:36 - Cor-Paul Bezemer (he/him)
+  Yeah. Because I have to go to Toronto, and then I have a 7-hour layover.
+
+0:42 - Masanari Kondo
+  Ah, I see.
+
+0:44 - Cor-Paul Bezemer (he/him)
+  That's not so good.
+
+0:45 - Masanari Kondo
+  Why is it so far from Japan?
+
+0:47 - Cor-Paul Bezemer (he/him)
+  Like, where do you transfer?
+
+0:50 - Masanari Kondo
+  Plus, I have to go to Houston in the US. It's a 12-hour flight, and I have to wait there, like, similar hours.  And then I'm going to the Brazil, and that is also 12 hours, so in total it will be 30 hours.
+
+1:08 - Cor-Paul Bezemer (he/him)
+  Long trip, man.
+
+1:09 - Masanari Kondo
+  Yeah, it's a long trip. Hopefully it's worth it.
+
+1:15 - Cor-Paul Bezemer (he/him)
+  Hopefully it's worth it.
+
+1:19 - Masanari Kondo
+  Yes. Okay. Good. Okay, let's start today's discussion. So, Yuta, can you share your slides with Corpo, and let's start the discussion.
+  SCREEN SHARING: Yuto started screen sharing - WATCH: https://fathom.video/share/68m8V4Ubtxv-mnSFDnrEVNyTbYb2s6yc?timestamp=115.907017
+
+1:36 - Yuto Uenaka
+  Okay. Okay, now let's start with a review of our previous meeting. A key decision from last time was to establish our research focus on automated organization of optimal speed run strategy evolution.  Regarding our technical approach, we agreed to adopt a methodology similar to Wentao at all. Utilizing an LLM pre-trained with a specific glitch list for video analysis.  Our primary to do items following that meeting were to create a complex So Super Mario 64 glitch list, and to select a world record video and performance detection test using VLM and LLM based on that list.  Moving on to our current progress, I have successfully compiled a specialized list of Super Mario 64 speedrun glitches, and completed the manual frame by frame labeling for the selected world record video.  I've also performed a statistical analysis of these glitch occurrences. Currently, I am in the process of reviewing Wen Tao's paper to deeply understand and correctly implement.  their methodology. The next step will be to conduct a performance test using this Wentao-inspired approach. Regarding the creation of Super Mario 64 glitch list, I initially used Notebook LM to crawl relevant websites.  However, I found that many existing wikis contained significant noise, such as glitches that aren't used in speedruns, or intended game mechanics.  To resolve this, I identified four highly reliable sources and went through an iterative refinement process. That's... That's... Using AI tools and manual feedback, this resulted in a finalized list of 19 specific glitches.  For the video labeling, I selected 3G's zero-star category world record. This record was achieved on December 30, 2025, with a final time of 6 minutes and 14 seconds.  To enjoy higher quality ground tools data, I performed manual annotation of all glitch occurrences at a power frame level.  This level of granularity is crucial for evaluation. creating our detection models accuracy. On this slide, we will look at the statistical analysis of glitch occurrences.  First, let me explain what we see here. The table at the top summarizes each glitch by its frequency and total duration in frames.  The visualization chart brought up these glitches onto the video timeline, showing exactly when they occur during the run. In this world record video, five types of glitches were utilized.  They utilize... utilize... I will now walk through the data for each type. BLJ, this glitch involves accumulating speedBR backward jumps to creep through the walls.  As shown in the visualization, it was used in one, two, three. Three separate instances for a total of 339 frames.  LBLJ, this is a specific BLJ performed in the lobby to bypass the 8-star door. It occurred once for a duration of 170.  DDD Skip, this bypasses the 30-star door and the dire-dire-dox entrance. It was used once and latest 179 frames. Ball glitch, this allows Mario to warp from the bottom of a pole to the top instantly.  It appears once on the timeline for 34 frames. Reach clipping, this involves clipping through walls via geometry seams. It was performed  1 and 2, twice, totalling 54 frames. In summary, we captured 8 total glitch occurrences. This result identifies the exact moment where glitches were actively used for a grand total of 776 frames throughout the run.  Finally, for our future plans, my immediate goal is to complete the implementation and testing of glitch identification system. I aim to finalize these results by April and...  15th. Our next meeting is scheduled for April 22nd at the earliest, so it may move to the 29th. To maintain our momentum, I will share the results on Slack as soon as they are ready, rather than waiting for the next formal meeting.  Originally, I had planned to conclude my presentation here. However, I read Wentao's paper last night, and I realized there is a technical point I'd like to confirm with you before we move forward to the next steps.  In Wentao's paper, the method involved. The searching for frames that match glitch descriptions from a set of keyframes. However, I believe that this approach might not be the most compatible with the requirements of our specific task.  My idea is to divide the video into 50-frame batches, which would result in approximately 225 batches for this 11,219-frame video.  For each batch, we would query the model. Does this frame sequence contain any of the pre-trained glitches? I would...  I your thoughts on whether this batch detection approach is a variable, a viable direction for our research. Thank you.  That's all.
+
+12:16 - Cor-Paul Bezemer (he/him)
+  Hey, thank you for the presentation. Very clear. Uh, so for your question, so the main reason that we use used keyframes and not all the frames is that first of all, a lot of the frames are very similar, right?  Because you have 30 to 60 frames per second, so just the differences between many frames are very small, so that's, that's a problem.  Uh, one other problem, but it's just, you're sending a lot of requests to the VLM for things that look very similar, right?  So if you have only one second of movement, it might not be enough to, to detect a glitch. For the VLM, right?  So I don't know which one will work better. It might be that for the very specific task that you have, you need to send all the frames.  It could also be that sending all the frames gives too much information to the VLM, and it just makes the task harder.  So I think you have to try sending all the frames, and then keep in mind that this will be very expensive, right?  Because you have to send many requests to the VLM. And also, I'm not convinced that GPT actually performs better if you give it 50 images.  I feel like it struggles if you give it more than 10, 15 or so. But I don't really have solid evidence for that, right?  It's just my gut feeling says that if you give it too many images, it doesn't really help, especially if the images are all very similar.  This is very difficult to do that, okay? So one thing that you could think about is how to downsample the frames that you have, okay?  So keyframes is one option, but you might lose too much information for what you are trying to do, okay?  So that's one thing. Another thing is where you could try to do something smarter where, for example, you try to do like object detection and only keep a few frames where there's like a big difference between where Super Mario is, for example, or something like that, right?  I'm not 100% sure how to implement that, but something like that, right? It's because... I... think if you give it all the frames in the video, then, well, actually you have two problems, right?  So one, you can only give it 50 frames. So that's about one to two seconds, depending on your frame rate in the video.  So if you need to detect something that lasts longer than one or two seconds, it might be that you have like half of that event in one batch and half of the event in another batch.  So it could be that it makes it harder for it to detect it, right? So you can try to do it, but I don't think that giving it all the frames will work very well, right?  I think you need to come up with something smarter to either downsample or to give it only frames that actually help it with detecting, right?  So I think an interesting thing that you can just, as a first step, try... I'm give it all the frames, but actually, let's try to do the batches of 50 first, just to see which ones it can detect from a single frame, because some bugs you can detect from a single frame, and some bugs you need to have multiple frames, but I'm not sure which of the types of bugs are most common for this task.  If you can detect most of them from a single frame, then downsampling is usually not a problem, right? Because Bantao showed that like about 89 or 98% of the bugs are still visible in keyframes.  So that means that if you throw away a lot of the frames, you still can see all the bugs, just because they're very simple.  But if you need multiple frames, then that might not work, right?
+
+16:59 - Masanari Kondo
+  and see have ofwent, Let's Here's the game, Wolverine.
+
+17:00 - Cor-Paul Bezemer (he/him)
+  So what you could also do is because you labeled the frames already, is that you just pick the frames for which you know which bug is there, and just give it that single frame, like for one word, for you it's very clear which bug is being exploited in that frame, so just cherry pick the frames, and then ask the VLM if it can detect the bugs from those frames, because if it cannot detect the bugs from a very clear frame for you, then the single frame bug detection might not work, and we need to think of a way to do multiple frames, right?  I would first just check to verify to see if it can detect it from a single frame, because if it can, that makes your life a lot easier, which is good, because we like easy lives.
+
+17:57 - Masanari Kondo
+  Yeah, I think that these are good ideas. So first, cherry-picking one simple frame for making an ideal situation, and let's see if VLM and LMM can detect such a buggy frame or not.  And if we can detect such a buggy frame, let's go to a little bit more difficult situation. I think that is a very simple and useful way to do the first step.
+
+18:33 - Cor-Paul Bezemer (he/him)
+  For the second step, what you could do is you know the intervals of where the bugs occur. So I'm assuming that somewhere in the middle is the clearest one to detect it from a single image, right?  Maybe not for all of them, but for most it will be. So then what you can do is you can sort of start from the middle image and go towards the outer part.  of the duration of the bug, to see if it can still detect it, because then you can learn how fragile the detection is, right?  If it needs to be very obvious, or it can already detect when Mario starts to jump, for example, right?  I don't think it can, but maybe it looks like a certain type of jump quite quickly, then maybe you can already detect that.  But that only makes sense if it can detect it from the very clear frames.
+
+19:35 - Masanari Kondo
+  If it cannot detect it from the very clear frames, then we need to look at how we can give it patches of frames to see if that helps, right?  Okay, I think I'm currently clear for the next steps. I'm quite interested in the downsampling part. I think for the first  That's two steps, yeah, just picking one single frame, check it, and the next pick up multiple small chunks of the frames, and let's see, and in these two experiments, if I might understand is correct, we cherry picking some of the frame, and try to, you know, the capabilities of LMS, VLMs, but after that we need to go to more practical experiment, and your suggestion is that, how about using, like, downsamplings, right?  So, as a, as a pre-processing, so we apply, somehow, like, a downsampling approach to the videos, and pick up some key frames, and apply these key frames to the LMS, VLMs, and the VLM, LMS can classify.  These frames into bugs, buggy frames or non-buggy frames. Yeah, I'm quite interested for what kind of the downsampling we can use in this experiment.
+
+21:16 - Cor-Paul Bezemer (he/him)
+  So you have to try, sometimes the went-out just use the default settings of FFmpeg, and then it just picks the, I think it picks it on fixed time, time intervals, like every half second.  And in many cases that's enough, right? Because the idea is if you, if you want to detect that there's a very high jump, for example, right, then you basically, goes like, Mario goes like this, right?  But if you have a frame here, here, and in the middle, then it's already enough to see what's happening.  You just don't have every... Like, small step of the jump, right? But you can, as a human, it's very easy to interpolate how the jump is going.  It will be interesting to see if a VLM can do that too.
+
+22:15 - Masanari Kondo
+  Okay, okay, okay. I see. Thank you. So on the first step, it's okay to apply kind of like a naive approach, like using seconds, like 10 seconds, I don't know, one second, I don't know, but apply such kind of a naive down-sampling approach to the videos and get small samples of the frames.
+
+22:36 - Cor-Paul Bezemer (he/him)
+  Yeah.
+
+22:37 - Masanari Kondo
+  Okay, okay, that makes sense.
+
+22:38 - Cor-Paul Bezemer (he/him)
+  You could also look at the data that Yuta already collected about the duration of the bugs. Because if you see that some bugs last a few seconds, then you can probably down-sample to half a second.  But if you see that a bug lasts half a second, then if you down-sample to half a second, then you probably lose too much signal.  So you can use that information to guide your selection strategy a little bit, right?
+
+23:09 - Masanari Kondo
+  Yes, yes, I think so.
+
+23:11 - Cor-Paul Bezemer (he/him)
+  But you can also do something very simple, like every 10th frame. Like frame number 10, number 20, number 30, and so on.  It can be very simple, right, the selection strategy. The main reason what you want to do is you want to avoid having to send so much to the VLM, because it's quite expensive if you want to do this at scale.  So if you can reduce that by, I don't know, 20, then you're basically saving 20 times the money that you have to send to the VLM.
+
+23:44 - Masanari Kondo
+  Yeah, that's right. Yeah, I think so. And, yeah, we can ask Yasu, hey Yasu, can you pay the money for the VLM or something?  Not just the Alfa. course, we need to say, yeah, it is better to save money.
+
+24:07 - Cor-Paul Bezemer (he/him)
+  Yeah, another thing you can do is, you can try to run it with GPT, or Gemini, or like a big model.  But you can also try to run it with a much, much smaller model. Because then it might be free, and it will be much faster for you to experiment with.
+  ACTION ITEM: Share GPU server access w/ Masanari & Yuta for local LLM/VLM - WATCH: https://fathom.video/share/68m8V4Ubtxv-mnSFDnrEVNyTbYb2s6yc?timestamp=1466.9999  Because if you run it with GPT or Gemini, then it becomes quite slow at some point, right? But something like QN, can run locally if you have a GPU.  Do you have a GPU to run it with?
+
+24:39 - Masanari Kondo
+  Yes, I think so.
+
+24:41 - Cor-Paul Bezemer (he/him)
+  Yeah? Okay, I can give you access to our GPU server. It's not that fast, but you can run a smaller model with it.  I'm not sure. Yeah, maybe like QN 8 billion parameters you can run on it.
+
+24:55 - Masanari Kondo
+  8 billion.
+
+24:57 - Cor-Paul Bezemer (he/him)
+  That's a pretty small one. But...
+
+25:01 - Masanari Kondo
+  One of our students also used a small language model, such as QL, but I forgot the size of the QL, maybe 3 billion or something.  Maybe we can apply the 7 billion model as well.
+
+25:21 - Cor-Paul Bezemer (he/him)
+  Yeah, so even for iterating through the experiments faster when you're setting things up, then it will be faster and it will be cheaper because it's free.  And then you can always run it. For now, I would do the first step where you cherry pick the frame and then see if the VLM can do it.  I would do that with GPT or Gemini because it will give you an upper bound, right? Because it will be the best model and it will give you an idea of what you're trying to do if it actually works.  And then after that, you can see, okay, how do the smaller models work on this?
+
+25:59 - Masanari Kondo
+  Co hehe.
+
+25:59 - Cor-Paul Bezemer (he/him)
+  Mhm. For the first step, it with GPT, but once you start running things more often, or you want to run more data, then I would also consider using a smaller model, just because of the speed and the cost.  Unless you're very rich, you can everything with big models.
+
+26:23 - Masanari Kondo
+  Okay, that makes sense to me. Yuto, do you have any questions or comments on this topic? Like next steps?
+
+26:34 - Yuta Ishimoto
+  It's clear for me for the first step to try picking one single frame and see what happens by using big models.  I'm not sure about the details of the task for the second step using multiple frames. As second step, we use multiple frames by down something or something, right?  Yeah. In this task, what is the output of the RLM? Because in our previous study, we identified the bug occurrence and which frame bug occurs.  But in some cases, some tasks identify only the existence of the bug within the multiple frames. So in this case, we don't pinpoint the frames which bugs occur.  Just identify the existing of the bug within multiple frames. So I'd like to clarify the details of the task.  What is the output of the task in this case?
+
+27:49 - Cor-Paul Bezemer (he/him)
+  That's a good question. It depends on what you want the model to do.
+
+27:52 - Yuta Ishimoto
+  Yeah.
+
+27:54 - Cor-Paul Bezemer (he/him)
+  I think there are two different tasks, right? So I think one task is where you just... Just... I Identify that certain bugs occur in the video, and a second task, which is a bit more difficult, is where you try to identify the actual time when it happens, right?
+
+28:12 - Yuta Ishimoto
+  Yeah, it's quite difficult.
+
+28:14 - Cor-Paul Bezemer (he/him)
+  Yeah, that's quite tricky. So I recommend that you just start with identifying that a certain bug happens in the video.  Because, and we need more data to look at that, but what I, at some point, because you have a limited set of bugs, and let's say the long back jump.  You know, if you have lots of data with long back jumps, you can look at it and see how long it takes.  And then, if you want to highlight it in the video, you can just take the median time, for example, and highlight that.  And I think it will be accurate enough for a practical purpose, right? I'm not I'm sure if you actually need something that can identify precisely which frame something, a bug stops and which it ends, so I think if you can identify one frame in which it happens with a very high confidence, then I think, then you can do that for many videos, and then we can look at, okay, how long does it normally take, that type of bug, then I think you could just take that as an interval for highlighting the individual, I think it will be accurate enough.
+
+29:34 - Yuta Ishimoto
+  That makes sense? Yeah, yeah. Thank you.
+
+29:39 - Cor-Paul Bezemer (he/him)
+  So I would focus on just identifying the bugs, and one thing that you have to be careful for is that if you go through 12,000 frames, and you ask a VLM, does this bug occur, which is basically asking, I know you're asking, do any of these bugs occur, but just statistics.  Basically, there will always be some frames for which it says yes, because VLMs hallucinate, right, or they're basically statistical models.  So you have to come up with a way to make sure that when it tells you that a frame contains a bug, you want to come up with some way to get a bit more confidence that it's actually identifying the bug and not just saying something.  And that's actually quite tricky. Because if you want to do it for just a single frame, like if you see a few in a row where it says it's this bug, then I think the confidence already increases a lot, right?  But that is very strongly connected because if you give it 50 frames in one prompt, and then it says, yes, it occurs in this 50 frames, that's very different than when you give it 50 or 50 single frames.  And then it tells you for, I don't know, 40 out of the 50 frames it occurs because then you get it, you're prompted for 50 times and it gives you 40 times the answer that that particular bug occurs.  you get a much higher confidence, right? But this is very expensive to do. So I don't recommend doing it that way, but ideally that's how you want to do it, right?  Because if you give it a whole set of frames, then even if it detects a single one, it might say that yes, the bug occurs, but it might just be noise.  And I don't know the best way to deal with that, but I think that is something to keep in mind, that you might run into, or you will run into when doing this in this way.  So we have to come up with a solution, but first let's just, let's just run some things and just, let's see how well it does on the single frame.  And then from there go to, if necessary, because you might not even have You have to go to the multi-frame, right?  If it works very well for a single frame, then you don't really need the multi-frame approach, right? So I'm 95% sure that you need multi-frames at some point, but it could be that depending on the types of bugs that you're trying to detect, it could be that you can get away with this because you already know which bugs you're looking for, right?  So a very simple example is if there is a well-known bug where you walk through a wall, basically, then all you need is a frame that shows Mario inside that wall, right?  You can also detect it from Mario being before and being after or being behind the wall in multiple frames, but if you have a frame that shows Mario actually clipping in the wall, then the model should have enough information to  to detect it as that bug, but I don't know how easy it is to identify those bugs, so that's why it's good to start with a single image approach first.
+
+33:23 - Yuta Ishimoto
+  It's clear for me, thank you.
+
+33:25 - Cor-Paul Bezemer (he/him)
+  Yeah, okay, cool.
+
+33:27 - Masanari Kondo
+  All right, thank you. Yuta, are you okay? Do you have any additional questions or comments?
+
+33:34 - Yuto Uenaka
+  Okay, I have no question. I understand well.
+
+33:39 - Masanari Kondo
+  Perfect. And in that case, I have another question. So, Yuta, can you share your screen again, and can you show page 5?  Like the page 5, showing the statistical information of, you know, Super Mario 64 video.
+
+34:10 - Yuto Uenaka
+  Okay.
+
+34:18 - Masanari Kondo
+  So, yeah, thank you. Okay, thank you. So I have one, another question, is that, do you think, okay, so this is one type of the Super Mario 64 speedrun video, and it has these statistics, like the total number of breaches in this video is 8, and the frames, the buggy frame is 776.  And, yeah. The total number of frames is 10,000. So do you think this is a good starting point videos, or do you think this video is most interesting for practitioners, so we need to pick up another video or something?
+  ACTION ITEM: Annotate 9 more SM64 0-star WRs; then run single-frame GPT/Gemini tests, expand to multi-frame, share results on Slack - WATCH: https://fathom.video/share/68m8V4Ubtxv-mnSFDnrEVNyTbYb2s6yc?timestamp=2116.9999  I would like to know your intuition on the target data.
+
+35:27 - Cor-Paul Bezemer (he/him)
+  So you definitely will need more than one.
+
+35:30 - Masanari Kondo
+  More than one, okay, yeah. Sure.
+
+35:33 - Cor-Paul Bezemer (he/him)
+  So what I would do for the other ones is, how much time did it take to label this one?  Do you remember? Like, or less, or approximately?
+
+35:46 - Masanari Kondo
+  I think, Yuta, do you remember? Maybe 30 minutes or something?
+
+35:51 - Cor-Paul Bezemer (he/him)
+  Yeah.
+
+35:52 - Masanari Kondo
+  Not so long. this is 6 minutes video or something, yeah.
+
+35:55 - Cor-Paul Bezemer (he/him)
+  Yeah. Yeah, but not so long. So I would do... A few more so that you have some... I would at least do 10 to start with.  Because then you can also see if there's some similarity between the world record videos, right? Because it might even be that they have exactly the same glitches if you look at the last 10 world records.  Which is fine, because that's actually good for our purpose, but it will be good to do that. Also, you get a bit of a better idea, like, how long these last, because I'm expecting that they all last more or less the same across the videos, right?  So this DDD skip, like, it's around 179 frames. I assume that if you look in the other videos, it's around that number too, maybe like 170 to 190.  And if you do 10, like ideally more, but I know it's also manual, annotation sucks, so I wouldn't do too much of it for now, but then at least you get a little bit of an idea of whether our intuition about having the same bugs used for world records, and them taking more or less even like the same duration, then at least you can verify that intuition.  Because I assume when they break a world record, it will be like one second different or something, right? How close are these world records together?  Is it very close?
+
+37:49 - Masanari Kondo
+  Yeah, I think so. I think it really depends on the chart. Like sometimes they use a completely different chart and...  They use the time being one second, 10 seconds, 10 seconds, I'm not sure it depends on the amount of record videos, but sometimes, yes.
+
+38:08 - Cor-Paul Bezemer (he/him)
+  Okay. Yeah, so all those things will be interesting to see, right? And I think also that at some point you can identify the charts that are used for the world record, and it might be minor variations to that chart, but it's almost like you get product pipelines in the world records.  Right? So you have one, one pipeline that uses chart A and one pipeline that uses chart B. And I think within those pipelines or maybe like evolution lines, at some point you will see like relatively smaller jumps or bigger jumps where, and I think that can help you to identify when they, they start using a new bug.  Right? So at some point they find it. There's trick that suddenly gives them a bigger improvement than before, like maybe two or three seconds instead of half a second, like I don't know, but all these type of things you can look at and then you can also give an overview of what are the, what give the biggest improvements over the years and stuff like that, right?
+
+39:25 - Masanari Kondo
+  Okay, that's interesting. So I think one, so what we, the better way is that let's see multiple videos and especially as a first step, let's see like a minor versions, minor differences, like sometimes one record has like a six minutes, six minutes, 10 seconds, six minutes, 20 seconds.  And if you look at these videos, maybe they use a similar glitches and no big differences. But each of the buggy frame, like buggy chunks, or like other chunks, is quite a different number of frames.  Yeah, let's have a look at that first. Yeah, that first. And after that, maybe we can use like a major version changes, like pipeline changes.
+
+40:22 - Cor-Paul Bezemer (he/him)
+  Yeah.
+
+40:23 - Masanari Kondo
+  Okay, that makes sense to me. Yeah.
+
+40:24 - Cor-Paul Bezemer (he/him)
+  If that happens, I don't know.
+
+40:27 - Masanari Kondo
+  Okay, good.
+
+40:29 - Cor-Paul Bezemer (he/him)
+  I think you can also see them from just, if you take all the world record times that you can find on that website and just plot it over time, right?  So now we're at six minutes or something, and maybe, I don't know how long this go back, but maybe like five years ago, it was 10 minutes.  And then I think if you look at the line, it will be like a linear trend, but I think there will be like bigger drops.  And then I think... That's where you can see they found new tricks, but that's interesting to look at as well.
+
+41:03 - Masanari Kondo
+  Right? Yes, I think so.
+
+41:09 - Cor-Paul Bezemer (he/him)
+  So you can also just collect some, some data for all the world records and it doesn't have to be like in-depth analysis, but just to get an idea of how the world records change over time.
+
+41:26 - Masanari Kondo
+  Yeah. Thank you very much. It's really clear.
+
+41:32 - Cor-Paul Bezemer (he/him)
+  So you can basically do an MSR study on the Speedrun website.
+
+41:37 - Masanari Kondo
+  Sorry?
+
+41:38 - Cor-Paul Bezemer (he/him)
+  You can basically do an MSR study on the Speedrun website. without the website, but all the world records, right?
+
+41:48 - Masanari Kondo
+  Mm-hmm. Oh, yeah. I think we can track such kind of the information.
+
+41:56 - Cor-Paul Bezemer (he/him)
+  Yeah, it should be there. Yeah.
+
+41:58 - Masanari Kondo
+  Yep.
+
+42:02 - Cor-Paul Bezemer (he/him)
+  Maybe it's already plotted on the website.
+
+42:05 - Masanari Kondo
+  Hmm, maybe, yes. And actually, Yuta also has such kind of a figure, like three months ago, four months ago.
+
+42:16 - Cor-Paul Bezemer (he/him)
+  Yeah, I don't remember, maybe I saw.
+
+42:22 - Masanari Kondo
+  But yeah, I think that's a good idea. Good. Okay, so, perfect. Yuta, do you have any other questions or comments, or, Cor-Paul, do you have anything else?  Not right now. Okay, good. Okay, great. Thank you very much.
+
+42:48 - Cor-Paul Bezemer (he/him)
+  You too, guys. See you later. I'll see you next week.
+
+42:51 - Yuto Uenaka
+  See later. See you.
+
+42:52 - Masanari Kondo
+  See you next week. Bye-bye. Thank you very much.

@@ -2,3 +2,5 @@ pytubefix==10.3.8
 ffmpeg-python==7.1.1
 pandas==3.0.2
 opencv-python==4.13.0.92
+matplotlib==3.10.8
+reportlab==4.4.10
