@@ -10,8 +10,8 @@ from reportlab.lib import colors
 import io
 
 SCRIPT_DIR = Path(__file__).resolve().parent
-CSV_PATH = SCRIPT_DIR / "../0Star/frame_label1.csv"
-OUTPUT_PDF = SCRIPT_DIR / "../0Star/bug_visualize.pdf"
+CSV_PATH = SCRIPT_DIR / "../0Star/25/frame_label1.csv"
+OUTPUT_PDF = SCRIPT_DIR / "../0Star/25/bug_visualize.pdf"
 
 # ラベル列ごとに色を割り当て
 LABEL_COLORS = [

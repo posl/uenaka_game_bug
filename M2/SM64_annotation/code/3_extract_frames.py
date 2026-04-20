@@ -40,7 +40,8 @@ def main():
     for _, row in df.iterrows():
 
         category = row["Category"].strip()
-        data_dir = PROJECT_ROOT / category
+        num_id = str(row["No"]).strip()
+        data_dir = PROJECT_ROOT / category / num_id
 
         if not data_dir.exists():
             print(f"[WARN] {data_dir} not found, skip")
@@ -51,7 +52,7 @@ def main():
 
         if len(starts) != len(ends):
             raise ValueError(
-                f"[{category}] len(starts)={len(starts)} != len(ends)={len(ends)}"
+                f"[{category}/{num_id}] len(starts)={len(starts)} != len(ends)={len(ends)}"
             )
 
         for i, (start, end) in enumerate(zip(starts, ends), start=1):

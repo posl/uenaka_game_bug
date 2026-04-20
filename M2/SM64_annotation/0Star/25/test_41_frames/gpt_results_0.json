@@ -1,0 +1,42 @@
+[
+    {
+        "frame": "2156.jpg",
+        "label": "Miscellaneous_wall_clipping_label",
+        "reason": "Mario jumps along the left wall of the red‑carpet staircase and hugs the seam; at 2156 he abruptly pops out of bounds and is seen in the castle lobby’s black void (BRoD) with the green pillar visible, continuing OOB in later frames. No BLJ or text-triggered door skip occurs—this is a seam-based wall clip without hyperspeed."
+    },
+    {
+        "frame": "2257.jpg",
+        "label": "LBLJ_label",
+        "reason": "Mario performs repeated backwards long jumps against the green lobby pillars, builds negative speed, and then zips/clips through the nearby 8-star door, appearing in the black voided area behind it—hallmarks of the LBLJ."
+    },
+    {
+        "frame": "5172.jpg",
+        "label": "Normal",
+        "reason": "Mario approaches an entrance, transitions through the normal loading zone into a hallway, and proceeds with standard jumps. There is no backwards/side BLJ, no clipping through doors or walls, no hyperspeed buildup, nor any other listed glitch observable across the frames."
+    },
+    {
+        "frame": "5567.jpg",
+        "label": "Pole_glitch_label",
+        "reason": "Mario jumps toward the green pole under the checkered platform; after the camera tracks up the pole, he appears at the upper hole beside the wire-mesh in a single frame with no climbing animation or travel frames. This sudden snap from low on the pole to the top opening matches the instant warp behavior of the Pole Glitch."
+    },
+    {
+        "frame": "5796.jpg",
+        "label": "Normal",
+        "reason": "Mario emerges onto a platform and proceeds with standard movement (running, jumping across grates and tilting ramps). No BLJ, door/wall/pole/ground-pound clipping, Bob-omb interactions, or other listed glitches are observed throughout the sequence."
+    },
+    {
+        "frame": "8160.jpg",
+        "label": "Miscellaneous_wall_clipping_label",
+        "reason": "Mario runs toward the curved lobby wall and jumps along it; around frames 8154–8159 he rises unusually high with no platform and then phases into the ceiling gap under the stairs, after which only the inside of the geometry is visible. This is a collision seam clip without hyperspeed or door interaction."
+    },
+    {
+        "frame": "8447.jpg",
+        "label": "LBLJ_label",
+        "reason": "Mario builds speed with backwards long jumps on the lobby’s red-carpet stairs and clips through the still-closed 8-star door; the star door fills the screen as the camera passes through it and Mario pops out in the next room without any door-opening animation—characteristic of the Lobby BLJ."
+    },
+    {
+        "frame": "8824.jpg",
+        "label": "BLJ_label",
+        "reason": "Across the stair frames Mario is facing downhill while moving rapidly uphill, repeating the long‑jump crouch and snapping on steps to build negative speed. He then blasts past the top into the Bowser painting hallway without any door interaction, consistent with a Backwards Long Jump on the endless stairs."
+    }
+]

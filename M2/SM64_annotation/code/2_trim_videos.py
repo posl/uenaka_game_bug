@@ -30,17 +30,18 @@ def main():
 
         for row in reader:
             category = row["Category"].strip()
+            num_id = row["No"].strip()
 
             starts = parse_multi_value(row["Start_sec"])
             ends = parse_multi_value(row["End_sec"])
 
             if not (len(starts) == len(ends)):
                 raise ValueError(
-                    f"Length mismatch in row {category}: "
+                    f"Length mismatch in row {category}/{num_id}: "
                     f"{len(starts)}, {len(ends)}"
                 )
 
-            output_dir = PROJECT_ROOT / category
+            output_dir = PROJECT_ROOT / category / num_id
             output_dir.mkdir(parents=True, exist_ok=True)
 
             for idx, (start, end) in enumerate(zip(starts, ends), start=1):
@@ -58,7 +59,7 @@ def main():
                 )
 
                 print(
-                    f"[OK] {category}: {input_video} "
+                    f"[OK] {category}/{num_id}: {input_video} "
                     f"({start}-{end}) -> {output_video}"
                 )
 

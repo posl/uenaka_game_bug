@@ -1,0 +1,8 @@
+﻿Start_sec,End_sec,Label,Frames
+80,81,Ledge Clipping,20
+81,90,LBLJ,248
+179,186,DDD Skip,180
+197,199,Pole Glitch,31
+287,289,Ledge Clipping,47
+293,297,BLJ,109
+306,309,BLJ,104

@@ -31,9 +31,10 @@ def main():
         reader = csv.DictReader(f)
         for row in reader:
             category = row["Category"].strip()
+            num_id = row["No"].strip()
             urls = [u.strip() for u in row["URL"].split(",") if u.strip()]
 
-            save_dir = PROJECT_ROOT / category
+            save_dir = PROJECT_ROOT / category / num_id
             save_dir.mkdir(parents=True, exist_ok=True)
 
             for idx, url in enumerate(urls, start=1):

@@ -1,7 +1,8 @@
 def parse_multi_value(cell) -> list[str]:
     """Parse a CSV cell into a list of string values.
 
-    Accepts comma-separated strings ("a, b, c") and scalar values like int/float.
+    Accepts comma-separated strings ("a, b, c") and scalar values like int/float/bool.
+    Returns an empty list for None or NaN values.
     """
     if cell is None:
         return []

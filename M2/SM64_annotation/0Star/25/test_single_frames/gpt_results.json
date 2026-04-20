@@ -1,0 +1,42 @@
+[
+    {
+        "frame": 1,
+        "label": "BLJ_label",
+        "reason": "Mario is seen moving backwards at high speed, potentially through a wall or door hitbox, indicating a Backwards Long Jump is being performed."
+    },
+    {
+        "frame": 1,
+        "label": "Normal",
+        "reason": "The image shows Mario in a void-like area, which is not a glitch listed. This may be a result of normal play leading to an out-of-bounds state."
+    },
+    {
+        "frame": 1,
+        "label": "DDD_skip_label",
+        "reason": "The image shows the 30-star door and the water wall simultaneously bypassed, indicating the use of the DDD Skip glitch."
+    },
+    {
+        "frame": 1,
+        "label": "Ground_pound_clipping_label",
+        "reason": "Mario is seen clipping through a platform, which may indicate a ground pound exploit to bypass platform collision."
+    },
+    {
+        "frame": 1,
+        "label": "Normal",
+        "reason": "The image shows Mario interacting with a platform on a normal path without any visible signs of glitch techniques being performed."
+    },
+    {
+        "frame": 1,
+        "label": "BLJ_label",
+        "reason": "The image shows Mario appearing to move backwards at high speed in the castle lobby, consistent with the Backwards Long Jump (BLJ) glitch used to bypass collision."
+    },
+    {
+        "frame": 1,
+        "label": "MIPS_clip_label",
+        "reason": "Mario is seen holding MIPS the rabbit near a star door, indicating the use of the MIPS Clip glitch to pass through it."
+    },
+    {
+        "frame": 1,
+        "label": "BLJ_label",
+        "reason": "The image depicts Mario in the castle lobby using the Backwards Long Jump technique. This allows him to gain unlimited negative hyperspeed, which lets him pass through stairs or doors that normally require a certain number of stars to access."
+    }
+]

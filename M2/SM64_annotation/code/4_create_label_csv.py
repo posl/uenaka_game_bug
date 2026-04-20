@@ -39,7 +39,8 @@ def main():
     for _, row in df.iterrows():
 
         category = row["Category"].strip()
-        data_dir = PROJECT_ROOT / category
+        num_id = str(row["No"]).strip()
+        data_dir = PROJECT_ROOT / category / num_id
 
         if not data_dir.exists():
             print(f"[WARN] {data_dir} not found, skip")
@@ -49,7 +50,7 @@ def main():
         end_seconds = parse_multi_value(row["End_sec"])
 
         if not (len(start_seconds) == len(end_seconds)):
-            print(f"[ERROR] Mismatch in counts for {category}")
+            print(f"[ERROR] Mismatch in counts for {category}/{num_id}: {len(start_seconds)} != {len(end_seconds)}")
             continue
 
         for idx in range(len(start_seconds)):
