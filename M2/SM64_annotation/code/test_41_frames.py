@@ -23,54 +23,92 @@ def load_glitch_list(path):
     with open(path, 'r', encoding='utf-8') as f:
         return json.load(f)
 
+def format_glitch_descriptions(taxonomy_data):
+    """ネストされたバグリストを階層がわかるテキスト形式に変換します．
+
+    階層ルール:
+      - Base Glitch が variants を持つ場合        → Base Glitch > Variant (> Application)
+      - Base Glitch が variants を持たず
+        applications を直接持つ場合              → Base Glitch > Application (variant は N/A)
+      - いずれも持たない場合                      → Base Glitch のみ (variant・application は N/A)
+    """
+    lines = []
+
+    def process_base_glitch(glitch):
+        lines.append(f"  - Base Glitch: {glitch['name']} (label: {glitch['label']})")
+        lines.append(f"    Description: {glitch['description']}")
+
+        if "variants" in glitch:
+            for variant in glitch["variants"]:
+                lines.append(f"    - Variant: {variant['name']} (label: {variant['label']})")
+                lines.append(f"      Description: {variant['description']}")
+                if "applications" in variant:
+                    for app in variant["applications"]:
+                        lines.append(f"      - Application: {app['name']} (label: {app['label']})")
+                        lines.append(f"        Description: {app['description']}")
+
+        elif "applications" in glitch:
+            # variants を経由せず applications を直接持つケース (e.g. Bob-omb Clip)
+            lines.append(f"    (No variants. Applications attach directly to this Base Glitch.)")
+            for app in glitch["applications"]:
+                lines.append(f"    - Application: {app['name']} (label: {app['label']})")
+                lines.append(f"      Description: {app['description']}")
+
+    for category_group in taxonomy_data.get("glitch_taxonomy", []):
+        lines.append(f"\n[Category: {category_group['category']}]")
+        for glitch in category_group.get("glitches", []):
+            process_base_glitch(glitch)
+
+    return "\n".join(lines)
+
 def encode_image(image_path):
     with open(image_path, "rb") as image_file:
         return base64.b64encode(image_file.read()).decode('utf-8')
 
-def analyze_temporal_sequence(center_frame_name, glitch_list):
-    """41枚のシーケンスを1.34秒の時間軸として解析します．"""
+def analyze_frame_sequence(center_frame_name, taxonomy_data):
+    """中心フレームの前後を含むシーケンスをモデルに送り，グリッチ分類結果を返します．"""
     
     try:
         center_num = int(Path(center_frame_name).stem)
     except ValueError:
         return {"frame": center_frame_name, "error": "Invalid frame name format in CSV."}
 
-    glitch_descriptions = "\n".join([
-        f"- Name: {g['name']}, Label: {g['label']}, Description: {g['description']}" 
-        for g in glitch_list
-    ])
+    glitch_descriptions = format_glitch_descriptions(taxonomy_data)
 
-    # プロンプト：1.34秒（30fps想定）に修正
     prompt = f"""
-Analyze this sequence of up to 41 frames from a Super Mario 64 speedrun.
-The frames range from approximately {center_num - 20}.jpg to {center_num + 20}.jpg．
+The following frames are a chronological sequence from a Super Mario 64 0-star speedrun.
 
-### Temporal Information:
-The total duration of this 41-frame sequence is approximately **1.34 seconds** (roughly 30 fps)．
-Use this time scale to estimate Mario's velocity and acceleration across the sequence to distinguish between normal movement and movement-based glitches．
-
-### Glitch List:
+### Glitch Taxonomy:
 {glitch_descriptions}
 
+### Hierarchy Rules (for filling output fields):
+- If an Application is detected  → fill category, base_glitch, variant (or "N/A" if none), application, and label with the Application's label.
+- If a Variant is detected        → fill category, base_glitch, variant, set application to "N/A", and label with the Variant's label.
+- If only a Base Glitch is detected → fill category, base_glitch, set variant and application to "N/A", and label with the Base Glitch's label.
+- If no glitch is detected        → set category to "None", all taxonomy fields to "N/A", and label to "Normal".
+
 ### Task:
-Determine if this image sequence contains any glitch from the provided list. 
-Observe the movement, velocity, and state changes across the entire set of frames to identify if a specific glitch occurs at any point in this sequence．
+Examine the frames in order. Identify whether any glitch listed in the taxonomy occurs.
+Focus on: abrupt position changes, abnormal speed, geometry clipping, unexpected Mario states, or interaction anomalies.
+Classify at the most specific level the evidence supports. Do not guess beyond what is visually evident.
 
-Important Rules:
-1. If any glitch is identified within this sequence, provide the corresponding 'label'．
-2. If the entire sequence shows normal gameplay, or you are not confident, strictly use "Normal" for the label．
-
-Output the result strictly in JSON format with "frame", "label", and "reason"．
-(Note: Use "{center_frame_name}" for the "frame" field to identify this batch)．
+### Output (JSON only):
+{{
+  "frame": "{center_frame_name}",
+  "category": "<Category name, or 'None'>",
+  "base_glitch": "<Base Glitch name, or 'N/A'>",
+  "variant": "<Variant name, or 'N/A'>",
+  "application": "<Application name, or 'N/A'>",
+  "label": "<label value from taxonomy, or 'Normal'>",
+  "reason": "<Explanation of the visual evidence. If no glitch, state why the sequence appears normal.>"
+}}
 """
 
     content_list = [{"type": "text", "text": prompt}]
 
-    # 全41フレームを収集（すべて detail="high"）
     for i in range(center_num - 20, center_num + 21):
         img_name = f"{i}.jpg"
         img_path = IMAGE_DIR / img_name
-        
         if img_path.exists():
             b64_img = encode_image(img_path)
             content_list.append({
@@ -87,7 +125,7 @@ Output the result strictly in JSON format with "frame", "label", and "reason"．
             messages=[
                 {
                     "role": "system",
-                    "content": "You are an expert in SM64 speedrun glitch detection．You are skilled at calculating object velocity from temporal frame sequences (30fps) to identify movement-based glitches．"
+                    "content": "You are an expert annotator for Super Mario 64 speedrun footage. You classify glitches using a fixed hierarchical taxonomy. Always respond in valid JSON only, with no additional text."
                 },
                 {
                     "role": "user",
@@ -97,17 +135,12 @@ Output the result strictly in JSON format with "frame", "label", and "reason"．
             response_format={"type": "json_object"}
         )
         return json.loads(response.choices[0].message.content)
-
     except Exception as e:
-        print(f"Error analyzing sequence around {center_frame_name}: {e}")
-        return {
-            "frame": center_frame_name,
-            "label": "Error",
-            "reason": str(e)
-        }
+        print(f"Error analyzing {center_frame_name}: {e}")
+        return {"frame": center_frame_name, "label": "Error", "reason": str(e)}
 
 def main():
-    glitches = load_glitch_list(GLITCH_LIST_PATH)
+    taxonomy = load_glitch_list(GLITCH_LIST_PATH)
     
     if not CSV_PATH.exists():
         print(f"Error: CSV not found at {CSV_PATH}")
@@ -117,12 +150,11 @@ def main():
     target_frames = df['frame'].tolist()
     
     results = []
-    print(f"Starting analysis with {MODEL_NAME} (Context: 41 frames / 1.34s / 30fps)...")
+    print(f"Starting hierarchical analysis with {MODEL_NAME}...")
 
     for center_frame in target_frames:
         print(f"Processing sequence around: {center_frame}")
-        
-        result = analyze_temporal_sequence(center_frame, glitches)
+        result = analyze_frame_sequence(center_frame, taxonomy)
         results.append(result)
         
         with open(OUTPUT_PATH, 'w', encoding='utf-8') as f:
