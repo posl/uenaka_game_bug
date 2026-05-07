@@ -1,0 +1,253 @@
+Cor-Paul and POSL video game MTG - May 01
+VIEW RECORDING - 32 mins (No highlights): https://fathom.video/share/gKjrvTC96tUcco8DxAiEqLz-zGbT2z-o
+
+---
+
+0:00 - Cor-Paul Bezemer (he/him)
+  This meeting is being recorded. Hey, Masa.
+
+0:19 - Masanari Kondo
+  Hey. How's it going?
+
+0:22 - Cor-Paul Bezemer (he/him)
+  Hey, Yuto.
+
+0:23 - Yuto Uenaka
+  Hello.
+
+0:26 - Cor-Paul Bezemer (he/him)
+  I'm good. How are you?
+
+0:28 - Yuto Uenaka
+  I'm fine.
+
+0:30 - Cor-Paul Bezemer (he/him)
+  Good.
+
+0:32 - Masanari Kondo
+  Good, good. Okay, and we are just waiting in Yuta. Let me ping him. It's almost time. Okay, I sent a message, but I think he's in offline, so how about starting today's meeting without him, if you join later.  Sounds good. Okay, perfect. Okay, so Yuto, can you start today's discussion?
+
+1:21 - Yuto Uenaka
+  Okay. Okay, can you see my screen?
+  SCREEN SHARING: Yuto started screen sharing - WATCH: https://fathom.video/share/gKjrvTC96tUcco8DxAiEqLz-zGbT2z-o?timestamp=106.81983
+
+1:56 - Masanari Kondo
+  Yes, we can see your screen. Perfect.
+
+1:59 - Yuto Uenaka
+  Okay.
+
+2:00 - Cor-Paul Bezemer (he/him)
+  Okay, now let's begin my presentation.
+
+2:15 - Yuto Uenaka
+  First, I'd like to review our previous meeting and the current to-do items. We conducted detection tests using GPT and Gemini on both cherry-peaked single frames and 41-frame temporal sequences.  The sequence-based approach provides 1.34 seconds of movement data, allowing us to verify if the model can identify glitches that require temporal context, such as speed-based anomalies or state-change defects that are unidentifiable.  that! in static images. Additionally, we expanded our annotation data by manually annotating at least 10 world record videos to check for consistency in grid types and durations across different lands.  Regarding the single-frame VLM tests, the results showed that correct labels were obtained in only 2 out of 8 cases.  From our observations, detection appears feasible when spatial or locational cues are prominent and distinct. However, a significant limitation would  The is that static images fail to capture the temporal context that is essential for identifying speedrun-specific glitches. Moving on to the frame sequences and sequence VLM tests.  While only 3 out of 8 cases were labeled correctly, the reasoning in 6 out of 8 cases accurately captured the actual events.  We believe this is because the current glitch list was not entirely appropriated. So I will propose a new approach at the end of this presentation.  Our analysis of the failures revealed that the two cases that were were not identified involved glitches characterized by extremely highly speed movement.  We also performed hypothesis testing by explicitly stating that 1.34 second duration in the prompt to improve detection. Unfortunately, this backfired as the model became biased by the numerical data, leading to a decrease in accuracy.  Next, I'll discuss the expansion of the annotation data. Regarding our sampling methodology, I sampled and annotated 10 jordan asking for  We learned that marked major record improvements and were available on YouTube, enjoying balanced historical coverage. Next, I will summarize our annotation results.  Although the raw data is omitted from this slide due to space constraints, our analysis reveals that the types of glitches utilized have remained largely consistent over the year, with only minor shifts such as the adoption of the pole glitch and recent BLJ usage.  Regarding the duration of the With these glitches, we identified two primary patterns, those that remain stable and those that are steadily decreasing.  We interpret the reductions in frame counts as a direction result of improved player proficiency, whereas occasional increases in direction reflect the extreme execution difficulty of certain tricks that remain unstable even for elite players.  Now, I'd like to discuss whether the current glitch list is appropriate. Some glitches are very similar and potentially confusing.  For instance, a BLJ involves high-speed movement utilizing repeated long jumps, whereas an LBLJ is a specific variant of a BLJ performed in the castle lobby.  Similarly, mislayance wall clipping MWC is achieved without using Super Mario 64 specific mechanics like a BLJ, while LH clipping is a subtype of MWC that exploits momentary gaps in collision hitboxes during reach, grab, or pull-up animations.  Our proposal is is to implement a hierarchical glitch list. For example, since LBLJ is a type of BLJ, we define them in a parent-child relationship.  Under this model, if the model identifies an LBLJ as a general BLJ, we would consider it a successful detection because the core event was accurately captured.  We are also considering several alternative approaches. The first is simplification, which involves removing redundant labels to endure a streamlined and minimum risk.  Another is Generalized Classification, where we adopt high-level categories like Out-of-Bounds, OOB, and SpeedGlitch, SG, to maintain consistency with our previous research.  Finally, we could align our taxonomy with prior work to maintain consistency with established research. This leads to our key question.  Given our goal of supporting the speedrun community, which of these approaches do you think is the most appropriate? Okay, that concludes my presentation.
+
+10:55 - Cor-Paul Bezemer (he/him)
+  Thank you. Thank you. Okay, so a few thoughts. So first of all, I think those annotation results, they look very promising.  I think if you can manage to do this at a large scale, it can be super cool because then you can really dissect what a world record looks like and like what parts players got better over and where there's room for improvement.  So I think there's a lot of promise in the way you analyze it. We just need more data to do it.  So that. Okay, so then to your question, which one is the most appropriate? So I first have a question.  Is it possible to use the time in the overall gameplay session as a heuristic for selecting which of the bugs is being used?  For example, there was one example of the long back jump. That was like a specific example. For that. And it looked like it happens only in one spot in the game.  So if that is the case, then you can use maybe like an indication if it happens in a certain timeframe, then we know that it's that bug and otherwise it's the other bug.  Is that possible? Or is that not realistic? Yuto, did you get the point?
+
+12:38 - Masanari Kondo
+  So basically, for example, there are two world record data. Both of them uses a long bug word jump or something.  And if they use the same chart for the speedruns, such bugs appeared in almost a Same timing in both of the world records, which means that if we consider the time data, then we can classify, okay, this is not a specific type of the BLJ, but this is a specific type of the BLJ because this time frame or something.
+
+13:19 - Cor-Paul Bezemer (he/him)
+  Yeah, or even maybe like the position in the sequence. It doesn't have to be time. But like I say, if they use the same chart, if you know that they use the same chart, then you maybe can see it from the position in the chart, right?
+
+13:36 - Masanari Kondo
+  Where you're at.
+
+13:38 - Cor-Paul Bezemer (he/him)
+  So that might be a thing that you could look into. I'm not sure if it's possible. But other than that, I think the hierarchical glitch list is a good solution.  If you cannot get the exact bug, which it is, then I think the hierarchy that you proposed is a good idea.  Because then at least you see, okay, this is the... It's a little bit less specific, but I think that's okay.  I think if you go to what you had in your previous draft, where you had like two or three types, I think that's too high level.  But I think the hierarchy that you proposed here or something like that, I think that is much more useful.  Because it doesn't lose as much detail.
+
+14:22 - Masanari Kondo
+  I see. Because we are just worried about, okay, so because this is a game community paper, we feel like, okay, yeah, long BLJ and BLJ are similar bugs, because they are using the same, you know, mechanism.  So in the software engineering perspective, we don't need to split, you know, distinguish these two types of bugs. But I think in the game community, for example, speedrun community, they are more serious on this type of differences.  That's why we feel like this type of... The hierarchy might not be good at the speedrun committee paper, but if we can consider the hierarchical approach, that will be a little bit easier to propose some prediction approach or something.  That's why we want to discuss this point.
+
+15:22 - Cor-Paul Bezemer (he/him)
+  So I see your concern. So I think there are a few things that you can do to sort of mitigate that risk.  So one is if you can show that, let's say you have the long back jump and another one, I forgot the name, but those two.  And if you can show that they more or less have the same characteristics in terms of duration and stuff like that, then I think it's okay to say you treat them as one group for this purpose, just because the detection becomes really difficult if you have to split them up, right?  Even though they might... It might be that different, so it might just be that somebody at some point said, this is pretty much a long backwards jump, but because it's in this specific location, always in that location, we give it a special name, right?  But it might be that from a functional point of view, there's really not that much different. Like, I'm not sure if that's the case, right?  But if it's just a back jump in a specific location, then I feel the name is more related to the location than to the actual fact that it's a backwards jump, right?  And in a case like that, like, I don't see any problem with grouping it. And then you can always use a heuristic layer where you, for example, look at the position in the chart to decide, okay, that's this specific one we know is in that position just because of the timing or because of the sequence, right?  But for the detection... Like, even if you have to do that manually for a bunch, that's not so difficult, but for the automated detection for many videos, you want it to be as accurate as you can, but if you cannot get it accurate, then you want to go with the next best thing, which might be your hierarchical glitch list, right?  But you can look at the characteristics of the subtypes of glitches to see maybe they're very similar, and then for our point of view, it's not really fair to distinguish them, or ask the model to separate them, just because from a functional point of view, there might not be that much difference.
+
+17:48 - Masanari Kondo
+  Yeah, that makes sense to me, yeah. Okay, I think that is really cool. Okay, yeah. Yuto, I think I would like to discuss about the previous discussion point.  Do you think we can use other metadata to classify the bugs? Which metadata? I mean, the timings.
+
+18:26 - Cor-Paul Bezemer (he/him)
+  Oh, I see.
+
+18:33 - Masanari Kondo
+  If so, we can even if we use the hierarchical approach, it doesn't be a problem, right? Because after detecting the bugs, we can classify the glitches into the specific glitches or general glitches.
+
+18:55 - Cor-Paul Bezemer (he/him)
+  So have you tried running it with your hierarchical glitch list? So instead of all... All the glitch types, and you just give it like the top levels of your hierarchy, does it perform better?  Or does it not really solve anything?
+
+19:11 - Masanari Kondo
+  I think it will get a good performance.
+
+19:15 - Cor-Paul Bezemer (he/him)
+  Yeah? Have you tried?
+
+19:20 - Masanari Kondo
+  Yuto, have you already tried? Because we discussed this point last meeting, right? Last over-in-than-an-an-an-an-an-an-an I haven't tried it yet.
+
+19:45 - Cor-Paul Bezemer (he/him)
+  Yeah, because I would just give it a try with the hierarchy that you propose to see. You should also be able to sort of predict if it's going to help by looking at the output.  that you currently have, and see if it gets confused between the levels a lot. If that's the case, then it will help.  If it thinks it's something completely different, then hierarchy will not help you, right? So you should be able to sort of predict if it's really going to help you.
+
+20:24 - Masanari Kondo
+  Basically, what's hypothesis is that reasoning is correct in the current prediction. So we feel like this type of hierarchical approach should work well.  But yeah, let's try it.
+
+20:37 - Cor-Paul Bezemer (he/him)
+  I'm surprised that the reasoning is correct, because usually it's the other way around, where it guesses a bug type, but the reasoning is wrong.  So I'm surprised that the reasoning is correct. So can you show your prompt that you're sending to, for it to, to, to, to, to, to classify a bug type?  Okay. Can you show me the prompt? Like what are...
+
+21:02 - Masanari Kondo
+  Can you open the prompt wrist or something?
+
+21:10 - Cor-Paul Bezemer (he/him)
+  So the one where you ask it to pick a bug type? I think usually if it gets the reasoning correct, then it also is okay with the bug type.  But maybe the bug type is just the description is too difficult or it doesn't matter what it's looking for.  And I wonder if instead of bug type, you describe it as a speedrunning trick or something like that. Because not all of them are really bug types, right?  I guess like the long backwards jump, it doesn't sound like it's a bug. It's more like something that you can do.  Oh yeah, maybe it's a glitch. Okay.
+  SCREEN SHARING: Yuto started screen sharing - WATCH: https://fathom.video/share/gKjrvTC96tUcco8DxAiEqLz-zGbT2z-o?timestamp=1336.315118
+
+22:24 - Yuto Uenaka
+  Well, here is my prompt.
+
+22:31 - Cor-Paul Bezemer (he/him)
+  Okay, let me see. What's the difference between application variant and base glitch? Is that in the glitch descriptions?
+
+23:07 - Yuto Uenaka
+  Glitch description, here is the glitch list.
+
+23:13 - Cor-Paul Bezemer (he/him)
+  Okay. That was an application and a variant.
+
+23:17 - Masanari Kondo
+  The application and variants and base glitches, what are these categories? In the prompt, you specify the application, variant, and base glitches, and what are these?  In here is line 85 to 87, new specified application, variant, base glitches, and what are these? Let me describe it in Japanese.  Yeah, yeah, yeah.ここのアプリケーションとバリアントとベースグリッチって書かれているこれらはそれぞれ何を指していますかっていう思い出せます?そうですね、ちょっとパッと説明するのが難しいというか 私のイメージとしては、上に行くほど荒いというか、例えば高速移動とか壁抜けっていう分類で、そこからバリアントアプリケーションと行くにつれて、どんどん詳細になっていくっていうイメージですね。もうヒエラル機構は導入しているってことですか?一応、そうですね。コードは作ってるけど、まだテストはしていないという。ヒエラル機のプロンプトってことですね。あの、今までやってたプロンプトだとどんな感じなのかなっていうのが。なぜか、今リーズニングがなぜか合ってたから。はい。それをちょっと確認した。OK。Copo, so this is the prompt for the hierarchical classification he wants to try next.OK。So he will show the previous prompt.OK。OK。OK。OK。OK。OK。OK。  that were used in the current results.
+
+26:04 - Cor-Paul Bezemer (he/him)
+  Okay.
+
+26:06 - Masanari Kondo
+  Okay, he has updated the prompt.
+
+26:10 - Cor-Paul Bezemer (he/him)
+  Okay. Should make a separate .py file, man.
+
+26:16 - Masanari Kondo
+  Yeah, I think that is better. So, if you want to update the prompt, please, you know, keep the previous prompt, because otherwise we cannot go, we cannot load back to the previous version.
+
+26:30 - Cor-Paul Bezemer (he/him)
+  Yeah. And I would load them from maybe a text file or something or a different.
+
+26:36 - Masanari Kondo
+  Yeah. Right.
+
+26:37 - Cor-Paul Bezemer (he/him)
+  Yeah. But that's okay. Yeah.
+
+26:41 - Masanari Kondo
+  But yeah, let's see, let's see the prompt.
+
+26:44 - Cor-Paul Bezemer (he/him)
+  So how many, how many glitches, how many glitches do you have in that list? How long is the list?
+
+26:53 - Yuto Uenaka
+  How many?
+
+26:55 - Cor-Paul Bezemer (he/him)
+  How many? Yeah.
+
+26:58 - Yuto Uenaka
+  Uh, nine. Nineteen glitches in the list.
+
+27:03 - Cor-Paul Bezemer (he/him)
+  Nineteen?
+
+27:05 - Yuto Uenaka
+  Nineteen.
+
+27:12 - Cor-Paul Bezemer (he/him)
+  Can you show us a location-specific BLG using Castle Lobby pillars? Yeah, for example, it looks like the descriptions can use some improvement.  Because for example, the side BLG, the description says a variant performed sideways against stars or slopes to accumulate speed via...  something, I can't read the rest. But I'm not sure if the model picks up on a variant of a BLG.  Like, the... The descriptions seem very dependent on each other, right? And I'm not sure if the model can pick up on that.  I would make it a flat list of glitches with their descriptions. So don't put them into categories and have a full description for every glitch that doesn't need the description of another glitch.  So make every description standalone and try that. Because I don't know if the model can parse the JSON like this and also realize that there are relations between the, between the descriptions.  Like for us as humans, this is clear, but for a model, I don't think it's, it's that clear.
+
+28:45 - Masanari Kondo
+  That makes sense. Yeah. If we put the BLJ description in the LBLJ, then the model might be confused.
+
+28:53 - Cor-Paul Bezemer (he/him)
+  Yeah, maybe. Yeah. And it seems like they are very... So like, for example, like the LBLJ, it seems like it says a location specific BLJ, so it seems to be like, well, what I mentioned earlier, that it's just a BLJ, only it happens in a specific location, and it might be that it's just too complex for the model to detect that, so which are hierarchical glitch descriptions, you might actually get a much better performance, but I think still then you wanna make sure that the the descriptions are stand-alone, so that they don't depend on each other.  Make sense? Yeah?
+
+29:52 - Masanari Kondo
+  Makes sense, right. Yuto.
+  ACTION ITEM: Test hierarchical approach with stand-alone bug descriptions; report performance results to Cor-Paul Bezemer - WATCH: https://fathom.video/share/gKjrvTC96tUcco8DxAiEqLz-zGbT2z-o?timestamp=1794.9999
+
+29:55 - Yuto Uenaka
+  Okay.
+
+29:58 - Cor-Paul Bezemer (he/him)
+  Okay.
+
+29:59 - Masanari Kondo
+  Yeah. perfect. I think now the next action item is really clear. So let's try the hierarchical approach and something like stand-alone types, the bug descriptions, and let's report the performance to Cor-Paul.  That is your next task.
+
+30:29 - Yuto Uenaka
+  Okay.
+
+30:31 - Masanari Kondo
+  Okay, perfect. Good. Okay. Do you have anything else to discuss today?
+
+30:40 - Yuto Uenaka
+  Okay.
+
+30:42 - Masanari Kondo
+  Perfect.
+
+30:42 - Yuto Uenaka
+  Good.
+
+30:43 - Masanari Kondo
+  So, Kopo, next week we have the national holiday on Wednesday. So how about skip the next week meeting and let's have the next meeting after next week.  I mean that you are May 12th.
+
+31:00 - Cor-Paul Bezemer (he/him)
+  I thought this week was your national holiday. Another one. I thought this week was your national holiday.
+
+31:09 - Masanari Kondo
+  Ah, another one, yes. Because this is a golden week in Japan.
+
+31:14 - Cor-Paul Bezemer (he/him)
+  Oh wow.
+
+31:15 - Masanari Kondo
+  Japanese people... are so many national holidays.
+
+31:18 - Cor-Paul Bezemer (he/him)
+  You guys like to party, that's good.
+
+31:20 - Masanari Kondo
+  Yeah, right. We are, we are, now we are partying. Oh, sturd! But yeah, unfortunately we have long holidays, and maybe Yuto will go back to his home, and maybe get dressed.
+
+31:36 - Cor-Paul Bezemer (he/him)
+  I'm just kidding, man.
+
+31:37 - Masanari Kondo
+  For sure.
+
+31:39 - Cor-Paul Bezemer (he/him)
+  Go and enjoy. No, no, we can skip next week, that's fine.
+
+31:42 - Masanari Kondo
+  Yeah, and yeah, let's have a next meeting on May 12th for your time, and May 13th for our time.
+
+31:49 - Cor-Paul Bezemer (he/him)
+  Sounds good.
+
+31:50 - Masanari Kondo
+  Sounds good? Perfect.
+
+31:51 - Cor-Paul Bezemer (he/him)
+  And if you have anything, just poke me on Slack.
+
+31:57 - Masanari Kondo
+  Okay, thank you very much.
+
+32:00 - Cor-Paul Bezemer (he/him)
+  Alright, thanks guys.
+
+32:01 - Masanari Kondo
+  Thank you. Bye-bye.
+
+32:03 - Yuto Uenaka
+  you.
+
+32:04 - Cor-Paul Bezemer (he/him)
+  Bye-bye.

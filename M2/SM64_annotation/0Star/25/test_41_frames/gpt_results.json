@@ -2,73 +2,73 @@
     {
         "frame": "2156.jpg",
         "category": "Hyperspeed-Based Glitches",
-        "base_glitch": "Backwards Long Jump (BLJ)",
-        "variant": "LBLJ",
+        "base_glitch": "LBLJ",
+        "variant": "N/A",
         "application": "N/A",
         "label": "LBLJ_label",
-        "reason": "On the lobby’s red stairs beside the pillar and 8‑star door, Mario performs rapid backward long jumps, then snaps upward along the wall and instantly appears under the floor (black void), indicating a hyperspeed clip used in the lobby BLJ to bypass the 8‑star door."
+        "reason": "Mario repeatedly performs backwards long jumps on the red-carpet stairs in the castle lobby next to the wall/pillar, rapidly gaining reverse speed. He then clips past the 8-star door, with an abrupt transition to the hallway behind it (cloud-wall corridor with green columns) and camera under-floor visuals, confirming a lobby BLJ door bypass."
     },
     {
         "frame": "2257.jpg",
         "category": "Hyperspeed-Based Glitches",
-        "base_glitch": "Backwards Long Jump (BLJ)",
-        "variant": "LBLJ",
+        "base_glitch": "LBLJ",
+        "variant": "N/A",
         "application": "N/A",
         "label": "LBLJ_label",
-        "reason": "In the castle lobby, Mario backs into the green pillar and repeats the crouched long‑jump animation in place, producing dust. He then snaps backward at extreme speed and the camera rushes toward the star door, followed by a sudden cut to the dark void with Mario still moving—evidence of clipping through the 8‑star door via a lobby BLJ."
+        "reason": "Mario performs repeated backwards long jumps against the green lobby pillars, then shoots backward at high speed and clips through a closed lobby door (camera rushes to the door and the scene briefly shows the void beyond). This is the Lobby BLJ used to pass doors via hyperspeed."
     },
     {
         "frame": "5172.jpg",
         "category": "Hyperspeed-Based Glitches",
-        "base_glitch": "Backwards Long Jump (BLJ)",
-        "variant": "LBLJ",
+        "base_glitch": "LBLJ",
+        "variant": "N/A",
         "application": "N/A",
         "label": "LBLJ_label",
-        "reason": "Mario performs repeated backwards long jumps against the lobby pillar/stair area, then bypasses the closed 8-star door without an opening animation. The camera instantly shows the small dark antechamber and wooden hallway behind the door, indicating a BLJ-based clip specific to the lobby (LBLJ)."
+        "reason": "With 0 stars shown on the HUD, Mario is in the lobby at the 8-star door and then immediately appears in the long hallway behind it without a normal door-opening sequence. Entering this area with 0 stars requires clipping the 8-star door by carrying BLJ speed from the lobby pillars (LBLJ)."
     },
     {
-        "frame": "5567.jpg",
+        "frame": "5577.jpg",
         "category": "State & Coordinate Displacement",
         "base_glitch": "Pole Glitch",
         "variant": "N/A",
         "application": "N/A",
         "label": "Pole_glitch_label",
-        "reason": "After a jump on the round platform, the camera cuts under an orange platform with a pole. Mario then appears instantly high on the pole, right at the socket/mesh area, with no climb animation or intermediate movement up the pole. This abrupt snap to the top of the pole indicates the pole warp behavior characteristic of Pole Glitch."
+        "reason": "In Bowser in the Fire Sea, Mario approaches the underside of the large orange platform with a green pole. Upon grabbing the pole at its base, he abruptly snaps upward through the square socket to the grate area without any climbing animation, indicating an instant vertical teleport consistent with the Pole Glitch."
     },
     {
         "frame": "5796.jpg",
-        "category": "None",
-        "base_glitch": "N/A",
+        "category": "State & Coordinate Displacement",
+        "base_glitch": "Pole Glitch",
         "variant": "N/A",
         "application": "N/A",
-        "label": "Normal",
-        "reason": "Mario rises on a platform from a brick well and proceeds across moving platforms and up mesh ramps at normal speed. No abrupt teleports, hyperspeed buildup, geometry or hitbox clipping, or anomalous interactions are visible in the sequence."
+        "label": "Pole_glitch_label",
+        "reason": "Mario is not visible, then within a few frames his head pops out of the square shaft and he is instantly standing on the upper grating without any pole-climbing animation. This abrupt vertical teleport to the grate matches the Bowser in the Fire Sea pole glitch."
     },
     {
-        "frame": "8160.jpg",
-        "category": "Geometry & Hitbox Clipping",
-        "base_glitch": "Miscellaneous Wall Clipping",
-        "variant": "N/A",
-        "application": "N/A",
-        "label": "Miscellaneous_wall_clipping_label",
-        "reason": "Mario runs to the curved lobby wall, jumps, and then rises into the ceiling with his model intersecting and disappearing as the camera clips inside the geometry. There is no BLJ posture or visible speed buildup; the movement indicates bypassing collision via a wall/ceiling gap rather than hyperspeed."
-    },
-    {
-        "frame": "8447.jpg",
+        "frame": "8170.jpg",
         "category": "Hyperspeed-Based Glitches",
-        "base_glitch": "Backwards Long Jump (BLJ)",
-        "variant": "LBLJ",
+        "base_glitch": "LBLJ",
+        "variant": "N/A",
         "application": "N/A",
         "label": "LBLJ_label",
-        "reason": "Mario performs rapid backwards long jumps up the lobby’s red-carpet stairs toward the 8-star door. His speed builds abnormally, the door-opening animation never occurs, and the camera clips through the star-plaque as Mario appears on the other side in the blue hallway. This is the lobby BLJ used to clip through the 8-star door."
+        "reason": "In the castle lobby, Mario repeatedly performs backwards long jumps while pressed against the brick pillar/wall. His speed rapidly builds and he abruptly rockets backward/up into the ceiling, with the camera clipping into the geometry—behavior characteristic of the lobby BLJ technique."
+    },
+    {
+        "frame": "8427.jpg",
+        "category": "Hyperspeed-Based Glitches",
+        "base_glitch": "LBLJ",
+        "variant": "N/A",
+        "application": "N/A",
+        "label": "LBLJ_label",
+        "reason": "Mario is backward long jumping up the lobby’s red-carpet stairs, rapidly gaining speed while facing the camera and then clipping through the locked 8‑star door (HUD shows 0 stars) with no opening animation. This matches the lobby BLJ used to bypass that door."
     },
     {
         "frame": "8824.jpg",
         "category": "Hyperspeed-Based Glitches",
-        "base_glitch": "Backwards Long Jump (BLJ)",
+        "base_glitch": "LBLJ",
         "variant": "N/A",
         "application": "N/A",
-        "label": "BLJ_label",
-        "reason": "On the endless staircase, Mario repeatedly long-jumps while facing the camera, gains abnormal backward speed, then suddenly rockets to the top hallway with the Bowser painting. The rapid acceleration and abrupt transition are characteristic of a standard BLJ; no sideways setup or location-specific variant is shown."
+        "label": "LBLJ_label",
+        "reason": "Mario repeatedly long-jumps backwards up the lobby’s red staircase, gaining abnormal reverse speed while facing downhill, then dives into the purple pillar beside the Bowser painting and becomes embedded in it across frames—consistent with the lobby BLJ setup used to clip through the 8-star door."
     }
 ]

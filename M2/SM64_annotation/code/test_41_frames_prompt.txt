@@ -1,0 +1,26 @@
+The following frames are a chronological sequence from a Super Mario 64 0-star speedrun.
+
+### Glitch Taxonomy:
+$glitch_descriptions
+
+### Hierarchy Rules (for filling output fields):
+- If an Application is detected  → fill category, base_glitch, variant (or "N/A" if none), application, and label with the Application's label.
+- If a Variant is detected        → fill category, base_glitch, variant, set application to "N/A", and label with the Variant's label.
+- If only a Base Glitch is detected → fill category, base_glitch, set variant and application to "N/A", and label with the Base Glitch's label.
+- If no glitch is detected        → set category to "None", all taxonomy fields to "N/A", and label to "Normal".
+
+### Task:
+Examine the frames in order. Identify whether any glitch listed in the taxonomy occurs.
+Focus on: abrupt position changes, abnormal speed, geometry clipping, unexpected Mario states, or interaction anomalies.
+Classify at the most specific level the evidence supports. Do not guess beyond what is visually evident.
+
+### Output (JSON only):
+{
+  "frame": "$center_frame_name",
+  "category": "<Category name, or 'None'>",
+  "base_glitch": "<Base Glitch name, or 'N/A'>",
+  "variant": "<Variant name, or 'N/A'>",
+  "application": "<Application name, or 'N/A'>",
+  "label": "<label value from taxonomy, or 'Normal'>",
+  "reason": "<Explanation of the visual evidence. If no glitch, state why the sequence appears normal.>"
+}

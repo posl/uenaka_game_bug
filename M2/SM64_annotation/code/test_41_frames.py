@@ -4,13 +4,14 @@ import base64
 import time
 import pandas as pd
 from pathlib import Path
+from string import Template
 from openai import OpenAI
 
 # --- Configuration ---
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 # 2026年現在の最新モデルを使用
-MODEL_NAME = "gpt-5" 
+MODEL_NAME = "gpt-5"
 
 # Relative Paths
 BASE_DIR = Path(__file__).parent
@@ -18,10 +19,19 @@ GLITCH_LIST_PATH = BASE_DIR / "../../SM64_glitch_list/glitch_list.json"
 CSV_PATH = BASE_DIR / "../0Star/25/test_41_frames/test_frames.csv"
 IMAGE_DIR = BASE_DIR / "../0Star/25/frames1/"
 OUTPUT_PATH = BASE_DIR / "../0Star/25/test_41_frames/gpt_results.json"
+PROMPT_TEMPLATE_PATH = BASE_DIR / "../../SM64_annotation/code/test_41_frames_prompt.txt"
+
 
 def load_glitch_list(path):
     with open(path, 'r', encoding='utf-8') as f:
         return json.load(f)
+
+
+def load_prompt_template(path):
+    """プロンプトテンプレートをファイルから読み込みます．"""
+    with open(path, 'r', encoding='utf-8') as f:
+        return Template(f.read())
+
 
 def format_glitch_descriptions(taxonomy_data):
     """ネストされたバグリストを階層がわかるテキスト形式に変換します．
@@ -61,13 +71,15 @@ def format_glitch_descriptions(taxonomy_data):
 
     return "\n".join(lines)
 
+
 def encode_image(image_path):
     with open(image_path, "rb") as image_file:
         return base64.b64encode(image_file.read()).decode('utf-8')
 
-def analyze_frame_sequence(center_frame_name, taxonomy_data):
+
+def analyze_frame_sequence(center_frame_name, taxonomy_data, prompt_template):
     """中心フレームの前後を含むシーケンスをモデルに送り，グリッチ分類結果を返します．"""
-    
+
     try:
         center_num = int(Path(center_frame_name).stem)
     except ValueError:
@@ -75,34 +87,11 @@ def analyze_frame_sequence(center_frame_name, taxonomy_data):
 
     glitch_descriptions = format_glitch_descriptions(taxonomy_data)
 
-    prompt = f"""
-The following frames are a chronological sequence from a Super Mario 64 0-star speedrun.
-
-### Glitch Taxonomy:
-{glitch_descriptions}
-
-### Hierarchy Rules (for filling output fields):
-- If an Application is detected  → fill category, base_glitch, variant (or "N/A" if none), application, and label with the Application's label.
-- If a Variant is detected        → fill category, base_glitch, variant, set application to "N/A", and label with the Variant's label.
-- If only a Base Glitch is detected → fill category, base_glitch, set variant and application to "N/A", and label with the Base Glitch's label.
-- If no glitch is detected        → set category to "None", all taxonomy fields to "N/A", and label to "Normal".
-
-### Task:
-Examine the frames in order. Identify whether any glitch listed in the taxonomy occurs.
-Focus on: abrupt position changes, abnormal speed, geometry clipping, unexpected Mario states, or interaction anomalies.
-Classify at the most specific level the evidence supports. Do not guess beyond what is visually evident.
-
-### Output (JSON only):
-{{
-  "frame": "{center_frame_name}",
-  "category": "<Category name, or 'None'>",
-  "base_glitch": "<Base Glitch name, or 'N/A'>",
-  "variant": "<Variant name, or 'N/A'>",
-  "application": "<Application name, or 'N/A'>",
-  "label": "<label value from taxonomy, or 'Normal'>",
-  "reason": "<Explanation of the visual evidence. If no glitch, state why the sequence appears normal.>"
-}}
-"""
+    # テンプレートに変数を埋め込んでプロンプトを生成
+    prompt = prompt_template.substitute(
+        glitch_descriptions=glitch_descriptions,
+        center_frame_name=center_frame_name,
+    )
 
     content_list = [{"type": "text", "text": prompt}]
 
@@ -139,30 +128,33 @@ Classify at the most specific level the evidence supports. Do not guess beyond w
         print(f"Error analyzing {center_frame_name}: {e}")
         return {"frame": center_frame_name, "label": "Error", "reason": str(e)}
 
+
 def main():
     taxonomy = load_glitch_list(GLITCH_LIST_PATH)
-    
+    prompt_template = load_prompt_template(PROMPT_TEMPLATE_PATH)
+
     if not CSV_PATH.exists():
         print(f"Error: CSV not found at {CSV_PATH}")
         return
-        
+
     df = pd.read_csv(CSV_PATH)
     target_frames = df['frame'].tolist()
-    
+
     results = []
     print(f"Starting hierarchical analysis with {MODEL_NAME}...")
 
     for center_frame in target_frames:
         print(f"Processing sequence around: {center_frame}")
-        result = analyze_frame_sequence(center_frame, taxonomy)
+        result = analyze_frame_sequence(center_frame, taxonomy, prompt_template)
         results.append(result)
-        
+
         with open(OUTPUT_PATH, 'w', encoding='utf-8') as f:
             json.dump(results, f, indent=4, ensure_ascii=False)
-        
+
         time.sleep(3)
 
     print(f"Analysis complete．Results saved to: {OUTPUT_PATH}")
+
 
 if __name__ == "__main__":
     main()

@@ -6,31 +6,29 @@
         {
           "name": "Backwards Long Jump (BLJ)",
           "label": "BLJ_label",
-          "description": "The fundamental glitch that exploits the lack of a speed cap by repeatedly performing backwards long jumps to gain unlimited negative hyperspeed.",
-          "variants": [
+          "description": "A glitch where Mario repeatedly performs backwards long jumps against an obstacle or slope, allowing him to zoom backwards at an incredibly high speed."
+        },
+        {
+          "name": "LBLJ",
+          "label": "LBLJ_label",
+          "description": "A glitch where Mario repeatedly performs backwards long jumps against the pillars in the lobby of Peach's Castle, allowing him to clip through doors like the 8-star door while moving at a high speed."
+        },
+        {
+          "name": "SBLJ (Side BLJ)",
+          "label": "SBLJ_label",
+          "description": "A glitch performed on the stairs in Peach's Castle where Mario repeatedly performs backwards long jumps sideways against the stairs to gain a high speed and bypass the 30-star door.",
+          "applications": [
             {
-              "name": "LBLJ",
-              "label": "LBLJ_label",
-              "description": "A location-specific BLJ using castle lobby pillars to clip through the 8-star door."
-            },
-            {
-              "name": "SBLJ (Side BLJ)",
-              "label": "SBLJ_label",
-              "description": "A variant performed sideways against stairs or slopes to accumulate speed via geometry snapping.",
-              "applications": [
-                {
-                  "name": "DDD Skip",
-                  "label": "DDD_skip_label",
-                  "description": "A specialized application of SBLJ to bypass both the 30-star door and the DDD water wall simultaneously."
-                }
-              ]
-            },
-            {
-              "name": "BLJ Strat (Musharna)",
-              "label": "BLJ_strat_label",
-              "description": "Performing a BLJ on a moving elevator to skip the toxic maze wire fence."
+              "name": "DDD Skip",
+              "label": "DDD_skip_label",
+              "description": "A glitch that applies the Side BLJ technique on the stairs in Peach's Castle—repeatedly performing backwards long jumps sideways against the stairs—to move at a high speed and bypass both the 30-star door and the water wall at the entrance of Dire, Dire Docks simultaneously."
             }
           ]
+        },
+        {
+          "name": "BLJ Strat (Musharna)",
+          "label": "BLJ_strat_label",
+          "description": "A glitch performed on a rising elevator in Hazy Maze Cave, where Mario repeatedly performs backwards long jumps to clip through the wire fence and reach the star location."
         }
       ]
     },
@@ -40,36 +38,36 @@
         {
           "name": "Miscellaneous Wall Clipping",
           "label": "Miscellaneous_wall_clipping_label",
-          "description": "Bypassing collision via geometry gaps using long jumps or kicks, without hyperspeed.",
+          "description": "Bypassing walls directly by using normal actions like long jumps or kicks at specific angles and locations.",
           "variants": [
             {
               "name": "Ledge Clipping",
               "label": "Ledge_clipping_label",
-              "description": "Exploiting the momentary collision gap when grabbing or pulling up from a ledge.",
+              "description": "A technique where Mario grabs onto or pulls himself up from a specific part of a ledge, causing his body to clip through the wall.",
               "applications": [
                 {
                   "name": "Cannonless",
                   "label": "Cannonless_label",
-                  "description": "A precise ledge-clipping setup to grab stars directly from wall gaps, skipping cannon usage."
+                  "description": "A precise setup in Whomp's Fortress where Mario performs a ledge grab animation to clip into a wall and directly grab a hidden star."
                 }
               ]
             },
             {
               "name": "Ship Clip",
               "label": "Ship_clip_label",
-              "description": "Swimming at a precise angle into the sunken ship's hull to skip the eel-luring sequence."
+              "description": "A wall clipping technique in Jolly Roger Bay where Mario swims at full speed and presses the button at a precise time to clip directly through the sunken ship's wall to enter it."
             }
           ]
         },
         {
           "name": "Box TJ",
           "label": "Box_TJ_label",
-          "description": "Using a Triple Jump on a '!' block to pass through ceiling collision gaps."
+          "description": "A glitch performed in Hazy Maze Cave where Mario performs a Triple Jump on top of a box, such as a '!' block, to pass upwards through the ceiling and move to another area."
         },
         {
           "name": "Ground Pound Clipping",
           "label": "Ground_pound_clipping_label",
-          "description": "Exploiting the mid-air stall before a ground pound to pass through moving object collision."
+          "description": "A glitch that exploits the intended mechanic where Mario momentarily stays in place in mid-air right before initiating a downward ground pound, allowing him to pass downwards through moving platforms or objects like Whomps in Whomp's Fortress."
         }
       ]
     },
@@ -79,34 +77,34 @@
         {
           "name": "Bob-omb Clip",
           "label": "Bob-omb_clip_label",
-          "description": "Using explosion knockback or grab-frame acceleration to force Mario through hitboxes.",
+          "description": "A glitch that forces Mario through walls or doors, such as the Chain Chomp's gate in Bob-omb Battlefield, by using the knockback from a Bob-omb's explosion or the backward force generated when throwing a bloated Bob-omb while standing against a wall.",
           "applications": [
             {
               "name": "Pillarless",
               "label": "Pillarless_label",
-              "description": "An advanced bloated Bob-omb glitch to clip into the pyramid, skipping pillar activation."
+              "description": "An advanced glitch in Shifting Sand Land that uses the significant backward momentum from holding and throwing a bloated Bob-omb to clip into the top entrance of the pyramid."
             }
           ]
         },
         {
           "name": "Chuckya Clip",
           "label": "Chuckya_clip_label",
-          "description": "Using the state of being held or the recoil of throwing a Chuckya to pass through walls."
+          "description": "A glitch that forces Mario through a wall by having a Chuckya grab Mario, or by using the backward force generated when Mario throws a Chuckya while having his back against a wall. This can be used in courses like Tall, Tall Mountain or Wet-Dry World."
         },
         {
           "name": "MIPS Clip",
           "label": "MIPS_clip_label",
-          "description": "Exploiting the pushing collision of MIPS the rabbit to force Mario through star doors."
+          "description": "A glitch performed in the basement of Peach's Castle where Mario holds MIPS the rabbit and walks into the corner of a wall or door; upon letting go, Mario is pushed through to the other side, such as the 30-star door."
         },
         {
           "name": "Door Clip",
           "label": "Door_clip_label",
-          "description": "Using text box animation locks to bypass door opening sequences and collision."
+          "description": "A glitch used in Big Boo's Haunt where Mario is frozen in place when a text box from a Boo appears, allowing him to bypass the door's opening animation and pass through it."
         },
         {
           "name": "Monkey Bug",
           "label": "Monkey_bug_label",
-          "description": "Interacting with Ukkiki to skip his walking animation after being dropped at the star cage."
+          "description": "A glitch in Tall, Tall Mountain where Mario grabs Ukkiki the monkey, moves near the star cage, and forces him to drop by performing a jump and ground pound, which drastically cuts short the monkey's intended walking animation."
         }
       ]
     },
@@ -116,12 +114,12 @@
         {
           "name": "Pole Glitch",
           "label": "Pole_glitch_label",
-          "description": "An instant coordinate warp from the base of a pole to the wire mesh above."
+          "description": "A glitch performed in Bowser in the Fire Sea, where grabbing the base of a pole instantly teleports Mario upward to the wire grate above."
         },
         {
           "name": "Insta Clip",
           "label": "Insta_clip_label",
-          "description": "A physics abnormality causing an immediate teleport between water bodies of different heights."
+          "description": "A glitch in Tall, Tall Mountain where Mario lands in a lower body of water and uses the recoil to simultaneously touch an upper body of water, teleporting him instantly to the surface of the upper water."
         }
       ]
     }
