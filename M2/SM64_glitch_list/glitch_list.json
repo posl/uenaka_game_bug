@@ -6,29 +6,31 @@
         {
           "name": "Backwards Long Jump (BLJ)",
           "label": "BLJ_label",
-          "description": "A glitch where Mario repeatedly performs backwards long jumps against an obstacle or slope, allowing him to zoom backwards at an incredibly high speed."
-        },
-        {
-          "name": "LBLJ",
-          "label": "LBLJ_label",
-          "description": "A glitch where Mario repeatedly performs backwards long jumps against the pillars in the lobby of Peach's Castle, allowing him to clip through doors like the 8-star door while moving at a high speed."
-        },
-        {
-          "name": "SBLJ (Side BLJ)",
-          "label": "SBLJ_label",
-          "description": "A glitch performed on the stairs in Peach's Castle where Mario repeatedly performs backwards long jumps sideways against the stairs to gain a high speed and bypass the 30-star door.",
-          "applications": [
+          "description": "A glitch where Mario repeatedly performs backwards long jumps against an obstacle or slope, allowing him to zoom backwards at an incredibly high speed.",
+          "variants": [
             {
-              "name": "DDD Skip",
-              "label": "DDD_skip_label",
-              "description": "A glitch that applies the Side BLJ technique on the stairs in Peach's Castle—repeatedly performing backwards long jumps sideways against the stairs—to move at a high speed and bypass both the 30-star door and the water wall at the entrance of Dire, Dire Docks simultaneously."
+              "name": "LBLJ",
+              "label": "LBLJ_label",
+              "description": "A glitch where Mario repeatedly performs backwards long jumps against the pillars in the lobby of Peach's Castle, allowing him to clip through a star door while moving at a high speed."
+            },
+            {
+              "name": "SBLJ (Side BLJ)",
+              "label": "SBLJ_label",
+              "description": "A glitch performed on the stairs in Peach's Castle where Mario repeatedly performs backwards long jumps sideways against the stairs to gain a high speed and bypass a star door.",
+              "applications": [
+                {
+                  "name": "DDD Skip",
+                  "label": "DDD_skip_label",
+                  "description": "A glitch that applies the Side BLJ technique on the stairs in Peach's Castle—repeatedly performing backwards long jumps sideways against the stairs—to move at a high speed and bypass both a star door and the water wall at the entrance of Dire, Dire Docks simultaneously."
+                }
+              ]
+            },
+            {
+              "name": "BLJ Strat (Musharna)",
+              "label": "BLJ_strat_label",
+              "description": "A glitch performed on a rising elevator in Hazy Maze Cave, where Mario repeatedly performs backwards long jumps to clip through the wire fence and reach the star location."
             }
           ]
-        },
-        {
-          "name": "BLJ Strat (Musharna)",
-          "label": "BLJ_strat_label",
-          "description": "A glitch performed on a rising elevator in Hazy Maze Cave, where Mario repeatedly performs backwards long jumps to clip through the wire fence and reach the star location."
         }
       ]
     },
@@ -38,26 +40,24 @@
         {
           "name": "Miscellaneous Wall Clipping",
           "label": "Miscellaneous_wall_clipping_label",
-          "description": "Bypassing walls directly by using normal actions like long jumps or kicks at specific angles and locations.",
-          "variants": [
+          "description": "A glitch that allows Mario to clip through walls without performing any special actions."
+        },
+        {
+          "name": "Ledge Clipping",
+          "label": "Ledge_clipping_label",
+          "description": "A technique where Mario grabs onto or pulls himself up from a specific part of a ledge, causing his body to clip through the wall.",
+          "applications": [
             {
-              "name": "Ledge Clipping",
-              "label": "Ledge_clipping_label",
-              "description": "A technique where Mario grabs onto or pulls himself up from a specific part of a ledge, causing his body to clip through the wall.",
-              "applications": [
-                {
-                  "name": "Cannonless",
-                  "label": "Cannonless_label",
-                  "description": "A precise setup in Whomp's Fortress where Mario performs a ledge grab animation to clip into a wall and directly grab a hidden star."
-                }
-              ]
-            },
-            {
-              "name": "Ship Clip",
-              "label": "Ship_clip_label",
-              "description": "A wall clipping technique in Jolly Roger Bay where Mario swims at full speed and presses the button at a precise time to clip directly through the sunken ship's wall to enter it."
+              "name": "Cannonless",
+              "label": "Cannonless_label",
+              "description": "A precise setup in Whomp's Fortress where Mario performs a ledge grab animation to clip into a wall and directly grab a hidden star."
             }
           ]
+        },
+        {
+          "name": "Ship Clip",
+          "label": "Ship_clip_label",
+          "description": "A wall clipping technique in Jolly Roger Bay where Mario swims at full speed and presses the button at a precise time to clip directly through the sunken ship's wall to enter it."
         },
         {
           "name": "Box TJ",
@@ -94,7 +94,7 @@
         {
           "name": "MIPS Clip",
           "label": "MIPS_clip_label",
-          "description": "A glitch performed in the basement of Peach's Castle where Mario holds MIPS the rabbit and walks into the corner of a wall or door; upon letting go, Mario is pushed through to the other side, such as the 30-star door."
+          "description": "A glitch performed in the basement of Peach's Castle where Mario holds MIPS the rabbit and walks into the corner of a wall or door; upon letting go, Mario is pushed through to the other side, such as a star door."
         },
         {
           "name": "Door Clip",

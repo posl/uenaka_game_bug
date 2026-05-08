@@ -11,17 +11,17 @@
         {
           "name": "LBLJ",
           "label": "LBLJ_label",
-          "description": "A glitch performed in the lobby of Peach's Castle where Mario repeatedly performs backwards long jumps against the lobby pillars, allowing him to clip through doors like the 8-star door while moving at a high speed."
+          "description": "A glitch where Mario repeatedly performs backwards long jumps against the pillars in the lobby of Peach's Castle, allowing him to clip through a star door while moving at a high speed."
         },
         {
           "name": "SBLJ (Side BLJ)",
           "label": "SBLJ_label",
-          "description": "A glitch performed on the stairs in Peach's Castle where Mario repeatedly performs backwards long jumps sideways against the stairs to gain a high speed and bypass the 30-star door.",
+          "description": "A glitch performed on the stairs in Peach's Castle where Mario repeatedly performs backwards long jumps sideways against the stairs to gain a high speed and bypass a star door.",
           "applications": [
             {
               "name": "DDD Skip",
               "label": "DDD_skip_label",
-              "description": "A glitch that applies the Side BLJ technique on the stairs in Peach's Castle—repeatedly performing backwards long jumps sideways against the stairs—to move at a high speed and bypass both the 30-star door and the water wall at the entrance of Dire, Dire Docks simultaneously."
+              "description": "A glitch that applies the Side BLJ technique on the stairs in Peach's Castle—repeatedly performing backwards long jumps sideways against the stairs—to move at a high speed and bypass both a star door and the water wall at the entrance of Dire, Dire Docks simultaneously."
             }
           ]
         },
@@ -94,7 +94,7 @@
         {
           "name": "MIPS Clip",
           "label": "MIPS_clip_label",
-          "description": "A glitch performed in the basement of Peach's Castle where Mario holds MIPS the rabbit and walks into the corner of a wall or door; upon letting go, Mario is pushed through to the other side, such as the 30-star door."
+          "description": "A glitch performed in the basement of Peach's Castle where Mario holds MIPS the rabbit and walks into the corner of a wall or door; upon letting go, Mario is pushed through to the other side, such as a star door."
         },
         {
           "name": "Door Clip",
