@@ -2,18 +2,21 @@ import os
 import json
 import base64
 import time
+import io
+import mimetypes
 import pandas as pd
 from pathlib import Path
 from string import Template
 from openai import OpenAI
+from PIL import Image, ImageSequence
 
 # --- Configuration ---
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
-# 2026年現在の最新モデルを使用
+# 2026年現在の最新モデルを使用（環境に合わせて調整してください）
 MODEL_NAME = "gpt-5"
 
-# Relative Paths
+# Relative Paths（ご提示のディレクトリ構造に基づいています）
 BASE_DIR = Path(__file__).parent
 GLITCH_LIST_PATH = BASE_DIR / "../../SM64_glitch_list/glitch_list.json"
 CSV_PATH = BASE_DIR / "../0Star/25/test_41_frames/test_frames.csv"
@@ -21,27 +24,34 @@ IMAGE_DIR = BASE_DIR / "../0Star/25/frames1/"
 OUTPUT_PATH = BASE_DIR / "../0Star/25/test_41_frames/gpt_results.json"
 PROMPT_TEMPLATE_PATH = BASE_DIR / "../../SM64_annotation/code/test_41_frames_prompt.txt"
 
-
 def load_glitch_list(path):
     with open(path, 'r', encoding='utf-8') as f:
         return json.load(f)
-
 
 def load_prompt_template(path):
     """プロンプトテンプレートをファイルから読み込みます．"""
     with open(path, 'r', encoding='utf-8') as f:
         return Template(f.read())
 
+def collect_examples_from_taxonomy(taxonomy_data):
+    """タクソノミーを再帰的に探索し，example_path があるものを (名前, パス) のリストで返します．"""
+    examples = []
+
+    def walk(obj):
+        if isinstance(obj, dict):
+            if "name" in obj and "example_path" in obj:
+                examples.append((obj["name"], obj["example_path"]))
+            for value in obj.values():
+                walk(value)
+        elif isinstance(obj, list):
+            for item in obj:
+                walk(item)
+
+    walk(taxonomy_data)
+    return examples
 
 def format_glitch_descriptions(taxonomy_data):
-    """ネストされたバグリストを階層がわかるテキスト形式に変換します．
-
-    階層ルール:
-      - Base Glitch が variants を持つ場合        → Base Glitch > Variant (> Application)
-      - Base Glitch が variants を持たず
-        applications を直接持つ場合              → Base Glitch > Application (variant は N/A)
-      - いずれも持たない場合                      → Base Glitch のみ (variant・application は N/A)
-    """
+    """ネストされたバグリストを階層がわかるテキスト形式に変換します．"""
     lines = []
 
     def process_base_glitch(glitch):
@@ -58,8 +68,7 @@ def format_glitch_descriptions(taxonomy_data):
                         lines.append(f"        Description: {app['description']}")
 
         elif "applications" in glitch:
-            # variants を経由せず applications を直接持つケース (e.g. Bob-omb Clip)
-            lines.append(f"    (No variants. Applications attach directly to this Base Glitch.)")
+            lines.append(f"    (No variants．Applications attach directly to this Base Glitch．)")
             for app in glitch["applications"]:
                 lines.append(f"    - Application: {app['name']} (label: {app['label']})")
                 lines.append(f"      Description: {app['description']}")
@@ -71,23 +80,41 @@ def format_glitch_descriptions(taxonomy_data):
 
     return "\n".join(lines)
 
-
 def encode_image(image_path):
+    """静止画ファイルをbase64エンコードします．"""
     with open(image_path, "rb") as image_file:
         return base64.b64encode(image_file.read()).decode('utf-8')
 
+def encode_gif_frames(gif_path, max_frames=10):
+    """GIFから複数のフレームを抽出し，base64エンコードのリストで返します．"""
+    frames_b64 = []
+    try:
+        with Image.open(gif_path) as img:
+            total_frames = getattr(img, 'n_frames', 1)
+            # 全フレームから指定した枚数まで等間隔にサンプリング
+            indices = [int(i * total_frames / max_frames) for i in range(max_frames)] if total_frames > max_frames else range(total_frames)
+            
+            for i, frame in enumerate(ImageSequence.Iterator(img)):
+                if i in indices:
+                    # RGBに変換してJPEGとしてバッファに保存（トークン節約のため）
+                    frame = frame.convert("RGB")
+                    buffer = io.BytesIO()
+                    frame.save(buffer, format="JPEG")
+                    frames_b64.append(base64.b64encode(buffer.getvalue()).decode('utf-8'))
+    except Exception as e:
+        print(f"Error processing GIF {gif_path}: {e}")
+    return frames_b64
 
 def analyze_frame_sequence(center_frame_name, taxonomy_data, prompt_template):
-    """中心フレームの前後を含むシーケンスをモデルに送り，グリッチ分類結果を返します．"""
-
+    """中心フレームの前後を含むシーケンスと，タクソノミー内の例示をモデルに送ります．"""
     try:
         center_num = int(Path(center_frame_name).stem)
     except ValueError:
-        return {"frame": center_frame_name, "error": "Invalid frame name format in CSV."}
+        return {"frame": center_frame_name, "error": "Invalid frame name format．"}
 
     glitch_descriptions = format_glitch_descriptions(taxonomy_data)
-
-    # テンプレートに変数を埋め込んでプロンプトを生成
+    
+    # プロンプトの生成
     prompt = prompt_template.substitute(
         glitch_descriptions=glitch_descriptions,
         center_frame_name=center_frame_name,
@@ -95,6 +122,33 @@ def analyze_frame_sequence(center_frame_name, taxonomy_data, prompt_template):
 
     content_list = [{"type": "text", "text": prompt}]
 
+    # 1．Few-shot 用の例示画像を追加（GIFの場合は展開）
+    examples = collect_examples_from_taxonomy(taxonomy_data)
+    for name, rel_path in examples:
+        # JSONからの相対パスを解決
+        full_ex_path = GLITCH_LIST_PATH.parent / rel_path
+        if full_ex_path.exists():
+            content_list.append({"type": "text", "text": f"### Example of {name}:"})
+            
+            if full_ex_path.suffix.lower() == ".gif":
+                # GIFの場合は動きを理解させるために複数枚送る（max_framesで調整可能）
+                gif_frames = encode_gif_frames(full_ex_path, max_frames=10)
+                for b64_frame in gif_frames:
+                    content_list.append({
+                        "type": "image_url",
+                        "image_url": {"url": f"data:image/jpeg;base64,{b64_frame}", "detail": "low"}
+                    })
+            else:
+                # WebPやJPGの場合はそのまま1枚送る
+                mime_type, _ = mimetypes.guess_type(full_ex_path)
+                b64_ex = encode_image(full_ex_path)
+                content_list.append({
+                    "type": "image_url",
+                    "image_url": {"url": f"data:{mime_type or 'image/jpeg'};base64,{b64_ex}", "detail": "high"}
+                })
+
+    # 2．テスト対象の41枚のシーケンスを追加
+    content_list.append({"type": "text", "text": "### Test Sequence (41 frames):"})
     for i in range(center_num - 20, center_num + 21):
         img_name = f"{i}.jpg"
         img_path = IMAGE_DIR / img_name
@@ -114,7 +168,7 @@ def analyze_frame_sequence(center_frame_name, taxonomy_data, prompt_template):
             messages=[
                 {
                     "role": "system",
-                    "content": "You are an expert annotator for Super Mario 64 speedrun footage. You classify glitches using a fixed hierarchical taxonomy. Always respond in valid JSON only, with no additional text."
+                    "content": "You are an expert annotator for Super Mario 64 speedrun footage．Use the provided visual examples to understand the characteristics of each glitch before analyzing the test sequence．Always respond in valid JSON only．"
                 },
                 {
                     "role": "user",
@@ -128,7 +182,6 @@ def analyze_frame_sequence(center_frame_name, taxonomy_data, prompt_template):
         print(f"Error analyzing {center_frame_name}: {e}")
         return {"frame": center_frame_name, "label": "Error", "reason": str(e)}
 
-
 def main():
     taxonomy = load_glitch_list(GLITCH_LIST_PATH)
     prompt_template = load_prompt_template(PROMPT_TEMPLATE_PATH)
@@ -141,20 +194,21 @@ def main():
     target_frames = df['frame'].tolist()
 
     results = []
-    print(f"Starting hierarchical analysis with {MODEL_NAME}...")
+    print(f"Starting analysis with {MODEL_NAME} and visual examples...")
 
     for center_frame in target_frames:
         print(f"Processing sequence around: {center_frame}")
         result = analyze_frame_sequence(center_frame, taxonomy, prompt_template)
         results.append(result)
 
+        # 1件ごとに保存（進捗確保）
         with open(OUTPUT_PATH, 'w', encoding='utf-8') as f:
             json.dump(results, f, indent=4, ensure_ascii=False)
 
+        # API制限を考慮して待機
         time.sleep(3)
 
     print(f"Analysis complete．Results saved to: {OUTPUT_PATH}")
-
 
 if __name__ == "__main__":
     main()

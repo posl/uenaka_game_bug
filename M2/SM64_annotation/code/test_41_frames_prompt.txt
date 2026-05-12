@@ -3,6 +3,9 @@ The following frames are a chronological sequence from a Super Mario 64 0-star s
 ### Glitch Taxonomy:
 $glitch_descriptions
 
+### Visual Examples (Few-shot Samples):
+The first set of images provided are visual examples of specific glitches．Please refer to these examples to understand the visual cues—such as Mario’s posture, speed, and environmental interactions—that define each glitch category in the taxonomy．
+
 ### Hierarchy Rules (for filling output fields):
 - If an Application is detected  → fill category, base_glitch, variant (or "N/A" if none), application, and label with the Application's label.
 - If a Variant is detected        → fill category, base_glitch, variant, set application to "N/A", and label with the Variant's label.
@@ -10,7 +13,7 @@ $glitch_descriptions
 - If no glitch is detected        → set category to "None", all taxonomy fields to "N/A", and label to "Normal".
 
 ### Task:
-Examine the frames in order. Identify whether any glitch listed in the taxonomy occurs.
+Examine the 41-frame sequence following the examples．Identify whether any glitch listed in the taxonomy occurs, **using both the textual descriptions and the provided visual examples as your guide．**
 Focus on: abrupt position changes, abnormal speed, geometry clipping, unexpected Mario states, or interaction anomalies.
 Classify at the most specific level the evidence supports. Do not guess beyond what is visually evident.
 
