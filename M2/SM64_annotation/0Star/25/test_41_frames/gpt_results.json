@@ -1,74 +1,7 @@
 [
     {
-        "frame": "2156.jpg",
-        "category": "Geometry & Hitbox Clipping",
-        "base_glitch": "Miscellaneous Wall Clipping",
-        "variant": "N/A",
-        "application": "N/A",
-        "label": "Miscellaneous_wall_clipping_label",
-        "reason": "Mario long-jumps up the red-carpeted stair edge while hugging the brick wall, then abruptly appears beneath the lobby floor in a black void with the green lobby pillars visible above. This sudden transition to out-of-bounds without passing a door or using an object indicates a wall/floor seam clip rather than a BLJ or other listed interaction."
-    },
-    {
-        "frame": "0001.jpg",
-        "category": "Hyperspeed-Based Glitches",
-        "base_glitch": "Backwards Long Jump (BLJ)",
-        "variant": "LBLJ",
-        "application": "N/A",
-        "label": "LBLJ_label",
-        "reason": "Mario repeatedly performs backwards long jumps while wedged against the green lobby pillars, then abruptly gains extreme backward speed and clips through the closed 8-star door. The next frames show him on the other side in the dark Bowser 1 hallway with red flooring, confirming the lobby BLJ variant used to bypass the star door."
-    },
-    {
-        "frame": "frame_41.jpg",
-        "category": "Hyperspeed-Based Glitches",
-        "base_glitch": "Backwards Long Jump (BLJ)",
-        "variant": "SBLJ (Side BLJ)",
-        "application": "DDD Skip",
-        "label": "DDD_skip_label",
-        "reason": "Mario performs rapid sideways long jumps on the castle basement stairs next to the 30-star door, then the camera snaps inside the star door (black void with the star plaque at the edge), showing he clipped through without the door opening. He continues at high speed down the wooden hallway and passes the blue water wall to Dire, Dire Docks without entering it, after which the scene immediately transitions to the green-brick corridor with trapdoor platforms leading to Bowser in the Fire Sea. This sequence matches the Side BLJ application known as DDD Skip."
-    },
-    {
-        "frame": "sequence_frame_001.jpg",
-        "category": "State & Coordinate Displacement",
-        "base_glitch": "Pole Glitch",
-        "variant": "N/A",
-        "application": "N/A",
-        "label": "Pole_glitch_label",
-        "reason": "In Bowser in the Fire Sea, the camera tracks the underside of the large orange checkered platform with a pole passing through to a wire grate above. Mario jumps toward the pole’s base, then snaps upward on the next frames with no normal climbing animation, effectively teleporting from the base area to the top section aligned with the grate. This abrupt vertical displacement matches the Pole Glitch."
-    },
-    {
-        "frame": "N/A",
-        "category": "State & Coordinate Displacement",
-        "base_glitch": "Pole Glitch",
-        "variant": "N/A",
-        "application": "N/A",
-        "label": "Pole_glitch_label",
-        "reason": "In Bowser in the Fire Sea, Mario briefly appears inside the square pole socket (frames ~12–14) and then, within a couple frames, is on the upper wire-grate platform without any pole-climbing animation. This abrupt upward displacement from the pole base to the grate matches the Pole Glitch behavior."
-    },
-    {
-        "frame": "8170.jpg",
-        "category": "Geometry & Hitbox Clipping",
-        "base_glitch": "Miscellaneous Wall Clipping",
-        "variant": "N/A",
-        "application": "N/A",
-        "label": "Miscellaneous_wall_clipping_label",
-        "reason": "Mario jumps along the curved brick wall and suddenly rises into the wall–ceiling seam without a ledge grab or object interaction. He becomes partially inside the ceiling and then disappears as the camera clips into the stone geometry, indicating an unintended pass through walls. No BLJ posture, star door, box, or other specific setup is present, so this matches a general wall clip."
-    },
-    {
-        "frame": "8427.jpg",
-        "category": "Hyperspeed-Based Glitches",
-        "base_glitch": "Backwards Long Jump (BLJ)",
-        "variant": "SBLJ (Side BLJ)",
-        "application": "N/A",
-        "label": "SBLJ_label",
-        "reason": "On the red-carpet staircase to a star door, Mario repeatedly enters the long-jump landing/crouch pose while facing away and moving sideways up the stairs, building abnormal backward speed. He then rushes into the star door without the door-opening animation; the camera clips into the door’s star texture. This matches the Side BLJ on castle stairs used to bypass a star door (not the DDD Skip location)."
-    },
-    {
-        "frame": "8824.jpg",
-        "category": "None",
-        "base_glitch": "N/A",
-        "variant": "N/A",
-        "application": "N/A",
-        "label": "Normal",
-        "reason": "Mario runs up the red staircase toward the Bowser painting at a steady, normal speed. There are no repeated long‑jump animations, no sideways BLJ posture, and no abrupt bursts of hyperspeed used to pass a star door. At the top he lands and runs along the checker floor; the brief overlap with the purple column is camera occlusion as he passes behind it, not a clip through geometry or displacement. No star doors/water walls are bypassed and no clipping, teleporting, or abnormal state changes are visible."
+        "frame": "5796.jpg",
+        "label": "Error",
+        "reason": "Error code: 400 - {'error': {'message': 'Too many images in request: 501, maximum allowed: 500.', 'type': 'invalid_request_error', 'param': None, 'code': None}}"
     }
 ]

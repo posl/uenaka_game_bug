@@ -1,0 +1,11 @@
+[
+    {
+        "frame": "5796.jpg",
+        "category": "Hyperspeed-Based Glitches",
+        "base_glitch": "Backwards Long Jump (BLJ)",
+        "variant": "N/A",
+        "application": "N/A",
+        "label": "BLJ_label",
+        "reason": "The sequence opens with rapid, stuttering camera movement along a brick wall with no visible Mario, then Mario suddenly pops up from the square pit and shoots backward across the grating at abnormal speed. His momentum carries him backward over multiple platforms within a few frames—consistent with repeated backwards long jumps generating hyperspeed. The location isn’t the castle lobby or stairs, so this is the base BLJ rather than LBLJ or SBLJ."
+    }
+]

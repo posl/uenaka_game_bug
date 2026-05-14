@@ -1,0 +1,11 @@
+[
+    {
+        "frame": "5796.jpg",
+        "category": "Hyperspeed-Based Glitches",
+        "base_glitch": "Backwards Long Jump (BLJ)",
+        "variant": "N/A",
+        "application": "N/A",
+        "label": "BLJ_label",
+        "reason": "Across the opening frames the camera streaks along a brick wall with no visible Mario, consistent with rapid backward acceleration. Mario then pops up from the square pit already moving backward and slides across the metal grate at an abnormally high speed before resuming normal movement. These cues match the BLJ example and description (repeated backward long jumps against an obstacle to gain extreme reverse speed). It’s not LBLJ or SBLJ because this occurs on BitFS platforms rather than castle pillars or stairs."
+    }
+]

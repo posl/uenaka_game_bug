@@ -1,0 +1,11 @@
+[
+    {
+        "frame": "5796.jpg",
+        "category": "Hyperspeed-Based Glitches",
+        "base_glitch": "Backwards Long Jump (BLJ)",
+        "variant": "N/A",
+        "application": "N/A",
+        "label": "BLJ_label",
+        "reason": "Mario emerges from the square hole and immediately performs repeated long-jump motions while facing backward, rapidly accelerating and sliding backwards across the grated platform. The abrupt speed gain and backward movement against geometry match the core BLJ behavior, not a castle-specific variant."
+    }
+]

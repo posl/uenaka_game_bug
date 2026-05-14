@@ -1,0 +1,11 @@
+[
+    {
+        "frame": "5796.jpg",
+        "category": "Hyperspeed-Based Glitches",
+        "base_glitch": "Backwards Long Jump (BLJ)",
+        "variant": "N/A",
+        "application": "N/A",
+        "label": "BLJ_label",
+        "reason": "Across the 41-frame clip the camera whips rapidly along a brick wall before Mario abruptly pops up from the square opening and lands on the grated platform, covering a large distance in only a few frames while in long‑jump frames and moving backward relative to normal traversal. This abrupt, high-speed backward motion matches the base BLJ. The setting is not the lobby pillars, castle stairs, or HMC elevator, so it is not LBLJ, SBLJ, or the HMC BLJ strat."
+    }
+]

@@ -7,7 +7,7 @@
           "name": "Backwards Long Jump (BLJ)",
           "label": "BLJ_label",
           "description": "A glitch where Mario repeatedly performs backwards long jumps against an obstacle or slope, allowing him to zoom backwards at an incredibly high speed.",
-          "example_path": "glitch_sample/blj.gif",
+          "example_path": "../SM64_annotation/0Star/25/frames1/5796.jpg",
           "variants": [
             {
               "name": "LBLJ",

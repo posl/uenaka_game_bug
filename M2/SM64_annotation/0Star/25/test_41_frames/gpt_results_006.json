@@ -1,0 +1,11 @@
+[
+    {
+        "frame": "5796.jpg",
+        "category": "Hyperspeed-Based Glitches",
+        "base_glitch": "Backwards Long Jump (BLJ)",
+        "variant": "N/A",
+        "application": "N/A",
+        "label": "BLJ_label",
+        "reason": "At the start, the camera rapidly skims along the brick wall with no run-up visible, then Mario pops up from the square recess and is seen sliding backward on the grating at abnormally high speed before continuing. The abrupt appearance, backwards-facing long-jump posture, and sudden high horizontal velocity match the visual cues of repeated backwards long jumps, consistent with the base BLJ example."
+    }
+]

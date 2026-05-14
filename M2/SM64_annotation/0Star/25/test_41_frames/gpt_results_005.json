@@ -1,0 +1,11 @@
+[
+    {
+        "frame": "5796.jpg",
+        "category": "Hyperspeed-Based Glitches",
+        "base_glitch": "Backwards Long Jump (BLJ)",
+        "variant": "N/A",
+        "application": "N/A",
+        "label": "BLJ_label",
+        "reason": "The sequence shows rapid camera parallax against a brick wall followed by Mario briefly popping into view in a recessed square and then suddenly appearing on the adjacent grate platform with high backward momentum. His movement is backwards relative to his facing and far faster than normal traversal, matching the visual cues of chained backwards long jumps. This is a generic BLJ, not a lobby or stairs-specific variant."
+    }
+]

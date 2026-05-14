@@ -13,16 +13,17 @@ from PIL import Image, ImageSequence
 # --- Configuration ---
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
-# 2026年現在の最新モデルを使用（環境に合わせて調整してください）
+# 2026年現在の最新モデルを使用
 MODEL_NAME = "gpt-5"
 
-# Relative Paths（ご提示のディレクトリ構造に基づいています）
+# Relative Paths
 BASE_DIR = Path(__file__).parent
 GLITCH_LIST_PATH = BASE_DIR / "../../SM64_glitch_list/glitch_list.json"
 CSV_PATH = BASE_DIR / "../0Star/25/test_41_frames/test_frames.csv"
 IMAGE_DIR = BASE_DIR / "../0Star/25/frames1/"
 OUTPUT_PATH = BASE_DIR / "../0Star/25/test_41_frames/gpt_results.json"
 PROMPT_TEMPLATE_PATH = BASE_DIR / "../../SM64_annotation/code/test_41_frames_prompt.txt"
+FRONT_AND_BACK_FRAME_COUNT = 240
 
 def load_glitch_list(path):
     with open(path, 'r', encoding='utf-8') as f:
@@ -85,18 +86,16 @@ def encode_image(image_path):
     with open(image_path, "rb") as image_file:
         return base64.b64encode(image_file.read()).decode('utf-8')
 
-def encode_gif_frames(gif_path, max_frames=10):
+def encode_gif_frames(gif_path, max_frames=60):
     """GIFから複数のフレームを抽出し，base64エンコードのリストで返します．"""
     frames_b64 = []
     try:
         with Image.open(gif_path) as img:
             total_frames = getattr(img, 'n_frames', 1)
-            # 全フレームから指定した枚数まで等間隔にサンプリング
             indices = [int(i * total_frames / max_frames) for i in range(max_frames)] if total_frames > max_frames else range(total_frames)
             
             for i, frame in enumerate(ImageSequence.Iterator(img)):
                 if i in indices:
-                    # RGBに変換してJPEGとしてバッファに保存（トークン節約のため）
                     frame = frame.convert("RGB")
                     buffer = io.BytesIO()
                     frame.save(buffer, format="JPEG")
@@ -105,7 +104,7 @@ def encode_gif_frames(gif_path, max_frames=10):
         print(f"Error processing GIF {gif_path}: {e}")
     return frames_b64
 
-def analyze_frame_sequence(center_frame_name, taxonomy_data, prompt_template):
+def analyze_frame_sequence(center_frame_name, taxonomy_data, prompt_template, x=20):
     """中心フレームの前後を含むシーケンスと，タクソノミー内の例示をモデルに送ります．"""
     try:
         center_num = int(Path(center_frame_name).stem)
@@ -114,32 +113,56 @@ def analyze_frame_sequence(center_frame_name, taxonomy_data, prompt_template):
 
     glitch_descriptions = format_glitch_descriptions(taxonomy_data)
     
-    # プロンプトの生成
     prompt = prompt_template.substitute(
         glitch_descriptions=glitch_descriptions,
         center_frame_name=center_frame_name,
+        total_frames=2 * FRONT_AND_BACK_FRAME_COUNT + 1
     )
 
     content_list = [{"type": "text", "text": prompt}]
 
-    # 1．Few-shot 用の例示画像を追加（GIFの場合は展開）
+    # 1．Few-shot 用の例示画像を追加
     examples = collect_examples_from_taxonomy(taxonomy_data)
     for name, rel_path in examples:
-        # JSONからの相対パスを解決
         full_ex_path = GLITCH_LIST_PATH.parent / rel_path
         if full_ex_path.exists():
             content_list.append({"type": "text", "text": f"### Example of {name}:"})
             
-            if full_ex_path.suffix.lower() == ".gif":
-                # GIFの場合は動きを理解させるために複数枚送る（max_framesで調整可能）
-                gif_frames = encode_gif_frames(full_ex_path, max_frames=10)
+            suffix = full_ex_path.suffix.lower()
+            if suffix == ".gif":
+                gif_frames = encode_gif_frames(full_ex_path, max_frames=60)
                 for b64_frame in gif_frames:
                     content_list.append({
                         "type": "image_url",
-                        "image_url": {"url": f"data:image/jpeg;base64,{b64_frame}", "detail": "low"}
+                        "image_url": {"url": f"data:image/jpeg;base64,{b64_frame}", "detail": "high"}
+                    })
+            elif suffix in [".jpg", ".jpeg", ".png"]:
+                try:
+                    # ファイル名が数値であると仮定し，前後 x フレームを取得
+                    center_ex_num = int(full_ex_path.stem)
+                    ex_dir = full_ex_path.parent
+                    
+                    for i in range(center_ex_num - x, center_ex_num + x + 1):
+                        # 拡張子は元のファイルに合わせる
+                        ex_frame_path = ex_dir / f"{i}{suffix}"
+                        if ex_frame_path.exists():
+                            b64_ex = encode_image(ex_frame_path)
+                            content_list.append({
+                                "type": "image_url",
+                                "image_url": {
+                                    "url": f"data:image/jpeg;base64,{b64_ex}",
+                                    "detail": "high"
+                                }
+                            })
+                except ValueError:
+                    # 数値でない場合は単一画像として処理
+                    b64_ex = encode_image(full_ex_path)
+                    content_list.append({
+                        "type": "image_url",
+                        "image_url": {"url": f"data:image/jpeg;base64,{b64_ex}", "detail": "high"}
                     })
             else:
-                # WebPやJPGの場合はそのまま1枚送る
+                # その他の形式（WebP等）
                 mime_type, _ = mimetypes.guess_type(full_ex_path)
                 b64_ex = encode_image(full_ex_path)
                 content_list.append({
@@ -147,11 +170,10 @@ def analyze_frame_sequence(center_frame_name, taxonomy_data, prompt_template):
                     "image_url": {"url": f"data:{mime_type or 'image/jpeg'};base64,{b64_ex}", "detail": "high"}
                 })
 
-    # 2．テスト対象の41枚のシーケンスを追加
-    content_list.append({"type": "text", "text": "### Test Sequence (41 frames):"})
-    for i in range(center_num - 20, center_num + 21):
-        img_name = f"{i}.jpg"
-        img_path = IMAGE_DIR / img_name
+    # 2．テスト対象のシーケンスを追加
+    content_list.append({"type": "text", "text": f"### Test Sequence ({2 * FRONT_AND_BACK_FRAME_COUNT + 1} frames):"})
+    for i in range(center_num - FRONT_AND_BACK_FRAME_COUNT, center_num + FRONT_AND_BACK_FRAME_COUNT + 1):
+        img_path = IMAGE_DIR / f"{i}.jpg"
         if img_path.exists():
             b64_img = encode_image(img_path)
             content_list.append({
@@ -163,6 +185,18 @@ def analyze_frame_sequence(center_frame_name, taxonomy_data, prompt_template):
             })
 
     try:
+        debug_html = "<html><body>"
+        for item in content_list:
+            if item["type"] == "text":
+                debug_html += f"<h3>{item['text']}</h3>"
+            elif item["type"] == "image_url":
+                url = item["image_url"]["url"]
+                debug_html += f'<img src="{url}" style="width:100px; border:1px solid red; margin:2px;">'
+        debug_html += "</body></html>"
+
+        with open("debug_input.html", "w") as f:
+            f.write(debug_html)
+        print("Debug HTML saved to debug_input.html．Open this file to check the inputs．")
         response = client.chat.completions.create(
             model=MODEL_NAME,
             messages=[
@@ -170,10 +204,7 @@ def analyze_frame_sequence(center_frame_name, taxonomy_data, prompt_template):
                     "role": "system",
                     "content": "You are an expert annotator for Super Mario 64 speedrun footage．Use the provided visual examples to understand the characteristics of each glitch before analyzing the test sequence．Always respond in valid JSON only．"
                 },
-                {
-                    "role": "user",
-                    "content": content_list
-                }
+                {"role": "user", "content": content_list}
             ],
             response_format={"type": "json_object"}
         )
@@ -201,11 +232,9 @@ def main():
         result = analyze_frame_sequence(center_frame, taxonomy, prompt_template)
         results.append(result)
 
-        # 1件ごとに保存（進捗確保）
         with open(OUTPUT_PATH, 'w', encoding='utf-8') as f:
             json.dump(results, f, indent=4, ensure_ascii=False)
 
-        # API制限を考慮して待機
         time.sleep(3)
 
     print(f"Analysis complete．Results saved to: {OUTPUT_PATH}")

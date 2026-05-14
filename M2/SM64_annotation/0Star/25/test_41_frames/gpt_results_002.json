@@ -1,0 +1,11 @@
+[
+    {
+        "frame": "5796.jpg",
+        "category": "Hyperspeed-Based Glitches",
+        "base_glitch": "Backwards Long Jump (BLJ)",
+        "variant": "N/A",
+        "application": "N/A",
+        "label": "BLJ_label",
+        "reason": "The sequence opens with the camera whipping past a brick wall before Mario even appears, then Mario suddenly pops into view and streaks backward across the grated platform at a speed far beyond normal movement. His posture alternates between the long-jump pose and quick ground contacts while moving in the backward direction, matching the visual cues from the BLJ example. This occurs in a regular stage area (not the castle lobby stairs or a star door), so it is the base BLJ rather than LBLJ, SBLJ, or a specific application."
+    }
+]

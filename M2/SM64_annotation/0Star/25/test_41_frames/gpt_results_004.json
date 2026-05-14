@@ -1,0 +1,11 @@
+[
+    {
+        "frame": "5796.jpg",
+        "category": "Hyperspeed-Based Glitches",
+        "base_glitch": "Backwards Long Jump (BLJ)",
+        "variant": "N/A",
+        "application": "N/A",
+        "label": "BLJ_label",
+        "reason": "Mario suddenly emerges from the low brick ring and, in a backward long-jump posture, rockets backward across the grated platform, covering multiple platform widths within a few frames. He is moving opposite the way he is facing with abnormal speed, matching the BLJ visual example. No star door or stair setup is present, so it is the base BLJ rather than an LBLJ or SBLJ application."
+    }
+]

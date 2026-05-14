@@ -1,0 +1,319 @@
+Cor-Paul and POSL video game MTG - May 13
+VIEW RECORDING - 36 mins (No highlights): https://fathom.video/share/obN282F1naUP_9SxaptcGx6NkGUFTy2r
+
+---
+
+0:00 - Cor-Paul Bezemer (he/him)
+  This meeting is being recorded. How's it going?
+
+0:40 - 雄斗 植中 (uenaka.yuto224@gmail.com)
+  Hello.
+
+0:42 - Masanari Kondo
+  Good, how are you?
+
+0:43 - Cor-Paul Bezemer (he/him)
+  Good.
+
+0:44 - Masanari Kondo
+  Nice. Okay, Fathom member is coming today. Yeah, perfect.
+
+0:51 - Cor-Paul Bezemer (he/him)
+  Yep.
+
+0:54 - Masanari Kondo
+  Okay, Yuta, can you share your screen and start the discussion today?
+  SCREEN SHARING: 植中雄斗 started screen sharing - WATCH: https://fathom.video/share/obN282F1naUP_9SxaptcGx6NkGUFTy2r?timestamp=71.220601
+
+0:58 - 雄斗 植中 (uenaka.yuto224@gmail.com)
+  Okay. Yes, we can see your screen. Okay. Okay. Now, let's begin my presentation. To start, I'd like to review the to-do items from our previous discussion.  First, I have revised the glitch descriptions to be standalone and self-contained. I also adapted a hierarchical taxonomy for the glitch list and executed.  Classification test. using this updated framework. Here is a summary of the latest experimental results. Out of eight test cases, three were perfectly correct, and three were partially correct, meaning the model identified the correct parent categories.  However, there were two cases where the model provided incorrect answers. The first incorrect case was due to environmental bias.  The model misidentified ditch clipping in Princess Peach's castle as LBLJ. LBLJ typically occurs in the castle lobby and involves high-speed  speed movement. It appears the model prioritizes location-based cues being in the castle over the specific physical mechanics of the glitch.  The second failure involved visual occlusion. A BLJ in diesel rubber land LLL was misidentified as a pole glitch. Mario became temporarily invisible due to suboptimal camera work.  Since both glitches occur in LLL, and the frames included visual triggers for the pole glitch, such as pole... The model relied on these environmental cues instead of recognizing the actual motion context.  To address these issues, I am proposing three solutions in order of priority. Priority one is utilizing P-shot learning with visual examples.  Priority two is multimodal integration to process auditory information. Priority three is temporal context extension, where we increase the sequence duration by lowering the FPS to capture more motion context.  Among these, I have already conducted a simple preliminary experiment regarding fish-shot running. Regarding the methodology for our preliminary fish-shot experiment, our objective was to target the previously failed BLJ detection in LLL.  We provided the model with visual examples to help it recognize the specific motion patterns of a BLJ. For the setup, I sourced a BLJ GIF from a web database to serve as a reference before the model analyzed the test sequence.  provided with a a Thank The result of this experiment was a failure. I have two main comments on this result.  It is worth noting that if we can source a GIF of a BLJ specifically performed in LLL, the detection task will become much easier as it reduces the problem to a simple pattern-matching task after the 3D resonance net level.  While one could also consider using clips of the same scene from other speedrun records, as example, doing so would diminish the significance of our research.  Because it requires manual effort to locate those glitches beforehand, which contradicts our goal of automation. One critical constraint we cannot ignore is the limit on the number of images per request in the OpenAI API, which is typically around 100.  Given that our glitch list includes 19 different categories, this limit is quite challenging for our research. This leads us to the importance of auditory information, as we saw in the...  LL case. Visual motion is often obscured by camera work. My hypothesis is that auditory cues, such as Mario's vocal trigger, provide vital evidence for specific actions.  Character voices and sound effects are powerful features for disambiguating britches. The first method is, native video input, which involves inputting raw video files directly into the model.  This is ideal for preserving sample and auditory synchronization. The model includes Gemini 1.5 Pro and GPT-4-0. However, I have not yet researched the specific usage and technical details.  sufficiently. So I don't fully understand how to implement them yet. The second method is using synchronized frames and separate audio files simultaneously.  This is a highly... a realistic and actionable approach for multimodal LLMs. We can utilize models like GPT-4O or the Open Source Videorama for this purpose.  The third method involves converting audio cues into text descriptions, for example, writing Mario Yahoo to supplement the frames. While this is highly token-efficient, there is a significant risk of losing fine-grained temporal precision and specific sound effect nuances.  Models like GPT-4O or GPT-4Turbo were closed. so let's try now. 0.5 sonnet could be used here. To conclude, I would like to ask your opinion.  What do you think is an optimal approach for integrating audio in terms of visibility, cost, and classification accuracy? Okay, that concludes my presentation.  Thank you.
+
+11:30 - Cor-Paul Bezemer (he/him)
+  All right. Thanks for your presentation. This is a very difficult question to answer, because I have no idea, to be honest.  So I think the first important thing to look at is whether the audio actually gives you enough signal to detect glitches.  Because I haven't played Super Mario 64 that much, but if I remember correctly, whenever you jump, he says Yahoo, right?
+
+11:59 - Masanari Kondo
+  Yeah, exactly.
+
+12:01 - Cor-Paul Bezemer (he/him)
+  It does, right?
+
+12:02 - Masanari Kondo
+  Yes.
+
+12:03 - Cor-Paul Bezemer (he/him)
+  Yeah, so I think the problem is that you will have lots of yahoos whenever he jumps in the video, and many of those are not actually exploiting a glitch, right?  It's just, so I'm not sure, like it would be interesting if we can use something in audio that indicates that glitch, but I'm not sure that you would have enough accurate signal that would help you do this.
+
+12:31 - Masanari Kondo
+  So my current thought is that yes, the answer is yes, but the problem is that how do we give such a context to the LMMs?  Like, for example, Yahoo is a normal, like a Mario voice. If we see the BLJs, that Yahoo sound becomes quite weird.
+
+12:57 - Cor-Paul Bezemer (he/him)
+  Like a Yahoo sound, like that, right? If it sounds different, then maybe you can use it, right? Can you show me an example of where I should...  Because I couldn't hear the sound in your presentation. Can I see the video somewhere where the point is where the sound is weird?  Because if that's the case, then it might actually be very accurate, right?
+
+13:20 - Masanari Kondo
+  Yuta, can you share the YouTube video or something?
+
+13:27 - Cor-Paul Bezemer (he/him)
+  Yeah, that's in your presentation. I think it was supposed to play a sound, but I didn't hear anything.
+
+13:33 - Masanari Kondo
+  Right.
+
+13:37 - Cor-Paul Bezemer (he/him)
+  Because if there is a sound that is really clearly different, then technically you don't even need to use an LLM, right?  You can just use some sound processing technique to identify where it is, and that would be much more accurate and much cheaper, too.  음...
+
+13:54 - Masanari Kondo
+  so... hmm...
+
+13:58 - Cor-Paul Bezemer (he/him)
+  Mmm... ce... Um... ce... Ta.. Let me see. Okay, I see what you mean.
+
+14:22 - Masanari Kondo
+  Yeah. Right, right, right.
+
+14:25 - Cor-Paul Bezemer (he/him)
+  Yeah. So a transcript is probably not gonna help you. Though you might try, because it might actually say something like, yeah, and then you could try to use that to see if it happens elsewhere in the video, right?  So that could be an interesting one. Do the other glitches have this too, or is it just this one happens to have a distinguished sound?
+
+14:57 - Masanari Kondo
+  Mm-hmm. I think so, right, Yuto? Like BLJ, there's a very, you know, weird sound, but the other glitches might not have this type of weird sound.  Yuto, I think you are muted.
+
+15:20 - Yuta Ishimoto
+  Oh, yes. Maybe. Yeah, I'd like to know the motivation to use the audio information. And I think, I'm not sure if this is the only case of the bugs that has like a unique sound information.
+
+15:47 - Cor-Paul Bezemer (he/him)
+  And so, I think you can try that quite easily, right? Because you know, you know for this one, at least it sounds different than a regular jump.  So you can just try to see how often this happens. And then see how many false positives you have, like, I don't know if it's going to work, but it's worth a try, right?  And then if this is one of the, if this is one of the glitches that a VLM has trouble detecting, then maybe you can first do like one run where you look at the audio to detect glitches like this.  And then after that, you let the VLM detect the other ones, right? It doesn't have to be like a single step approach.  You can have a pipeline, if you know that we can very accurately detect this BLJ by using the audio.  You do that first, right? And then you just ignore the ones that the VLM gets, gets, uh, for that, that type.
+
+16:43 - Masanari Kondo
+  That's a good idea.
+
+16:46 - Yuta Ishimoto
+  Divided by the model, right?
+
+16:49 - Cor-Paul Bezemer (he/him)
+  Sorry? Sorry, what was that?
+
+16:55 - Yuta Ishimoto
+  Oh, you, mean the, you mean that your idea is that's to divide It's a bug data divided by the model that could be addressed, for example, images or audios or something like that.
+
+17:09 - Cor-Paul Bezemer (he/him)
+  So you don't have to have like one step with the VLM, you can do something from audio, then you first do that with maybe a different model, maybe not even a VLM or LLM, but just a more traditional model.  And if you know that that part of the process is very accurate, then that's good, right? That's not a problem, this just means that you can ignore some of the results from the VLM, maybe, if you know that the VLM is not great in detecting BLJs, so, but you know, but if you can do it in a different way, then you just go through that first.  So it might be worth looking into that. I don't know if it's going to work because I don't know if the audio is going to be unique enough for a glitch to use it like this.
+
+17:56 - Masanari Kondo
+  that's right. I think the current...
+
+18:01 - Cor-Paul Bezemer (he/him)
+  It sounds like this is different.
+
+18:08 - Masanari Kondo
+  I think the current, what we have to do is that we have to do an exploratory study. There are so many information we can use, and we don't need to build a one-shot approach.  That one-shot approach classifies a glitch into exact category. Instead, we have to build a pipeline. We can build a pipeline that classifies first, okay, this is the BLJ or the others, and after that, the other bugs into this glitch or the others or something like that, right?  So I think, Yuta, I think these approaches look interesting. So how about applying these approaches? And if we can find...  Like, some characteristics, like a sound is very, you know, effective for this glitch, and, I don't know, the other approach may be effective on this glitch or something like that, and then we can think about kind of like a pipeline approach or something to classify the glitches in the categories.
+
+19:39 - Yuta Ishimoto
+  It looks good. Yeah.
+  ACTION ITEM: Run Whisper on BLJ audio; analyze transcript for distinct 'Yahoo' - WATCH: https://fathom.video/share/obN282F1naUP_9SxaptcGx6NkGUFTy2r?timestamp=1184.9999
+
+19:41 - Cor-Paul Bezemer (he/him)
+  So give it a try. Yes. The audio may help you, or it may just make it more difficult.
+
+19:49 - Masanari Kondo
+  It really depends on how unique the audio is.
+
+19:54 - Cor-Paul Bezemer (he/him)
+  If the audio... So what I would try to do first, if I were you, I would try to run something like...  Like Whisper, so that's an audio to text model, right?
+
+20:05 - Masanari Kondo
+  Yes.
+
+20:06 - Cor-Paul Bezemer (he/him)
+  On that video that Masanari just shared, just see what the transcript looks like. If it looks like Yahoo or something, then it might be useful to just look for something like that, right?  Because then you can basically do text analysis on the transcript, which is much easier than the video. But if it just turns it into Yahoo, then that approach is not going to help you.  But if it looks a bit different as well, then you might be able to use that.
+
+20:40 - Masanari Kondo
+  Yes.
+
+20:42 - Cor-Paul Bezemer (he/him)
+  So I will try that first, if I were you, because then you don't have to play with, like, audio processing or new techniques.  Then you can just use an existing model to get the transcript.
+
+20:55 - Masanari Kondo
+  Good, good, good. So Corpo, Corpo, I have one question. In this stage, there are so many features we can use to classify the glitches.  And do you think, is it okay to combine some features? Like for example, we use not only the transcript or whisper transcript, but also with the, for example, few-shot running or something?
+
+21:26 - Cor-Paul Bezemer (he/him)
+  Yeah, absolutely. Yeah.
+
+21:28 - Masanari Kondo
+  Okay. Good.
+
+21:30 - Cor-Paul Bezemer (he/him)
+  Whatever you can do to, to, to make it work.
+
+21:32 - Masanari Kondo
+  Right? Nice. Yeah.
+
+21:34 - Cor-Paul Bezemer (he/him)
+  I always, I always, I always recommend looking at one feature first, just to see, because that's, that would be the simplest way to do it.  As simple as usually cheap and fast, and the simpler your feature is, the more likely you'll be able to, to, to build a smaller model for it, which you can actually run.  The large scale for, for... ... . Many, many videos, right?
+
+22:01 - Masanari Kondo
+  Yes. Yes.
+
+22:02 - Cor-Paul Bezemer (he/him)
+  So, so in a way using a VLM is the most expensive approach because you have to pay for every, for everything, like anything that you can do with smaller models, that is preferable because it doesn't cost as much.  Yeah. But it also means that you have to, to, to, to be, to be more targeted. Yeah.
+
+22:23 - Masanari Kondo
+  Okay. That makes sense to me.
+
+22:25 - Cor-Paul Bezemer (he/him)
+  Yeah. So I was wondering, you showed a, a slide with, where you showed the animated GIFs for like an, as an example, can the model actually handle animated GIF?
+
+22:40 - Masanari Kondo
+  Mm-hmm.
+
+22:41 - Cor-Paul Bezemer (he/him)
+  Can it read the model? Does like, does it, does it understand what's happening in the GIF?
+
+22:45 - Masanari Kondo
+  Mm-hmm. Yuta, Yuta, let me ask to unmute.
+
+23:02 - Cor-Paul Bezemer (he/him)
+  Yuta, you're muted.
+
+23:04 - Masanari Kondo
+  Yeah, muted. Do you have some problem? I think we broke Yuta.
+
+23:15 - Yuto Uenaka
+  Sorry.
+
+23:17 - Cor-Paul Bezemer (he/him)
+  It's okay.
+
+23:20 - Masanari Kondo
+  Do you get the question? I mean, does the GPT or LMS handle the GIF image that you put on the slides?
+
+23:42 - Cor-Paul Bezemer (he/him)
+  Does it understand the GIF image? Does it understand what's happening inside the GIF image? Or does it just... Like, is there a difference between giving it an animated GIF image or just giving it like 10 frames?  Is there a difference or is it the same?
+
+23:58 - Masanari Kondo
+  Yeah, yeah, yeah.
+
+24:03 - Yuto Uenaka
+  Because I think the model just cuts up the GIF into frames.
+  ACTION ITEM: Test GIF vs frames on VLM; test 200-frame GIF vs image limit; report - WATCH: https://fathom.video/share/obN282F1naUP_9SxaptcGx6NkGUFTy2r?timestamp=1467.9999
+
+24:31 - Cor-Paul Bezemer (he/him)
+  It just splits it.
+
+24:34 - Masanari Kondo
+  I think so. I think it's a very interesting question. So how about trying to give the GIF and the frames to the LMMs and ask LMMs to explain the input images or GIFs?  And let's see the differences between these two cases. If there are some differences, that is one interesting finding, that is a good knowledge to use LMS to classify the glitches.
+
+25:16 - Cor-Paul Bezemer (he/him)
+  Yeah, because somehow if it treats them differently, then it might be that an animated GIF is actually a better input, instead of just giving it a few frames, right?  I just don't know if it actually treats them differently. I think it gets the animated GIF, and then splits them up into frames, but let's see.
+
+25:45 - Masanari Kondo
+  Good.
+
+25:47 - Yuto Uenaka
+  Okay, I'll try it.
+
+25:50 - Masanari Kondo
+  Nice.
+
+25:51 - Cor-Paul Bezemer (he/him)
+  Let me see, there was something else. Let me just go through your slides. I think I forgot to ask something.  Oh, right. Yeah, so on your slide about challenges with few-shot learning, you said that using clips from other records as examples is self-defeating.  So in a way I agree, but also in a way I don't, because our goal is basically to identify these glitches like in many videos, right?  So that we can identify the chart of the speedrun. So in this case, because we know we have a limited number of glitches that we're looking for, I think it's okay to work with examples and we don't have to, because I don't think that we'll  We'll be able to figure something out where new glitches will automatically be detected because it's a very difficult problem.  And I think for the speedrun data, it's even more difficult. So I think we have to work with examples for this.
+  ACTION ITEM: Run 1:1 few-shot BLJ (LLL) w/ same-scene GIF; then test on other videos - WATCH: https://fathom.video/share/obN282F1naUP_9SxaptcGx6NkGUFTy2r?timestamp=1631.9999  So what I will try to do, if I were you, is take that animated GIF that you recorded from the video that you're trying to classify.  So the BLJ in LLL, give that as an example, and then also give it the same, the same video so that you know, hundred percent sure that it actually looks the same and see if that actually helps the model to detect that, that glitch is being, being exploited.  I know it's, it's a one-to-one match, right? But It will be interesting to see if we can actually use that data to see if it's happening in the video.  Because if not, then the few-shot stuff is never going to work. But if it can do it, then the question is how similar does it have to be in order to work, right?  Does that make sense?
+
+28:26 - Masanari Kondo
+  Yeah, currently we don't know the impact of the few-shot runnings on this task.
+
+28:33 - Cor-Paul Bezemer (he/him)
+  Exactly, yeah.
+
+28:35 - Masanari Kondo
+  Yeah, we give a very simple, easier example to the LMMs and let's see the impact of the few-shot runnings.
+
+28:44 - Cor-Paul Bezemer (he/him)
+  Yeah, because the example that's on the same slide, like, yeah, I know it's the same bug, but it's very different visually, right?  It's even different camera position and it's completely, different world. And there's actually a clock in the screen as well.  And there's just so many different things going on that I think just as an example, it's too difficult for a VLM to really be helpful.  But let's try to give it just a one-on-one example, right? Because basically what you're trying to do is just say here's a picture of where you take a box and you put a dog inside of the box.  And then you give the VLM a picture of the exact same dog, and then you ask it, is this dog inside the box?  And that's what you're trying to do only with the BLJ in that exact situation, right? And if it cannot recognize that one, then the few-shot stuff for this is not going to work.  But if it does, then we can look, okay, so how far can we actually, can we push this? And then you can, for example, take that GIF and just run it on a few  other videos to see if it finds the one, right? Yeah, if that means that we have to sort of create a GIF like this for every type of glitch in different locations, then so be it, if that's the case, right?  And it does limit a little bit what we can do, but it still allows us to do very cool stuff.  So for example, looking at that analysis of how long it takes to exploit a certain glitch, you can still do that.  Right? It's not as flexible, but yeah, flexible is very difficult.
+
+30:49 - Masanari Kondo
+  Yuta, do you get the point?
+
+30:52 - Yuto Uenaka
+  Okay, I understand.
+
+30:54 - Masanari Kondo
+  Okay, good, good, good, good.
+
+30:56 - Cor-Paul Bezemer (he/him)
+  Okay, for your image count limit concern. I see what you mean, but the way around this is not to ask it, do you see any of these 19 glitches with samples, but you basically have a prompt for every glitch category, and then you say, does this glitch occur?  And then you can give a few samples, right? Otherwise you'll never have enough images, but then it means that instead of one prompt, you have 19 prompts, which is very expensive, right?  This explodes, this explodes very quickly, but that, that is the way to do that. If you want to work with samples and for every category.
+
+31:44 - Masanari Kondo
+  Yeah.
+
+31:45 - Cor-Paul Bezemer (he/him)
+  Yeah, but it will also take very long. So I don't know if it's a good idea, but that, but that is the way to, to deal with that image count limit.  Another thing you can check is if you give it an animated GIF. How hard does it hit the image count?  Is it one image? Or does it get the number of frames and counts as an image? So to test that, you can just create an animated GIF of 200 frames or something.  And see if can actually upload that. So you have lots of things to try.
+
+32:37 - Masanari Kondo
+  I think Yuta will be very happy because he doesn't need to worry about the tasks in the next few weeks.
+
+32:51 - Cor-Paul Bezemer (he/him)
+  Exactly.
+
+32:54 - Yuta Ishimoto
+  I don't know if it's happy or unhappy. It should be.
+
+33:06 - Masanari Kondo
+  All right, is there anything else you wanted to discuss? Do you have something? I don't have. I think the direction is very clear.  Yuto, do you have something?
+
+33:18 - Yuto Uenaka
+  No?
+
+33:19 - Yuta Ishimoto
+  Yeah, think it's okay. I don't have anything else.
+
+33:22 - Masanari Kondo
+  Okay, good. Okay, so Yuto, please try to do the experiments based on today's comments and report the results. And do you think you will finish everything by the next week or maybe after next week?
+
+33:45 - Yuto Uenaka
+  I will finish by next week.
+  ACTION ITEM: Schedule next week's call w/ Cor-Paul, Yuta, Yuto - WATCH: https://fathom.video/share/obN282F1naUP_9SxaptcGx6NkGUFTy2r?timestamp=2029.9999
+
+33:49 - Masanari Kondo
+  By next week? Okay. Okay, so if you finished everything, so please let us know in the Slack channel. And if you finished everything in this...  week? By the next meeting? Let's have a meeting next week. Are you available next week as well?
+
+34:08 - Cor-Paul Bezemer (he/him)
+  Yeah, so I'm available next week, and then I'm not available for two weeks.
+
+34:14 - Masanari Kondo
+  Okay, okay, I see.
+
+34:16 - Cor-Paul Bezemer (he/him)
+  So maybe let's meet next week. And then after that, I will be on vacation because my parents are coming to visit.
+
+34:24 - Masanari Kondo
+  Oh, I see.
+  ACTION ITEM: Cancel May 27 and Jun 3 meetings - WATCH: https://fathom.video/share/obN282F1naUP_9SxaptcGx6NkGUFTy2r?timestamp=2067.9999
+
+34:25 - Cor-Paul Bezemer (he/him)
+  So then I will still check my Slack, but I won't have any calls, especially not in the evening. Okay, okay, okay.  I will respond to the calendar if I did you know exactly which dates I'm going.
+
+34:38 - Masanari Kondo
+  Okay, let me cancel the May 27th, right?
+
+34:44 - Cor-Paul Bezemer (he/him)
+  27th and the week after that, on June 3rd for you.
+
+34:49 - Masanari Kondo
+  All right. This one and this one. Okay, Yuto, you have to finish everything. by next week, otherwise, just do your best, man, you have to wait for like three weeks, but okay, nice, good, good, good.  Please enjoy your vacation.
+
+35:16 - Cor-Paul Bezemer (he/him)
+  Thank you, yeah, should be fun.
+
+35:18 - Masanari Kondo
+  Will you go anywhere?
+
+35:19 - Cor-Paul Bezemer (he/him)
+  No, my parents are coming here, so we will just go around the city.
+
+35:24 - Masanari Kondo
+  Okay, okay, okay. Nice, nice, nice.
+
+35:27 - Cor-Paul Bezemer (he/him)
+  Yeah. All right, guys, thanks for the update.
+
+35:31 - Masanari Kondo
+  Okay. Okay, thank you very much. Bye-bye. Bye-bye. Bye you. Bye-bye.

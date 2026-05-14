@@ -13,9 +13,9 @@ The first set of images provided are visual examples of specific glitches．Plea
 - If no glitch is detected        → set category to "None", all taxonomy fields to "N/A", and label to "Normal".
 
 ### Task:
-Examine the 41-frame sequence following the examples．Identify whether any glitch listed in the taxonomy occurs, **using both the textual descriptions and the provided visual examples as your guide．**
+Examine the ${total_frames}-frame sequence following the examples．Identify whether any glitch listed in the taxonomy occurs, **using both the textual descriptions and the provided visual examples as your guide．**
 Focus on: abrupt position changes, abnormal speed, geometry clipping, unexpected Mario states, or interaction anomalies.
-Classify at the most specific level the evidence supports. Do not guess beyond what is visually evident.
+Classify at the most specific level the evidence supports.
 
 ### Output (JSON only):
 {

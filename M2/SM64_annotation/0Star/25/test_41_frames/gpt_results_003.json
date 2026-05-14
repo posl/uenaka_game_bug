@@ -1,0 +1,11 @@
+[
+    {
+        "frame": "sequence_41frames",
+        "category": "Hyperspeed-Based Glitches",
+        "base_glitch": "Backwards Long Jump (BLJ)",
+        "variant": "N/A",
+        "application": "N/A",
+        "label": "BLJ_label",
+        "reason": "Across the opening frames the camera streaks rapidly along a brick ledge with Mario off-screen, then Mario’s cap pops up from the square recess and he snaps onto the adjacent metal grate. Immediately he is in a long-jump landing/crouched posture while moving opposite his facing direction and sliding at abnormal speed, carrying momentum across the platforms and up the mesh ramps. This sudden appearance and high backward velocity match the general BLJ behavior. It is not LBLJ, SBLJ/DDD Skip, or the HMC elevator strat, as the location and setup do not correspond to those variants."
+    }
+]
