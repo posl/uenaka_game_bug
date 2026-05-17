@@ -23,7 +23,7 @@ CSV_PATH = BASE_DIR / "../0Star/25/test_41_frames/test_frames.csv"
 IMAGE_DIR = BASE_DIR / "../0Star/25/frames1/"
 OUTPUT_PATH = BASE_DIR / "../0Star/25/test_41_frames/gpt_results.json"
 PROMPT_TEMPLATE_PATH = BASE_DIR / "../../SM64_annotation/code/test_41_frames_prompt.txt"
-FRONT_AND_BACK_FRAME_COUNT = 240
+FRONT_AND_BACK_FRAME_COUNT = 20
 
 def load_glitch_list(path):
     with open(path, 'r', encoding='utf-8') as f:

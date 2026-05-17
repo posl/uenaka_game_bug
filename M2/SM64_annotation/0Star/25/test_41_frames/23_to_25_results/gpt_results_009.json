@@ -1,0 +1,11 @@
+[
+    {
+        "frame": "test_sequence_41frames",
+        "category": "Hyperspeed-Based Glitches",
+        "base_glitch": "Backwards Long Jump (BLJ)",
+        "variant": "SBLJ (Side BLJ)",
+        "application": "DDD Skip",
+        "label": "DDD_skip_label",
+        "reason": "Mario side-BLJs on the red-carpet basement stairs, building extreme backward speed while facing the wall. He then pops out of bounds and is seen moving in the black void beneath the floor, passing the locked star door area and alongside the green water wall corridor—indicating he bypassed both the door and the Dire, Dire Docks water barrier. These visuals match the Side BLJ application 'DDD Skip'."
+    }
+]

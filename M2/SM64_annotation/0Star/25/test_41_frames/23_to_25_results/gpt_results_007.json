@@ -1,0 +1,11 @@
+[
+    {
+        "frame": "2156.jpg",
+        "category": "Hyperspeed-Based Glitches",
+        "base_glitch": "Backwards Long Jump (BLJ)",
+        "variant": "SBLJ (Side BLJ)",
+        "application": "N/A",
+        "label": "SBLJ_label",
+        "reason": "Mario chains backwards long jumps sideways along the red-carpeted stairs, hugging the wall. After several SBLJs he abruptly appears under the floor (black void) near the lobby pillar before recovering—an out-of-bounds clip caused by the extreme reverse speed gained from a Side BLJ on stairs. No ledge grab or Bob-omb interaction is present, so this best matches SBLJ rather than other clipping methods or LBLJ."
+    }
+]

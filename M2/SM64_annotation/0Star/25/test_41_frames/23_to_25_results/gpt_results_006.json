@@ -1,0 +1,11 @@
+[
+    {
+        "frame": "test_sequence",
+        "category": "Hyperspeed-Based Glitches",
+        "base_glitch": "Backwards Long Jump (BLJ)",
+        "variant": "LBLJ",
+        "application": "N/A",
+        "label": "LBLJ_label",
+        "reason": "Mario performs rapid backward long jumps along the small red-carpeted stairs in the castle lobby beside a pillar, building extreme backward speed. He then abruptly clips below the floor (black void view) and zips past the star door area—classic signs of the Lobby BLJ used to breach the door via hyperspeed."
+    }
+]

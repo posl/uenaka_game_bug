@@ -1,0 +1,11 @@
+[
+    {
+        "frame": "2156.jpg",
+        "category": "Geometry & Hitbox Clipping",
+        "base_glitch": "Ledge Clipping",
+        "variant": "N/A",
+        "application": "N/A",
+        "label": "Ledge_clipping_label",
+        "reason": "On the red-carpet stairwell, Mario hugs the left wall and rises unnaturally while intersecting the brick edge, then abruptly appears below the lobby floor (black void) and continues moving with part of his body inside geometry near the green pillar. This sudden displacement through the stair ledge and wall matches the provided ledge-clipping example and shows wall/ledge-based clipping rather than a BLJ or object-assisted clip."
+    }
+]

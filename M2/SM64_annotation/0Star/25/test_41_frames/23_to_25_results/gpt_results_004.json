@@ -1,0 +1,11 @@
+[
+    {
+        "frame": "N/A",
+        "category": "Geometry & Hitbox Clipping",
+        "base_glitch": "Ledge Clipping",
+        "variant": "N/A",
+        "application": "N/A",
+        "label": "Ledge_clipping_label",
+        "reason": "On the red‑carpeted stairwell, Mario hugs the wall and rises along the edge; moments later the camera cuts to an out‑of‑bounds view beneath the lobby floor and Mario appears partially inside the ground beside the green pillar without using a door. This abrupt displacement through solid geometry matches the ledge‑based wall clip shown in the examples, not a BLJ (no repeated long jumps or hyperspeed)."
+    }
+]

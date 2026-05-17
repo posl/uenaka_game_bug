@@ -1,0 +1,11 @@
+[
+    {
+        "frame": "sequence",
+        "category": "Geometry & Hitbox Clipping",
+        "base_glitch": "Ledge Clipping",
+        "variant": "N/A",
+        "application": "N/A",
+        "label": "Ledge_clipping_label",
+        "reason": "Mario hugs the wall along the red-carpet ledge, then his body intersects the wall and he rises along the seam before abruptly appearing below the floor (black void) and sliding past the green pillar. This out‑of‑bounds transition via a ledge interaction matches the ledge clipping example rather than any BLJ-based movement."
+    }
+]

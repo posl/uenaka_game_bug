@@ -1,0 +1,11 @@
+[
+    {
+        "frame": "2156.jpg",
+        "category": "Hyperspeed-Based Glitches",
+        "base_glitch": "Backwards Long Jump (BLJ)",
+        "variant": "SBLJ (Side BLJ)",
+        "application": "DDD Skip",
+        "label": "DDD_skip_label",
+        "reason": "On the red-carpet stairs in the castle basement, Mario repeatedly long-jumps backward while moving sideways along the wall, then abruptly clips under the floor (black void visible) and emerges past the green water wall area, bypassing the star door. This matches the Side BLJ used for DDD Skip."
+    }
+]

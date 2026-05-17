@@ -1,0 +1,11 @@
+[
+    {
+        "frame": "2156.jpg",
+        "category": "Geometry & Hitbox Clipping",
+        "base_glitch": "Ledge Clipping",
+        "variant": "N/A",
+        "application": "N/A",
+        "label": "Ledge_clipping_label",
+        "reason": "Mario lines up beside the stair ledge and hugs the wall; after a few small hops he rises unnaturally along the wall and then abruptly appears underneath the floor (black void) before re-emerging in the lobby. No BLJ crouch or rapid backwards jumps are seen, and the transition is a clear wall/ledge clip consistent with the provided Ledge Clipping example."
+    }
+]

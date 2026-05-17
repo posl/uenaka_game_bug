@@ -1,0 +1,11 @@
+[
+    {
+        "frame": "test_sequence",
+        "category": "Hyperspeed-Based Glitches",
+        "base_glitch": "Backwards Long Jump (BLJ)",
+        "variant": "SBLJ (Side BLJ)",
+        "application": "N/A",
+        "label": "SBLJ_label",
+        "reason": "Mario repeatedly performs backwards long jumps while moving sideways along the red-carpeted stairs in Peach’s Castle. His long-jump pose is seen on successive frames as he hugs the stair wall, rapidly gaining speed. He then clips past geometry with an abrupt viewpoint shift to the under-floor area, consistent with a Side BLJ bypassing the star door. This matches the SBLJ cues; it is not DDD Skip because the location is the lobby stairs, not the basement entrance to Dire, Dire Docks."
+    }
+]

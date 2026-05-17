@@ -1,0 +1,11 @@
+[
+    {
+        "frame": "2156.jpg",
+        "category": "Geometry & Hitbox Clipping",
+        "base_glitch": "Ledge Clipping",
+        "variant": "N/A",
+        "application": "N/A",
+        "label": "Ledge_clipping_label",
+        "reason": "Mario ascends along the wall-and-ledge seam beside the red-carpet stairs in the lobby and then abruptly appears below the floor (black void) while continuing to move, indicating he clipped through the ledge/wall geometry. The sequence shows an out-of-bounds transition without BLJ posture or hyperspeed, matching the ledge-clipping example."
+    }
+]

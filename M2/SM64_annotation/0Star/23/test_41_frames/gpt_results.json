@@ -1,0 +1,11 @@
+[
+    {
+        "frame": "2144.jpg",
+        "category": "Geometry & Hitbox Clipping",
+        "base_glitch": "Ledge Clipping",
+        "variant": "N/A",
+        "application": "N/A",
+        "label": "Ledge_clipping_label",
+        "reason": "Mario hugs the wall at the top of the red staircase, then abruptly transitions to the black void area outside the room and slides along a seam by the green pillar before reappearing—matching the provided ledge-clip example. This indicates clipping through geometry rather than normal movement or a BLJ."
+    }
+]
