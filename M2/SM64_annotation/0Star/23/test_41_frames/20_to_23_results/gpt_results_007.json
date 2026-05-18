@@ -1,0 +1,11 @@
+[
+    {
+        "frame": "frame_0021.jpg",
+        "category": "Hyperspeed-Based Glitches",
+        "base_glitch": "Backwards Long Jump (BLJ)",
+        "variant": "SBLJ (Side BLJ)",
+        "application": "N/A",
+        "label": "SBLJ_label",
+        "reason": "Mario performs repeated backwards long jumps while moving sideways along the red-carpeted castle stairs, building extreme speed. He ascends unusually high along the wall, then abruptly clips out of bounds into a black void and continues sliding at high speed past interior geometry (green pillar visible from OOB). These cues match the Side BLJ on the castle stairs. The sequence does not explicitly show bypassing the DDD door/water wall, so it is classified as the SBLJ variant rather than the DDD Skip application."
+    }
+]

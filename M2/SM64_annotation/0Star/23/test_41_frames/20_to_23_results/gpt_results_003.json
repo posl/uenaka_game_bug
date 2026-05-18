@@ -1,0 +1,11 @@
+[
+    {
+        "frame": "2144.jpg",
+        "category": "Geometry & Hitbox Clipping",
+        "base_glitch": "Ledge Clipping",
+        "variant": "N/A",
+        "application": "N/A",
+        "label": "Ledge_clipping_label",
+        "reason": "On the lobby’s red staircase Mario presses against the wall seam and ascends unnaturally while in midair, then the camera cuts to the black out-of-bounds void beneath the floor with the lobby visible above. He moves under the floor and reappears past the wall near the pillar. This abrupt OOB displacement through the stair ledge matches the provided ledge-clipping example."
+    }
+]

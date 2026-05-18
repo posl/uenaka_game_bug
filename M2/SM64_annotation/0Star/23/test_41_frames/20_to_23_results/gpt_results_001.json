@@ -1,0 +1,11 @@
+[
+    {
+        "frame": "2144.jpg",
+        "category": "Geometry & Hitbox Clipping",
+        "base_glitch": "Ledge Clipping",
+        "variant": "N/A",
+        "application": "N/A",
+        "label": "Ledge_clipping_label",
+        "reason": "Mario hugs the stair wall and, while moving along the edge of the steps, abruptly pops out-of-bounds beneath the floor and continues under the lobby. This sudden displacement through the wall/ledge matches the provided Ledge Clipping visual example and lacks the repeated long-jump motion of BLJ or any object interaction."
+    }
+]

@@ -19,9 +19,10 @@ MODEL_NAME = "gpt-5"
 # Relative Paths
 BASE_DIR = Path(__file__).parent
 GLITCH_LIST_PATH = BASE_DIR / "../../SM64_glitch_list/glitch_list.json"
-CSV_PATH = BASE_DIR / "../0Star/25/test_41_frames/test_frames.csv"
-IMAGE_DIR = BASE_DIR / "../0Star/25/frames1/"
-OUTPUT_DIR = BASE_DIR / "../0Star/25/test_41_frames/23_to_25_results/"
+CSV_PATH = BASE_DIR / "../0Star/23/test_41_frames/test_frames.csv"
+IMAGE_DIR = BASE_DIR / "../0Star/23/frames1/"
+OUTPUT_DIR = BASE_DIR / "../0Star/23/test_41_frames/20_to_23_results/"
+OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 PROMPT_TEMPLATE_PATH = BASE_DIR / "../../SM64_annotation/code/test_41_frames_prompt.txt"
 FRONT_AND_BACK_FRAME_COUNT = 20
 

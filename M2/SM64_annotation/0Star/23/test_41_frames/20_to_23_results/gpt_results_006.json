@@ -1,0 +1,11 @@
+[
+    {
+        "frame": "2144.jpg",
+        "category": "Geometry & Hitbox Clipping",
+        "base_glitch": "Ledge Clipping",
+        "variant": "N/A",
+        "application": "N/A",
+        "label": "Ledge_clipping_label",
+        "reason": "On the red-carpet staircase in the castle lobby, Mario hugs the brick ledge and rises while in a ledge‑grab posture, then abruptly pops into the black out‑of‑bounds void and reappears past the wall near the green pillar. The movement shows a sudden state/position change through solid geometry rather than high-speed BLJ motion. This matches a ledge‑based clip through the staircase wall, not an object interaction or hyperspeed glitch."
+    }
+]

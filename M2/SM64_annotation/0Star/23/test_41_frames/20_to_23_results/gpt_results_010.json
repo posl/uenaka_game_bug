@@ -1,0 +1,11 @@
+[
+    {
+        "frame": "2144.jpg",
+        "category": "Geometry & Hitbox Clipping",
+        "base_glitch": "Ledge Clipping",
+        "variant": "N/A",
+        "application": "N/A",
+        "label": "Ledge_clipping_label",
+        "reason": "Mario moves up the red-carpeted stairs hugging the left brick wall, then makes a short hop into the wall/ledge seam. Immediately after, the scene cuts to Mario in the black void below the level and inside the lobby geometry before he reappears behind the pillar. This abrupt out-of-bounds transition without BLJ motion or other special actions matches the ledge-based wall clip shown in the visual example."
+    }
+]

@@ -46,7 +46,7 @@
           "name": "Ledge Clipping",
           "label": "Ledge_clipping_label",
           "description": "A technique where Mario grabs onto or pulls himself up from a specific part of a ledge, causing his body to clip through the wall.",
-          "example_path": "../SM64_annotation/0Star/23/frames1/2144.jpg",
+          "example_path": "../SM64_annotation/0Star/20/frames1/2152.jpg",
           "applications": [
             {
               "name": "Cannonless",

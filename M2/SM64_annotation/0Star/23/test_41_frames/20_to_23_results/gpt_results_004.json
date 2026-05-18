@@ -1,0 +1,11 @@
+[
+    {
+        "frame": "2144.jpg",
+        "category": "Geometry & Hitbox Clipping",
+        "base_glitch": "Ledge Clipping",
+        "variant": "N/A",
+        "application": "N/A",
+        "label": "Ledge_clipping_label",
+        "reason": "Mario hugs the edge of the stair ledge and wall, then abruptly transitions from the stairwell into the out-of-bounds black void with no BLJ posture or special object interaction. The sudden displacement through the wall/ledge seam and continued movement below the floor match the ledge clip behavior shown in the examples, not an SBLJ or other hyperspeed glitch."
+    }
+]

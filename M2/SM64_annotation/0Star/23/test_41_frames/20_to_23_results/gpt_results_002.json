@@ -1,0 +1,11 @@
+[
+    {
+        "frame": "2144.jpg",
+        "category": "Geometry & Hitbox Clipping",
+        "base_glitch": "Ledge Clipping",
+        "variant": "N/A",
+        "application": "N/A",
+        "label": "Ledge_clipping_label",
+        "reason": "On the lobby’s red-carpet stairs, Mario hugs the left wall/ledge seam and rises with a ledge‑grab-like posture before suddenly appearing in the black void below the level and then reappearing on the lobby floor near the green pillar. This abrupt out-of-bounds transition via a stair ledge matches the Ledge Clipping base glitch, not a BLJ or a specific application like Cannonless."
+    }
+]

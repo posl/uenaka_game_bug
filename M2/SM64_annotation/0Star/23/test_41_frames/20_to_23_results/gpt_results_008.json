@@ -1,0 +1,11 @@
+[
+    {
+        "frame": "test_sequence",
+        "category": "Geometry & Hitbox Clipping",
+        "base_glitch": "Ledge Clipping",
+        "variant": "N/A",
+        "application": "N/A",
+        "label": "Ledge_clipping_label",
+        "reason": "Mario hugs the brick wall along the red staircase, then rises unnaturally along the wall edge and pops through the geometry. The next frames show the camera under the floor (black void) with the lobby visible above before Mario reappears near the green pillar. This abrupt OOB transition without BLJ posture or hyperspeed indicates a ledge-based wall clip rather than a BLJ or door/star skip."
+    }
+]

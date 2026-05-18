@@ -1,0 +1,11 @@
+[
+    {
+        "frame": "2144.jpg",
+        "category": "Geometry & Hitbox Clipping",
+        "base_glitch": "Ledge Clipping",
+        "variant": "N/A",
+        "application": "N/A",
+        "label": "Ledge_clipping_label",
+        "reason": "Mario ascends along the wall beside the red basement stairs and then abruptly appears in the black void below the lobby floor, continuing to move with part of his body beyond the wall. This sudden out‑of‑bounds transition without a long jump or object interaction matches the ledge‑grab/clip behavior shown in the Ledge Clipping example."
+    }
+]
